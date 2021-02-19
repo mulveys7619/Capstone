@@ -176,12 +176,23 @@ public class Login extends javax.swing.JFrame {
             String user = usernameTextBox.getText();
             String pass = passwordTextBox.getText();
             
-            ResultSet output = st.executeQuery("SELECT * FROM USERS WHERE Username='"+user+"' and Password='"+pass+"'");
+            ResultSet output = st.executeQuery("SELECT * FROM USERS WHERE Username='"+user+"'");
             if(output.next())
             {
-                dispose();
-                MainPage main = new MainPage();
-                main.show();
+                
+                JOptionPane.showMessageDialog(null,"This user exist");
+                String realPassword = output.getString("Password");
+                if(false == pass.equals(realPassword))
+                {
+                    JOptionPane.showMessageDialog(null,"Password doesn't exist");
+                }
+                else if(pass.equals(realPassword))
+                { 
+                    dispose();
+                    JOptionPane.showMessageDialog(null,"Password exist.");
+                    MainPage main = new MainPage();
+                    main.show();
+                }
             }
             else
             {
