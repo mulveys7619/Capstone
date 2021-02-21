@@ -190,8 +190,8 @@ public class Login extends javax.swing.JFrame {
                 { 
                     dispose();
                     JOptionPane.showMessageDialog(null,"Password exist.");
-                    MainPage main = new MainPage();
-                    main.show();
+                    ProfilePage profile = new ProfilePage();
+                    profile.show();
                 }
             }
             else
