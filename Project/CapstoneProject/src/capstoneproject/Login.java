@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import capstoneproject.User;
 
 /**
  *
@@ -190,6 +191,9 @@ public class Login extends javax.swing.JFrame {
                 { 
                     dispose();
                     JOptionPane.showMessageDialog(null,"Password exist.");
+                    User.setUsername(user);
+                    User.setPassword(pass);
+                    
                     ProfilePage profile = new ProfilePage();
                     profile.show();
                 }
@@ -241,6 +245,10 @@ public class Login extends javax.swing.JFrame {
                 new Login().setVisible(true);
             }
         });
+    }
+    public static String getUsername()
+    {
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
