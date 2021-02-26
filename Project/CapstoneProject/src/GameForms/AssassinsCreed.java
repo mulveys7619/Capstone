@@ -36,7 +36,7 @@ public class AssassinsCreed extends javax.swing.JFrame {
 //             PreparedStatement GState =  null;
 //             GState = con.prepareStatement(genre);
              ResultSet output = st.executeQuery("SELECT * FROM Games");
-             output.absolute(30);
+             output.absolute(30);  // This is the ROE number
              titleLabel.setText(output.getString("Title"));
              descTextArea.setText(output.getString("Synopsis"));
              JOptionPane.showMessageDialog(null,st.executeQuery(genre));
@@ -49,15 +49,13 @@ public class AssassinsCreed extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,ex.getMessage());
         }
         
-        ImageIcon myImage = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("ACO.jpg")));
+        ImageIcon myImage = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("ACO.jpg"))); // change before name
         
         Image img1 = myImage.getImage();
         Image img2 = img1.getScaledInstance(pictureLabel.getWidth(), pictureLabel.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon x = new ImageIcon(img2);
         
-        pictureLabel.setIcon(x);
-        
-        
+        pictureLabel.setIcon(x); 
     }
 
     /**
@@ -294,9 +292,9 @@ public class AssassinsCreed extends javax.swing.JFrame {
             if(noRatingButton.isSelected())
             {
                 PreparedStatement stmt = con.prepareStatement(query);
-                stmt.setInt(1, 30);
+                stmt.setInt(1, 30); // change to gameid
                 stmt.setString(2, user);
-                stmt.setInt(3, 0);
+                stmt.setInt(3, 0); // if rating one is selected is equal one
                 stmt.execute();
                 
                 con.close();
@@ -306,7 +304,6 @@ public class AssassinsCreed extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null,ex.getMessage());
         }
-        
     }//GEN-LAST:event_submitButtonActionPerformed
 
     /**
@@ -343,7 +340,6 @@ public class AssassinsCreed extends javax.swing.JFrame {
             }
         });
     }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea descTextArea;
