@@ -62,12 +62,12 @@ public class ProfilePage extends javax.swing.JFrame {
         titleLabel = new javax.swing.JLabel();
         seachComboBox = new javax.swing.JComboBox<>();
         goButton = new javax.swing.JButton();
+        homeLabel = new javax.swing.JLabel();
         tabbedPanel = new javax.swing.JTabbedPane();
         myLibraryPanel = new javax.swing.JPanel();
         recommendationsPanel = new javax.swing.JPanel();
         usersPanel = new javax.swing.JPanel();
         usernameLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,22 +91,36 @@ public class ProfilePage extends javax.swing.JFrame {
         goButton.setBackground(new java.awt.Color(204, 204, 204));
         goButton.setText("Go");
 
+        homeLabel.setBackground(new java.awt.Color(0, 0, 0));
+        homeLabel.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
+        homeLabel.setForeground(new java.awt.Color(255, 255, 255));
+        homeLabel.setText("Home");
+        homeLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                homeLabelMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
         titlePanel.setLayout(titlePanelLayout);
         titlePanelLayout.setHorizontalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(titlePanelLayout.createSequentialGroup()
                 .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                .addComponent(homeLabel)
+                .addGap(314, 314, 314)
                 .addComponent(seachComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(goButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         titlePanelLayout.setVerticalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(homeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(goButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(seachComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(seachComboBox)
         );
 
         tabbedPanel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -160,13 +174,6 @@ public class ProfilePage extends javax.swing.JFrame {
                 .addGap(0, 370, Short.MAX_VALUE))
         );
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout backgroundPanelLayout = new javax.swing.GroupLayout(backgroundPanel);
         backgroundPanel.setLayout(backgroundPanelLayout);
         backgroundPanelLayout.setHorizontalGroup(
@@ -175,15 +182,9 @@ public class ProfilePage extends javax.swing.JFrame {
             .addGroup(backgroundPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1001, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(backgroundPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(usersPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(136, 136, 136))))
+                .addGap(18, 18, 18)
+                .addComponent(usersPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         backgroundPanelLayout.setVerticalGroup(
             backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,9 +196,7 @@ public class ProfilePage extends javax.swing.JFrame {
                         .addComponent(tabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
                         .addGap(56, 56, 56)
-                        .addComponent(usersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(67, 67, 67)
-                        .addComponent(jButton1)))
+                        .addComponent(usersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -219,10 +218,11 @@ public class ProfilePage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_seachComboBoxActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       AssassinsCreed form = new AssassinsCreed();
-       form.show();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void homeLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeLabelMouseClicked
+        HomePage home = new HomePage();
+        dispose();
+        home.show();
+    }//GEN-LAST:event_homeLabelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -263,7 +263,7 @@ public class ProfilePage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JButton goButton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel homeLabel;
     private javax.swing.JPanel myLibraryPanel;
     private javax.swing.JPanel recommendationsPanel;
     private javax.swing.JComboBox<String> seachComboBox;

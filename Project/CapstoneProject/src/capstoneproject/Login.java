@@ -246,10 +246,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
-    public static String getUsername()
-    {
-        
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createaccountButton;

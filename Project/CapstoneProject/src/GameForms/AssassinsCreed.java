@@ -5,6 +5,7 @@
  */
 package GameForms;
 
+import capstoneproject.HomePage;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.Connection;
@@ -16,10 +17,7 @@ import java.sql.Statement;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import capstoneproject.User;
-/**
- *
- * @author jevon
- */
+
 public class AssassinsCreed extends javax.swing.JFrame {
 
     /**
@@ -31,18 +29,13 @@ public class AssassinsCreed extends javax.swing.JFrame {
         {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-             int sub1 = 7;
-             String genre = "SELECT * FROM Genre WHERE Genre_ID = "+sub1+"";
-//             PreparedStatement GState =  null;
-//             GState = con.prepareStatement(genre);
-             ResultSet output = st.executeQuery("SELECT * FROM Games");
-             output.absolute(30);
-             titleLabel.setText(output.getString("Title"));
-             descTextArea.setText(output.getString("Synopsis"));
-             JOptionPane.showMessageDialog(null,st.executeQuery(genre));
-//             GState.setInt(1, sub1);
-//             subgenre1Label.setText(genre.setString(1, ));
             
+            int gameID = 30;
+            titleLabel.setText(FillForms.getTitle(gameID));
+            descTextArea.setText(FillForms.getSynopsis(gameID));
+            subgenre1Label.setText(FillForms.getSub1(gameID));
+            subgenre2Label.setText(FillForms.getSub2(gameID));
+            subgenre3Label.setText(FillForms.getSub3(gameID));
         }
         catch(SQLException ex)
         {
@@ -56,8 +49,6 @@ public class AssassinsCreed extends javax.swing.JFrame {
         ImageIcon x = new ImageIcon(img2);
         
         pictureLabel.setIcon(x);
-        
-        
     }
 
     /**
@@ -69,8 +60,7 @@ public class AssassinsCreed extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        mainLabel = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
         pictureLabel = new javax.swing.JLabel();
         ratingsPanel = new javax.swing.JPanel();
@@ -91,17 +81,13 @@ public class AssassinsCreed extends javax.swing.JFrame {
         descTextArea = new javax.swing.JTextArea();
         subgenre2Label = new javax.swing.JLabel();
         subgenre3Label = new javax.swing.JLabel();
+        titlePanel = new javax.swing.JPanel();
+        mainLabel = new javax.swing.JLabel();
+        homeButton = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(139, 0, 0));
-
-        mainLabel.setBackground(new java.awt.Color(0, 0, 0));
-        mainLabel.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
-        mainLabel.setForeground(new java.awt.Color(255, 255, 255));
-        mainLabel.setText("Capstone");
-        mainLabel.setToolTipText("");
-        mainLabel.setOpaque(true);
+        jPanel4.setBackground(new java.awt.Color(139, 0, 0));
 
         titleLabel.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -155,7 +141,7 @@ public class AssassinsCreed extends javax.swing.JFrame {
                 .addComponent(noRatingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(rating1Button)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(rating2Button)
                 .addGap(33, 33, 33)
                 .addComponent(rating3Button)
@@ -202,83 +188,109 @@ public class AssassinsCreed extends javax.swing.JFrame {
             }
         });
 
-        subgenre1Label.setText("jLabel1");
-
         descTextArea.setEditable(false);
         descTextArea.setBackground(new java.awt.Color(139, 0, 0));
         descTextArea.setColumns(20);
         descTextArea.setRows(5);
         jScrollPane3.setViewportView(descTextArea);
 
-        subgenre2Label.setText("jLabel1");
+        titlePanel.setBackground(new java.awt.Color(0, 0, 0));
 
-        subgenre3Label.setText("jLabel1");
+        mainLabel.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
+        mainLabel.setForeground(new java.awt.Color(255, 255, 255));
+        mainLabel.setText("Capstone");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(ratingsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(30, 30, 30))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        homeButton.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
+        homeButton.setForeground(new java.awt.Color(255, 255, 255));
+        homeButton.setText("Home");
+        homeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                homeButtonMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
+        titlePanel.setLayout(titlePanelLayout);
+        titlePanelLayout.setHorizontalGroup(
+            titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titlePanelLayout.createSequentialGroup()
+                .addComponent(mainLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        titlePanelLayout.setVerticalGroup(
+            titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mainLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+            .addComponent(homeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addComponent(jScrollPane3)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(323, 323, 323)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(subgenre1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(47, 47, 47)
-                                .addComponent(subgenre3Label, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
-                                .addComponent(subgenre2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(438, 438, 438)
-                        .addComponent(submitButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(mainLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(pictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(subgenre1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(subgenre2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(subgenre3Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ratingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(323, 323, 323)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pictureLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(subgenre1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(subgenre3Label, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(344, 344, 344))
+            .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(ratingsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(30, 30, 30))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(388, 388, 388)
+                .addComponent(subgenre2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(submitButton)
-                .addGap(59, 59, 59))
+                .addGap(397, 397, 397))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(subgenre1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(subgenre3Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(subgenre2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ratingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(submitButton)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -288,26 +300,115 @@ public class AssassinsCreed extends javax.swing.JFrame {
         try
         {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
-            Statement st = con.createStatement();
-            String query = "INSERT INTO GameRatings(Game_ID, User_ID, Rating)" + " VALUES(?,?,?)";
+            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            ResultSet output = st.executeQuery("SELECT * FROM Games");
+            
+            output.absolute(30);
+            int id = output.getInt("Game_ID");
+            String query = "REPLACE INTO GameRatings(Game_ID, User_ID, Rating)" + " VALUES(?,?,?)";
             String user = User.getUsername();
-            if(noRatingButton.isSelected())
+            
+
+            String check = "SELECT * FROM GameRatings WHERE Game_ID = ? AND User_ID = ?";
+            
+            
+
+            PreparedStatement stmt = con.prepareStatement(query);
+            PreparedStatement checkst = con.prepareStatement(check);
+            checkst.setInt(2,id);
+            checkst.setString(3, user);
+            ResultSet rs = st.executeQuery(check);
+            if(rs.next() == false)
             {
-                PreparedStatement stmt = con.prepareStatement(query);
+                if(noRatingButton.isSelected())
+            {
                 stmt.setInt(1, 30);
                 stmt.setString(2, user);
                 stmt.setInt(3, 0);
-                stmt.execute();
-                
-                con.close();
             }
+            if(rating1Button.isSelected())
+            {
+                stmt.setInt(1, 30);
+                stmt.setString(2, user);
+                stmt.setInt(3, 1);
+            }
+            if(rating2Button.isSelected())
+            {
+                stmt.setInt(1, 30);
+                stmt.setString(2, user);
+                stmt.setInt(3, 2);
+            }
+            if(rating3Button.isSelected())
+            {
+                stmt.setInt(1, 30);
+                stmt.setString(2, user);
+                stmt.setInt(3, 3);
+            }
+            if(rating4Button.isSelected())
+            {
+                stmt.setInt(1, 30);
+                stmt.setString(2, user);
+                stmt.setInt(3, 4);
+            }
+            if(rating5Button.isSelected())
+            {
+                stmt.setInt(1, 30);
+                stmt.setString(2, user);
+                stmt.setInt(3, 5);
+            }
+            if(rating6Button.isSelected())
+            {
+                stmt.setInt(1, 30);
+                stmt.setString(2, user);
+                stmt.setInt(3, 6);
+            }
+            if(rating7Button.isSelected())
+            {
+                stmt.setInt(1, 30);
+                stmt.setString(2, user);
+                stmt.setInt(3, 7);
+            }
+            if(rating8Button.isSelected())
+            {
+                stmt.setInt(1, 30);
+                stmt.setString(2, user);
+                stmt.setInt(3, 8);
+            }
+            if(rating9Button.isSelected())
+            {
+                stmt.setInt(1, 30);
+                stmt.setString(2, user);
+                stmt.setInt(3, 9);
+            }
+            if(rating10Button.isSelected())
+            {
+                stmt.setInt(1, 30);
+                stmt.setString(2, user);
+                stmt.setInt(3, 10);
+            }
+            stmt.execute();
+            }
+            else
+            {
+                String update = "UPDATE GameRatings SET Rating = ? WHERE User_ID = ?, Game_ID = ?:";
+                
+                PreparedStatement updateSt = con.prepareStatement(update);
+                updateSt.setInt(3, id);
+                updateSt.setString(2, user);
+            }
+            con.close();
         }
         catch(SQLException ex)
         {
             JOptionPane.showMessageDialog(null,ex.getMessage());
         }
-        
     }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void homeButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeButtonMousePressed
+        HomePage home = new HomePage();
+        dispose();
+        home.show();
+    }//GEN-LAST:event_homeButtonMousePressed
 
     /**
      * @param args the command line arguments
@@ -343,12 +444,11 @@ public class AssassinsCreed extends javax.swing.JFrame {
             }
         });
     }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea descTextArea;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel homeButton;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel mainLabel;
     private javax.swing.JRadioButton noRatingButton;
@@ -369,5 +469,6 @@ public class AssassinsCreed extends javax.swing.JFrame {
     private javax.swing.JLabel subgenre3Label;
     private javax.swing.JButton submitButton;
     private javax.swing.JLabel titleLabel;
+    private javax.swing.JPanel titlePanel;
     // End of variables declaration//GEN-END:variables
 }
