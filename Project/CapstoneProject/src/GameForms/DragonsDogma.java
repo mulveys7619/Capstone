@@ -304,7 +304,7 @@ public class DragonsDogma extends javax.swing.JFrame {
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet output = st.executeQuery("SELECT * FROM Games");
 
-            output.absolute(30);
+            output.absolute(29);
             int id = output.getInt("Game_ID");
             String query = "REPLACE INTO GameRatings(Game_ID, User_ID, Rating)" + " VALUES(?,?,?)";
             String user = User.getUsername();

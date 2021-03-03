@@ -303,7 +303,7 @@ public class FinalFantasyXIV extends javax.swing.JFrame {
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet output = st.executeQuery("SELECT * FROM Games");
 
-            output.absolute(30);
+            output.absolute(6);
             int id = output.getInt("Game_ID");
             String query = "REPLACE INTO GameRatings(Game_ID, User_ID, Rating)" + " VALUES(?,?,?)";
             String user = User.getUsername();
@@ -319,67 +319,67 @@ public class FinalFantasyXIV extends javax.swing.JFrame {
             {
                 if(noRatingButton.isSelected())
                 {
-                    stmt.setInt(1, 19);
+                    stmt.setInt(1, 6);
                     stmt.setString(2, user);
                     stmt.setInt(3, 0);
                 }
                 if(rating1Button.isSelected())
                 {
-                    stmt.setInt(1, 19);
+                    stmt.setInt(1, 6);
                     stmt.setString(2, user);
                     stmt.setInt(3, 1);
                 }
                 if(rating2Button.isSelected())
                 {
-                    stmt.setInt(1, 19);
+                    stmt.setInt(1, 6);
                     stmt.setString(2, user);
                     stmt.setInt(3, 2);
                 }
                 if(rating3Button.isSelected())
                 {
-                    stmt.setInt(1, 19);
+                    stmt.setInt(1, 6);
                     stmt.setString(2, user);
                     stmt.setInt(3, 3);
                 }
                 if(rating4Button.isSelected())
                 {
-                    stmt.setInt(1, 19);
+                    stmt.setInt(1, 6);
                     stmt.setString(2, user);
                     stmt.setInt(3, 4);
                 }
                 if(rating5Button.isSelected())
                 {
-                    stmt.setInt(1, 19);
+                    stmt.setInt(1, 6);
                     stmt.setString(2, user);
                     stmt.setInt(3, 5);
                 }
                 if(rating6Button.isSelected())
                 {
-                    stmt.setInt(1, 19);
+                    stmt.setInt(1, 6);
                     stmt.setString(2, user);
                     stmt.setInt(3, 6);
                 }
                 if(rating7Button.isSelected())
                 {
-                    stmt.setInt(1, 19);
+                    stmt.setInt(1, 6);
                     stmt.setString(2, user);
                     stmt.setInt(3, 7);
                 }
                 if(rating8Button.isSelected())
                 {
-                    stmt.setInt(1, 19);
+                    stmt.setInt(1, 6);
                     stmt.setString(2, user);
                     stmt.setInt(3, 8);
                 }
                 if(rating9Button.isSelected())
                 {
-                    stmt.setInt(1, 19);
+                    stmt.setInt(1, 6);
                     stmt.setString(2, user);
                     stmt.setInt(3, 9);
                 }
                 if(rating10Button.isSelected())
                 {
-                    stmt.setInt(1, 19);
+                    stmt.setInt(1, 6);
                     stmt.setString(2, user);
                     stmt.setInt(3, 10);
                 }
