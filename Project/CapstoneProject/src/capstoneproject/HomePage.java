@@ -20,6 +20,7 @@ import GameForms.DragonQuestXI;
 import GameForms.DragonsDogma;
 import GameForms.DyingLight;
 import GameForms.Fallout76;
+import GameForms.FillForms;
 import GameForms.FinalFantasyX;
 import GameForms.FinalFantasyXIV;
 import GameForms.FinalFantasyXV;
@@ -89,7 +90,7 @@ public class HomePage extends javax.swing.JFrame {
         String wasteland = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\wasteland2.jpg";
         String WoW = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\WoW.jpg";
         String xcom = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\XCOM.jpg";
-        String xenoblade = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\xenoblade.jpg";
+        String thumbnail = FillForms.getPicture(34);
         
         ImageIcon myImage = new ImageIcon((ACO));
         
@@ -363,7 +364,7 @@ public class HomePage extends javax.swing.JFrame {
         
         xcomPic.setIcon(x34);
         
-        ImageIcon myImage35 = new ImageIcon((xenoblade));
+        ImageIcon myImage35 = new ImageIcon((thumbnail));
         
         Image img35 = myImage35.getImage();
         Image newimg35 = img35.getScaledInstance(xenobladePic.getWidth(), xenobladePic.getHeight(), Image.SCALE_SMOOTH);

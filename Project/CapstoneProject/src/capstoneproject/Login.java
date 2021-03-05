@@ -164,8 +164,8 @@ public class Login extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
             Statement st = con.createStatement();
 
-            String user = usernameTextBox.getText();
-            String pass = passwordTextBox.getText();
+            String user = usernameTextBox5.getText();
+            String pass = passwordTextBox5.getText();
 
             ResultSet output = st.executeQuery("SELECT * FROM USERS WHERE Username='"+user+"'");
             if(output.next())
@@ -191,8 +191,8 @@ public class Login extends javax.swing.JFrame {
             else
             {
                 JOptionPane.showMessageDialog(null,"Username and Password were not found!");
-                usernameTextBox.setText("");
-                passwordTextBox.setText("");
+                usernameTextBox5.setText("");
+                passwordTextBox5.setText("");
             }
             con.close();
         }

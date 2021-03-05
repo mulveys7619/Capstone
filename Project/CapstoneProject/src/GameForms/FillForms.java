@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
@@ -17,7 +18,20 @@ import javax.swing.JOptionPane;
  * @author jevon
  */
 public class FillForms {
-    
+//    public static String getID(String query)
+//    {
+//        try
+//        {
+//            Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
+//            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+////            string idQuery = "SELECT * FROM GAMES WHERE G";
+//        } 
+//        catch(Exception ex)
+//        {
+//            JOptionPane.showMessageDialog(null, ex);
+//        }
+//        return idQuery;
+//    }
     public static String getTitle(int gameId)
     {
         String title = "";
@@ -40,7 +54,29 @@ public class FillForms {
              JOptionPane.showMessageDialog(null, ex);
         }
         return title;
-        
+    }
+    public static String getPicture(int gameId)
+    {
+        String picture = "";
+        try
+        {
+            Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
+            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String pictureQuery = "SELECT THUMBNAIL FROM GAMES WHERE Game_ID = ?";
+            PreparedStatement thumbnailPS = con.prepareStatement(pictureQuery);
+            thumbnailPS.setInt(1, gameId);
+            ResultSet thumbnailRS = thumbnailPS.executeQuery();
+            if (thumbnailRS.next())
+            {
+                picture = thumbnailRS.getString("Thumbnail");
+            }
+            con.close();
+        }
+        catch(SQLException ex)
+        {
+             JOptionPane.showMessageDialog(null, ex);
+        }
+        return picture;
     }
     public static String getSynopsis(int gameId)
     {

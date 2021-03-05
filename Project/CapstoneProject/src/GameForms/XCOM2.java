@@ -25,6 +25,24 @@ public class XCOM2 extends javax.swing.JFrame {
      */
     public XCOM2() {
         initComponents();
+        String user = User.getUsername();
+        if(user == null)
+        {
+            JOptionPane.showMessageDialog(null, "You have to logged in to rate a game");
+            noRatingButton.setEnabled(false);
+            rating1Button.setEnabled(false);
+            rating2Button.setEnabled(false);
+            rating3Button.setEnabled(false);
+            rating4Button.setEnabled(false);
+            rating5Button.setEnabled(false);
+            rating6Button.setEnabled(false);
+            rating7Button.setEnabled(false);
+            rating8Button.setEnabled(false);
+            rating9Button.setEnabled(false);
+            rating10Button.setEnabled(false);
+            submitButton.setEnabled(false);
+        }
+            
         try
         {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
@@ -60,6 +78,7 @@ public class XCOM2 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ratingsButtonGroup = new javax.swing.ButtonGroup();
         jPanel4 = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
         pictureLabel = new javax.swing.JLabel();
@@ -101,36 +120,47 @@ public class XCOM2 extends javax.swing.JFrame {
         ratingsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ratings", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cooper Black", 0, 14))); // NOI18N
 
         noRatingButton.setBackground(new java.awt.Color(139, 0, 0));
+        ratingsButtonGroup.add(noRatingButton);
         noRatingButton.setText("No Rating");
 
         rating1Button.setBackground(new java.awt.Color(139, 0, 0));
+        ratingsButtonGroup.add(rating1Button);
         rating1Button.setText("1");
 
         rating2Button.setBackground(new java.awt.Color(139, 0, 0));
+        ratingsButtonGroup.add(rating2Button);
         rating2Button.setText("2");
 
         rating3Button.setBackground(new java.awt.Color(139, 0, 0));
+        ratingsButtonGroup.add(rating3Button);
         rating3Button.setText("3");
 
         rating4Button.setBackground(new java.awt.Color(139, 0, 0));
+        ratingsButtonGroup.add(rating4Button);
         rating4Button.setText("4");
 
         rating5Button.setBackground(new java.awt.Color(139, 0, 0));
+        ratingsButtonGroup.add(rating5Button);
         rating5Button.setText("5");
 
         rating6Button.setBackground(new java.awt.Color(139, 0, 0));
+        ratingsButtonGroup.add(rating6Button);
         rating6Button.setText("6");
 
         rating7Button.setBackground(new java.awt.Color(139, 0, 0));
+        ratingsButtonGroup.add(rating7Button);
         rating7Button.setText("7");
 
         rating8Button.setBackground(new java.awt.Color(139, 0, 0));
+        ratingsButtonGroup.add(rating8Button);
         rating8Button.setText("8");
 
         rating9Button.setBackground(new java.awt.Color(139, 0, 0));
+        ratingsButtonGroup.add(rating9Button);
         rating9Button.setText("9");
 
         rating10Button.setBackground(new java.awt.Color(139, 0, 0));
+        ratingsButtonGroup.add(rating10Button);
         rating10Button.setText("10");
 
         javax.swing.GroupLayout ratingsPanelLayout = new javax.swing.GroupLayout(ratingsPanel);
@@ -306,103 +336,29 @@ public class XCOM2 extends javax.swing.JFrame {
             output.absolute(18);
             int id = output.getInt("Game_ID");
             String user = User.getUsername();
+            JOptionPane.showMessageDialog(null, user);
             
             String check = "SELECT * FROM GameRatings WHERE Game_ID = ? AND User_ID = ?";
-            String delete = "DELETE FROM GameRatings WHERE User_ID = '"+user+"'";
+            String delete = "DELETE FROM GameRatings WHERE Game_ID = ? AND User_ID = "+user+"";
             String insert = "INSERT INTO GameRatings(Game_ID, User_ID, Rating)" + " VALUES(?,?,?)";
             
-            
-//            PreparedStatement checkst = con.prepareStatement(check);
-//            PreparedStatement deleteSt = con.prepareStatement(delete);
+            PreparedStatement checkst = con.prepareStatement(check);
+            checkst.setInt(1, 18);
+            checkst.setString(2,user);
+            PreparedStatement deleteSt = con.prepareStatement(delete);
+            deleteSt.setInt(1,18);
+            deleteSt.setString(2,user);
             PreparedStatement stmt = con.prepareStatement(insert);
             st.execute(check);
-            ResultSet checkResult = st.getResultSet();
-            if(checkResult.next())
+            ResultSet checkResult = checkst.getResultSet();
+            if(checkResult.isBeforeFirst())
             {
+                ResultSet rs = st.executeQuery(insert);
                 st.execute(delete);
                 JOptionPane.showMessageDialog(null,"Record has been deleted.");
-                ResultSet rs = st.executeQuery(insert);
+                
                 if(rs.next() == false)
-                {
-                    if(noRatingButton.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 0);
-                    }
-                    else if(rating1Button.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 1);
-                    }
-                    else if(rating2Button.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 2);
-                    }
-                    else if(rating3Button.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 3);
-                    }
-                    else if(rating4Button.isSelected())
-                    {   
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 4);
-                    }
-                    else if(rating5Button.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 5);
-                    }
-                    else if(rating6Button.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 6);
-                    }
-                    else if(rating7Button.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 7);
-                    }
-                    else if(rating8Button.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 8);
-                    }
-                    else if(rating9Button.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 9);
-                    }
-                    else if(rating10Button.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 10);
-                    }
-                    stmt.execute();
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(null,"Nothing was selected. Select an option.");
-                }
-                con.close();
-            }
-            else
-            {
-                ResultSet rs = st.executeQuery(insert);
-                if(rs.next() == false)
-                {
+                { 
                     if(noRatingButton.isSelected())
                     {
                         stmt.setInt(1, 18);
@@ -543,6 +499,7 @@ public class XCOM2 extends javax.swing.JFrame {
     private javax.swing.JRadioButton rating7Button;
     private javax.swing.JRadioButton rating8Button;
     private javax.swing.JRadioButton rating9Button;
+    private javax.swing.ButtonGroup ratingsButtonGroup;
     private javax.swing.JPanel ratingsPanel;
     private javax.swing.JLabel subgenre1Label;
     private javax.swing.JLabel subgenre2Label;
