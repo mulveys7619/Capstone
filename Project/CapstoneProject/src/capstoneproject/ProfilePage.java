@@ -24,6 +24,8 @@ public class ProfilePage extends javax.swing.JFrame {
      */
     public ProfilePage() {
         initComponents();
+        String user = User.getUsername();
+        usernameLabel.setText(user);
         try
         {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
@@ -160,6 +162,7 @@ public class ProfilePage extends javax.swing.JFrame {
         usernameLabel.setFont(new java.awt.Font("Cooper Black", 0, 48)); // NOI18N
         usernameLabel.setForeground(new java.awt.Color(255, 255, 255));
         usernameLabel.setText("Username");
+        usernameLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
 
         javax.swing.GroupLayout usersPanelLayout = new javax.swing.GroupLayout(usersPanel);
         usersPanel.setLayout(usersPanelLayout);

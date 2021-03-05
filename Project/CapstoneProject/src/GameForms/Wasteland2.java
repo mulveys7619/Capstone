@@ -305,7 +305,7 @@ public class Wasteland2 extends javax.swing.JFrame {
 
             output.absolute(23);
             int id = output.getInt("Game_ID");
-            String query = "REPLACE INTO GameRatings(Game_ID, User_ID, Rating)" + " VALUES(?,?,?)";
+            String query = "INSERT INTO GameRatings(Game_ID, User_ID, Rating)" + " VALUES(?,?,?)";
             String user = User.getUsername();
 
             String check = "SELECT * FROM GameRatings WHERE Game_ID = ? AND User_ID = ?";

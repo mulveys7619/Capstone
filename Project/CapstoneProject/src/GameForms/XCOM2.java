@@ -305,95 +305,178 @@ public class XCOM2 extends javax.swing.JFrame {
 
             output.absolute(18);
             int id = output.getInt("Game_ID");
-            String query = "REPLACE INTO GameRatings(Game_ID, User_ID, Rating)" + " VALUES(?,?,?)";
             String user = User.getUsername();
-
+            
             String check = "SELECT * FROM GameRatings WHERE Game_ID = ? AND User_ID = ?";
-
-            PreparedStatement stmt = con.prepareStatement(query);
-            PreparedStatement checkst = con.prepareStatement(check);
-            checkst.setInt(2,id);
-            checkst.setString(3, user);
-            ResultSet rs = st.executeQuery(check);
-            if(rs.next() == false)
+            String delete = "DELETE FROM GameRatings WHERE User_ID = '"+user+"'";
+            String insert = "INSERT INTO GameRatings(Game_ID, User_ID, Rating)" + " VALUES(?,?,?)";
+            
+            
+//            PreparedStatement checkst = con.prepareStatement(check);
+//            PreparedStatement deleteSt = con.prepareStatement(delete);
+            PreparedStatement stmt = con.prepareStatement(insert);
+            st.execute(check);
+            ResultSet checkResult = st.getResultSet();
+            if(checkResult.next())
             {
-                if(noRatingButton.isSelected())
+                st.execute(delete);
+                JOptionPane.showMessageDialog(null,"Record has been deleted.");
+                ResultSet rs = st.executeQuery(insert);
+                if(rs.next() == false)
                 {
-                    stmt.setInt(1, 18);
-                    stmt.setString(2, user);
-                    stmt.setInt(3, 0);
+                    if(noRatingButton.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 0);
+                    }
+                    else if(rating1Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 1);
+                    }
+                    else if(rating2Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 2);
+                    }
+                    else if(rating3Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 3);
+                    }
+                    else if(rating4Button.isSelected())
+                    {   
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 4);
+                    }
+                    else if(rating5Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 5);
+                    }
+                    else if(rating6Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 6);
+                    }
+                    else if(rating7Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 7);
+                    }
+                    else if(rating8Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 8);
+                    }
+                    else if(rating9Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 9);
+                    }
+                    else if(rating10Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 10);
+                    }
+                    stmt.execute();
                 }
-                if(rating1Button.isSelected())
+                else
                 {
-                    stmt.setInt(1, 18);
-                    stmt.setString(2, user);
-                    stmt.setInt(3, 1);
+                    JOptionPane.showMessageDialog(null,"Nothing was selected. Select an option.");
                 }
-                if(rating2Button.isSelected())
-                {
-                    stmt.setInt(1, 18);
-                    stmt.setString(2, user);
-                    stmt.setInt(3, 2);
-                }
-                if(rating3Button.isSelected())
-                {
-                    stmt.setInt(1, 18);
-                    stmt.setString(2, user);
-                    stmt.setInt(3, 3);
-                }
-                if(rating4Button.isSelected())
-                {
-                    stmt.setInt(1, 18);
-                    stmt.setString(2, user);
-                    stmt.setInt(3, 4);
-                }
-                if(rating5Button.isSelected())
-                {
-                    stmt.setInt(1, 18);
-                    stmt.setString(2, user);
-                    stmt.setInt(3, 5);
-                }
-                if(rating6Button.isSelected())
-                {
-                    stmt.setInt(1, 18);
-                    stmt.setString(2, user);
-                    stmt.setInt(3, 6);
-                }
-                if(rating7Button.isSelected())
-                {
-                    stmt.setInt(1, 18);
-                    stmt.setString(2, user);
-                    stmt.setInt(3, 7);
-                }
-                if(rating8Button.isSelected())
-                {
-                    stmt.setInt(1, 18);
-                    stmt.setString(2, user);
-                    stmt.setInt(3, 8);
-                }
-                if(rating9Button.isSelected())
-                {
-                    stmt.setInt(1, 18);
-                    stmt.setString(2, user);
-                    stmt.setInt(3, 9);
-                }
-                if(rating10Button.isSelected())
-                {
-                    stmt.setInt(1, 18);
-                    stmt.setString(2, user);
-                    stmt.setInt(3, 10);
-                }
-                stmt.execute();
+                con.close();
             }
             else
             {
-                String update = "UPDATE GameRatings SET Rating = ? WHERE User_ID = ?, Game_ID = ?:";
-
-                PreparedStatement updateSt = con.prepareStatement(update);
-                updateSt.setInt(3, id);
-                updateSt.setString(2, user);
+                ResultSet rs = st.executeQuery(insert);
+                if(rs.next() == false)
+                {
+                    if(noRatingButton.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 0);
+                    }
+                    else if(rating1Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 1);
+                    }
+                    else if(rating2Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 2);
+                    }
+                    else if(rating3Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 3);
+                    }
+                    else if(rating4Button.isSelected())
+                    {   
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 4);
+                    }
+                    else if(rating5Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 5);
+                    }
+                    else if(rating6Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 6);
+                    }
+                    else if(rating7Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 7);
+                    }
+                    else if(rating8Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 8);
+                    }
+                    else if(rating9Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 9);
+                    }
+                    else if(rating10Button.isSelected())
+                    {
+                        stmt.setInt(1, 18);
+                        stmt.setString(2, user);
+                        stmt.setInt(3, 10);
+                    }
+                    stmt.execute();
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"Nothing was selected. Select an option.");
+                }
+                con.close();
             }
-            con.close();
         }
         catch(SQLException ex)
         {

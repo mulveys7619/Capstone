@@ -204,6 +204,8 @@ public class CreateAccount extends javax.swing.JFrame {
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
         dispose();
+        Login log = new Login();
+        log.show();
     }//GEN-LAST:event_closeButtonActionPerformed
 
     /**
