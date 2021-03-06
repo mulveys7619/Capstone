@@ -29,17 +29,9 @@ public class XCOM2 extends javax.swing.JFrame {
         if(user == null)
         {
             JOptionPane.showMessageDialog(null, "You have to logged in to rate a game");
+            likeRatingButton.setEnabled(false);
+            dislikeRatingButton.setEnabled(false);
             noRatingButton.setEnabled(false);
-            rating1Button.setEnabled(false);
-            rating2Button.setEnabled(false);
-            rating3Button.setEnabled(false);
-            rating4Button.setEnabled(false);
-            rating5Button.setEnabled(false);
-            rating6Button.setEnabled(false);
-            rating7Button.setEnabled(false);
-            rating8Button.setEnabled(false);
-            rating9Button.setEnabled(false);
-            rating10Button.setEnabled(false);
             submitButton.setEnabled(false);
         }
             
@@ -84,16 +76,8 @@ public class XCOM2 extends javax.swing.JFrame {
         pictureLabel = new javax.swing.JLabel();
         ratingsPanel = new javax.swing.JPanel();
         noRatingButton = new javax.swing.JRadioButton();
-        rating1Button = new javax.swing.JRadioButton();
-        rating2Button = new javax.swing.JRadioButton();
-        rating3Button = new javax.swing.JRadioButton();
-        rating4Button = new javax.swing.JRadioButton();
-        rating5Button = new javax.swing.JRadioButton();
-        rating6Button = new javax.swing.JRadioButton();
-        rating7Button = new javax.swing.JRadioButton();
-        rating8Button = new javax.swing.JRadioButton();
-        rating9Button = new javax.swing.JRadioButton();
-        rating10Button = new javax.swing.JRadioButton();
+        likeRatingButton = new javax.swing.JRadioButton();
+        dislikeRatingButton = new javax.swing.JRadioButton();
         submitButton = new javax.swing.JButton();
         subgenre1Label = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -123,72 +107,25 @@ public class XCOM2 extends javax.swing.JFrame {
         ratingsButtonGroup.add(noRatingButton);
         noRatingButton.setText("No Rating");
 
-        rating1Button.setBackground(new java.awt.Color(139, 0, 0));
-        ratingsButtonGroup.add(rating1Button);
-        rating1Button.setText("1");
+        likeRatingButton.setBackground(new java.awt.Color(139, 0, 0));
+        ratingsButtonGroup.add(likeRatingButton);
+        likeRatingButton.setText("Like");
 
-        rating2Button.setBackground(new java.awt.Color(139, 0, 0));
-        ratingsButtonGroup.add(rating2Button);
-        rating2Button.setText("2");
-
-        rating3Button.setBackground(new java.awt.Color(139, 0, 0));
-        ratingsButtonGroup.add(rating3Button);
-        rating3Button.setText("3");
-
-        rating4Button.setBackground(new java.awt.Color(139, 0, 0));
-        ratingsButtonGroup.add(rating4Button);
-        rating4Button.setText("4");
-
-        rating5Button.setBackground(new java.awt.Color(139, 0, 0));
-        ratingsButtonGroup.add(rating5Button);
-        rating5Button.setText("5");
-
-        rating6Button.setBackground(new java.awt.Color(139, 0, 0));
-        ratingsButtonGroup.add(rating6Button);
-        rating6Button.setText("6");
-
-        rating7Button.setBackground(new java.awt.Color(139, 0, 0));
-        ratingsButtonGroup.add(rating7Button);
-        rating7Button.setText("7");
-
-        rating8Button.setBackground(new java.awt.Color(139, 0, 0));
-        ratingsButtonGroup.add(rating8Button);
-        rating8Button.setText("8");
-
-        rating9Button.setBackground(new java.awt.Color(139, 0, 0));
-        ratingsButtonGroup.add(rating9Button);
-        rating9Button.setText("9");
-
-        rating10Button.setBackground(new java.awt.Color(139, 0, 0));
-        ratingsButtonGroup.add(rating10Button);
-        rating10Button.setText("10");
+        dislikeRatingButton.setBackground(new java.awt.Color(139, 0, 0));
+        ratingsButtonGroup.add(dislikeRatingButton);
+        dislikeRatingButton.setText("Dislike");
 
         javax.swing.GroupLayout ratingsPanelLayout = new javax.swing.GroupLayout(ratingsPanel);
         ratingsPanel.setLayout(ratingsPanelLayout);
         ratingsPanelLayout.setHorizontalGroup(
             ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ratingsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(likeRatingButton)
+                .addGap(131, 131, 131)
+                .addComponent(dislikeRatingButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
                 .addComponent(noRatingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(rating1Button)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(rating2Button)
-                .addGap(33, 33, 33)
-                .addComponent(rating3Button)
-                .addGap(49, 49, 49)
-                .addComponent(rating4Button)
-                .addGap(50, 50, 50)
-                .addComponent(rating5Button)
-                .addGap(39, 39, 39)
-                .addComponent(rating6Button)
-                .addGap(51, 51, 51)
-                .addComponent(rating7Button)
-                .addGap(50, 50, 50)
-                .addComponent(rating8Button)
-                .addGap(56, 56, 56)
-                .addComponent(rating9Button)
-                .addGap(45, 45, 45)
-                .addComponent(rating10Button)
                 .addContainerGap())
         );
         ratingsPanelLayout.setVerticalGroup(
@@ -196,16 +133,8 @@ public class XCOM2 extends javax.swing.JFrame {
             .addGroup(ratingsPanelLayout.createSequentialGroup()
                 .addGroup(ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(noRatingButton)
-                    .addComponent(rating1Button)
-                    .addComponent(rating2Button)
-                    .addComponent(rating3Button)
-                    .addComponent(rating4Button)
-                    .addComponent(rating5Button)
-                    .addComponent(rating6Button)
-                    .addComponent(rating7Button)
-                    .addComponent(rating8Button)
-                    .addComponent(rating9Button)
-                    .addComponent(rating10Button))
+                    .addComponent(likeRatingButton)
+                    .addComponent(dislikeRatingButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -267,19 +196,10 @@ public class XCOM2 extends javax.swing.JFrame {
                     .addComponent(pictureLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(subgenre1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                         .addComponent(subgenre3Label, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(344, 344, 344))
             .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(ratingsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(30, 30, 30))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(388, 388, 388)
                 .addComponent(subgenre2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -288,6 +208,14 @@ public class XCOM2 extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(submitButton)
                 .addGap(397, 397, 397))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(195, 195, 195)
+                .addComponent(ratingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,71 +287,23 @@ public class XCOM2 extends javax.swing.JFrame {
                 
                 if(rs.next() == false)
                 { 
-                    if(noRatingButton.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 0);
-                    }
-                    else if(rating1Button.isSelected())
+                    if(likeRatingButton.isSelected())
                     {
                         stmt.setInt(1, 18);
                         stmt.setString(2, user);
                         stmt.setInt(3, 1);
                     }
-                    else if(rating2Button.isSelected())
+                    if(dislikeRatingButton.isSelected())
                     {
                         stmt.setInt(1, 18);
                         stmt.setString(2, user);
-                        stmt.setInt(3, 2);
+                        stmt.setInt(3, -1);
                     }
-                    else if(rating3Button.isSelected())
+                    if(noRatingButton.isSelected())
                     {
                         stmt.setInt(1, 18);
                         stmt.setString(2, user);
-                        stmt.setInt(3, 3);
-                    }
-                    else if(rating4Button.isSelected())
-                    {   
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 4);
-                    }
-                    else if(rating5Button.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 5);
-                    }
-                    else if(rating6Button.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 6);
-                    }
-                    else if(rating7Button.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 7);
-                    }
-                    else if(rating8Button.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 8);
-                    }
-                    else if(rating9Button.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 9);
-                    }
-                    else if(rating10Button.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 10);
+                        stmt.setInt(3, 0);
                     }
                     stmt.execute();
                 }
@@ -483,24 +363,20 @@ public class XCOM2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea descTextArea;
+    private javax.swing.JRadioButton dislikeRatingButton;
+    private javax.swing.JRadioButton dislikeRatingButton4;
     private javax.swing.JLabel homeButton;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JRadioButton likeRatingButton;
+    private javax.swing.JRadioButton likeRatingButton4;
     private javax.swing.JLabel mainLabel;
     private javax.swing.JRadioButton noRatingButton;
+    private javax.swing.JRadioButton noRatingButton1;
     private javax.swing.JLabel pictureLabel;
-    private javax.swing.JRadioButton rating10Button;
-    private javax.swing.JRadioButton rating1Button;
-    private javax.swing.JRadioButton rating2Button;
-    private javax.swing.JRadioButton rating3Button;
-    private javax.swing.JRadioButton rating4Button;
-    private javax.swing.JRadioButton rating5Button;
-    private javax.swing.JRadioButton rating6Button;
-    private javax.swing.JRadioButton rating7Button;
-    private javax.swing.JRadioButton rating8Button;
-    private javax.swing.JRadioButton rating9Button;
     private javax.swing.ButtonGroup ratingsButtonGroup;
     private javax.swing.JPanel ratingsPanel;
+    private javax.swing.JPanel ratingsPanel1;
     private javax.swing.JLabel subgenre1Label;
     private javax.swing.JLabel subgenre2Label;
     private javax.swing.JLabel subgenre3Label;

@@ -56,41 +56,41 @@ public class HomePage extends javax.swing.JFrame {
      */
     public HomePage() {
         initComponents();
-        String ACO = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\ACO.jpg";
-        String bastion = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\bastion.jpg";
-        String chrono = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\chronotrigger.jpg";
-        String cyberpunk = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\Cyberpunk.jpg";
-        String darksouls = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\darksouls3.jpg";
-        String darkest = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\darkestdungeon.jpg";
-        String destiny = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\Destiny2.jpg";
-        String disgaea5 = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\disgaea5.jpg";
-        String divinity = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\divinity.jpg";
-        String dragonCry = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\dragoncrystal.jpg";
-        String dragonQuest = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\dragonquest.jpg";
-        String dragonDogma = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\DragonsDogma.jpg";
-        String dyinglight = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\dyinglight.jpg";
-        String fallout = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\Fallout.jpg";
-        String ffX = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\FFX.jpg";
-        String ffXIV = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\FFXIV.jpg";
-        String ffXV = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\FFXV.jpg";
-        String fireEmblem = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\FireEmblem.jpg";
-        String hades = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\Hades.jpg";
-        String setsuna = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\setsuna.jpg";
-        String kingdomHearts = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\kingdomhearts.jpg";
-        String massEffect = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\masseffect.jpg";
-        String pokemon = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\pokemon.jpg";
-        String rogue = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\roguelegacy.jpg";
-        String shinMegami = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\ShinMegami.jpg";
-        String starTrek = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\StarTrek.jpg";
-        String tales = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\TOV.jpg";
-        String bannerSaga = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\bannersaga.jpg";
-        String skyrim = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\skyrim.jpg";
-        String witcher = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\witcher3.jpg";
-        String valkyria = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\Valkyria.jpg";
-        String wasteland = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\wasteland2.jpg";
-        String WoW = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\WoW.jpg";
-        String xcom = "C:\\Users\\jevon\\Documents\\GitHub\\Capstone\\Project\\CapstoneProject\\build\\classes\\GameForms\\XCOM.jpg";
-        String thumbnail = FillForms.getPicture(34);
+        String ACO = FillForms.getPicture(30);
+        String bastion = FillForms.getPicture(4);
+        String chrono = FillForms.getPicture(32);
+        String cyberpunk = FillForms.getPicture(27);
+        String darksouls = FillForms.getPicture(1);
+        String darkest = FillForms.getPicture(11);
+        String destiny = FillForms.getPicture(9);
+        String disgaea5 = FillForms.getPicture(22);
+        String divinity = FillForms.getPicture(16);
+        String dragonCry = FillForms.getPicture(14);
+        String dragonQuest = FillForms.getPicture(33);
+        String dragonDogma = FillForms.getPicture(29);
+        String dyinglight = FillForms.getPicture(28);
+        String fallout = FillForms.getPicture(7);
+        String ffX = FillForms.getPicture(19);
+        String ffXIV = FillForms.getPicture(6);
+        String ffXV = FillForms.getPicture(5);
+        String fireEmblem = FillForms.getPicture(24);
+        String hades = FillForms.getPicture(12);
+        String setsuna = FillForms.getPicture(17);
+        String kingdomHearts = FillForms.getPicture(35);
+        String massEffect = FillForms.getPicture(3);
+        String pokemon = FillForms.getPicture(13);
+        String rogue = FillForms.getPicture(15);
+        String shinMegami = FillForms.getPicture(25);
+        String starTrek = FillForms.getPicture(10);
+        String tales = FillForms.getPicture(31);
+        String bannerSaga = FillForms.getPicture(21);
+        String skyrim = FillForms.getPicture(26);
+        String witcher = FillForms.getPicture(2);
+        String valkyria = FillForms.getPicture(20);
+        String wasteland = FillForms.getPicture(23);
+        String WoW = FillForms.getPicture(8);
+        String xcom = FillForms.getPicture(18);
+        String xenoblade = FillForms.getPicture(34);
         
         ImageIcon myImage = new ImageIcon((ACO));
         
@@ -364,7 +364,7 @@ public class HomePage extends javax.swing.JFrame {
         
         xcomPic.setIcon(x34);
         
-        ImageIcon myImage35 = new ImageIcon((thumbnail));
+        ImageIcon myImage35 = new ImageIcon((xenoblade));
         
         Image img35 = myImage35.getImage();
         Image newimg35 = img35.getScaledInstance(xenobladePic.getWidth(), xenobladePic.getHeight(), Image.SCALE_SMOOTH);
