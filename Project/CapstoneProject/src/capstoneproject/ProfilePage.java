@@ -12,6 +12,8 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import GameForms.AssassinsCreed;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -28,16 +30,32 @@ public class ProfilePage extends javax.swing.JFrame {
         usernameLabel.setText(user);
         try
         {
+            ImageIcon newImg;
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
             Statement st = con.createStatement();
             
             String currGame = ("SELECT Game_ID FROM GameRatings");
             // Displaying the library(later use)
             ResultSet dispLib = st.executeQuery("SELECT * FROM GAMES WHERE Game_ID ='"+currGame+"'");
-            if(dispLib.next())
+            for(int i  = 1; i < dispLib.getRow(); i++)
             {
+                dispLib.getRowId(i);
+                int id = dispLib.getInt("Game_ID");
+                String thumbnail = dispLib.getString("Thumbnail");
+                String title = dispLib.getString("Title");
+                int sub1 = dispLib.getInt("Subgenre1");
+                int sub2 = dispLib.getInt("Subgenre2");
+                int sub3 = dispLib.getInt("Subgenre3");
+                newImg = new ImageIcon(getClass().getResource(thumbnail));
+                for(int x = 1; x < 35; x++)
+                {
+                    JLabel games = new JLabel();
+                    games.setIcon(newImg);
+                    myLibraryPanel.add(games);
+                }
                 
             }
+            
             ArrayList<Integer> RatedGames = new ArrayList<>();
             //later use
             String rateGamesSt = ("SELECT * FROM GameRatings");

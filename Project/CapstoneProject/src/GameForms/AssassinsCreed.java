@@ -288,18 +288,21 @@ public class AssassinsCreed extends javax.swing.JFrame {
                 stmt.setInt(1,30);
                 stmt.setString(2,user);
                 stmt.setInt(3,1);
-                stmt.executeQuery();
+                stmt.executeUpdate();
             }
             else if(dislikeRatingButton.isSelected())
             {
                 stmt.setInt(1,30);
                 stmt.setString(2,user);
                 stmt.setInt(3,-1);
-                stmt.executeQuery();
+                stmt.executeUpdate();
             }
             else if(noRatingButton.isSelected())
             {
-                JOptionPane.showMessageDialog(null,"You selected no rating so ");
+                stmt.setInt(1,30);
+                stmt.setString(2,user);
+                stmt.setInt(3,0);
+                stmt.executeUpdate();
             }
             con.close();
         }
