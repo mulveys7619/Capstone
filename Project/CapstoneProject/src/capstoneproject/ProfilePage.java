@@ -34,7 +34,10 @@ public class ProfilePage extends javax.swing.JFrame {
             String currGame = ("SELECT Game_ID FROM GameRatings");
             // Displaying the library(later use)
             ResultSet dispLib = st.executeQuery("SELECT * FROM GAMES WHERE Game_ID ='"+currGame+"'");
-            
+            if(dispLib.next())
+            {
+                
+            }
             ArrayList<Integer> RatedGames = new ArrayList<>();
             //later use
             String rateGamesSt = ("SELECT * FROM GameRatings");

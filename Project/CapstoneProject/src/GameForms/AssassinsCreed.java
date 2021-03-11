@@ -263,50 +263,43 @@ public class AssassinsCreed extends javax.swing.JFrame {
             
             output.absolute(30);
             int id = output.getInt("Game_ID");
-            String query = "REPLACE INTO GameRatings(Game_ID, User_ID, Rating)" + " VALUES(?,?,?)";
+            String query = "INSERT INTO GameRatings(Game_ID, User_ID, Rating)" + " VALUES(?,?,?)";
             String user = User.getUsername();
-            
-
+           
             String check = "SELECT * FROM GameRatings WHERE Game_ID = ? AND User_ID = ?";
             
-            
-
             PreparedStatement stmt = con.prepareStatement(query);
-            PreparedStatement checkst = con.prepareStatement(check);
-            checkst.setInt(2,id);
-            checkst.setString(3, user);
+//            PreparedStatement checkst = con.prepareStatement(check);
+//            checkst.setInt(1, id);
+//            checkst.setString(2, user);
+//            checkst.executeQuery();
+ 
             ResultSet rs = st.executeQuery(check);
-            if(rs.next() == false)
+            if(rs.next())
             {
-                if(likeRatingButton.isSelected())
-                {
-                    stmt.setInt(1,30);
-                    stmt.setString(2,user);
-                    stmt.setInt(3,1);
-                }
-                if(dislikeRatingButton.isSelected())
-                {
-                    stmt.setInt(1,30);
-                    stmt.setString(2,user);
-                    stmt.setInt(3,-1);
-                }
-                if(noRatingButton.isSelected())
-                {
-                    stmt.setInt(1, 30);
-                    stmt.setString(2, user);
-                    stmt.setInt(3, 0);
-                }
-                
-
-            stmt.execute();
+                String delete = "DELETE FROM GameRatings WHERE Game_ID = ? AND User_ID = ?";
+                PreparedStatement deletePS = con.prepareStatement(delete);
+                deletePS.setInt(1, id);
+                deletePS.setString(2, user);
+                deletePS.execute();
             }
-            else
+            if(likeRatingButton.isSelected())
             {
-                String update = "UPDATE GameRatings SET Rating = ? WHERE User_ID = ?, Game_ID = ?:";
-                
-                PreparedStatement updateSt = con.prepareStatement(update);
-                updateSt.setInt(3, id);
-                updateSt.setString(2, user);
+                stmt.setInt(1,30);
+                stmt.setString(2,user);
+                stmt.setInt(3,1);
+                stmt.executeQuery();
+            }
+            else if(dislikeRatingButton.isSelected())
+            {
+                stmt.setInt(1,30);
+                stmt.setString(2,user);
+                stmt.setInt(3,-1);
+                stmt.executeQuery();
+            }
+            else if(noRatingButton.isSelected())
+            {
+                JOptionPane.showMessageDialog(null,"You selected no rating so ");
             }
             con.close();
         }

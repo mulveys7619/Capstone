@@ -12,7 +12,7 @@ public class User
     
     static void setUsername(String user)
     {
-        username = "Kent10121";
+        username = user;
     }
     static void setPassword(String pass)
     {
