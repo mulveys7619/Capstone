@@ -39,7 +39,7 @@ public class CreateAccount extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        backgroundPanel.setBackground(new java.awt.Color(139, 0, 0));
+        backgroundPanel.setBackground(new java.awt.Color(153, 153, 255));
 
         createaccountLabel.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
         createaccountLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

@@ -42,7 +42,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        formWindow5.setBackground(new java.awt.Color(139, 0, 0));
+        formWindow5.setBackground(new java.awt.Color(153, 153, 255));
 
         loginformLabel5.setFont(new java.awt.Font("Cooper Black", 1, 48)); // NOI18N
         loginformLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -252,47 +252,12 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createaccountButton;
     private javax.swing.JButton exitButton;
-    private javax.swing.JPanel formWindow;
-    private javax.swing.JPanel formWindow1;
-    private javax.swing.JPanel formWindow2;
-    private javax.swing.JPanel formWindow3;
-    private javax.swing.JPanel formWindow4;
     private javax.swing.JPanel formWindow5;
-    private javax.swing.JButton loginButton;
-    private javax.swing.JButton loginButton1;
-    private javax.swing.JButton loginButton2;
-    private javax.swing.JButton loginButton3;
-    private javax.swing.JButton loginButton4;
     private javax.swing.JButton loginButton5;
-    private javax.swing.JLabel loginformLabel;
-    private javax.swing.JLabel loginformLabel1;
-    private javax.swing.JLabel loginformLabel2;
-    private javax.swing.JLabel loginformLabel3;
-    private javax.swing.JLabel loginformLabel4;
     private javax.swing.JLabel loginformLabel5;
-    private javax.swing.JLabel passwordLabel;
-    private javax.swing.JLabel passwordLabel1;
-    private javax.swing.JLabel passwordLabel2;
-    private javax.swing.JLabel passwordLabel3;
-    private javax.swing.JLabel passwordLabel4;
     private javax.swing.JLabel passwordLabel5;
-    private javax.swing.JTextField passwordTextBox;
-    private javax.swing.JTextField passwordTextBox1;
-    private javax.swing.JTextField passwordTextBox2;
-    private javax.swing.JTextField passwordTextBox3;
-    private javax.swing.JTextField passwordTextBox4;
     private javax.swing.JTextField passwordTextBox5;
-    private javax.swing.JLabel usernameLabel;
-    private javax.swing.JLabel usernameLabel1;
-    private javax.swing.JLabel usernameLabel2;
-    private javax.swing.JLabel usernameLabel3;
-    private javax.swing.JLabel usernameLabel4;
     private javax.swing.JLabel usernameLabel5;
-    private javax.swing.JTextField usernameTextBox;
-    private javax.swing.JTextField usernameTextBox1;
-    private javax.swing.JTextField usernameTextBox2;
-    private javax.swing.JTextField usernameTextBox3;
-    private javax.swing.JTextField usernameTextBox4;
     private javax.swing.JTextField usernameTextBox5;
     // End of variables declaration//GEN-END:variables
 }

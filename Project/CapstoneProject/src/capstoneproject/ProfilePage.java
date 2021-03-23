@@ -15,6 +15,7 @@ import GameForms.AssassinsCreed;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+
 /**
  *
  * @author jevon
@@ -34,43 +35,48 @@ public class ProfilePage extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
             Statement st = con.createStatement();
             
-            String currGame = ("SELECT Game_ID FROM GameRatings");
+            String currGame = "SELECT Game_ID FROM GameRatings";
+            ResultSet combineRs = st.executeQuery("SELECT * FROM Gameratings NATURAL JOIN Games");
+            while(combineRs.next())
+            {
+                int gameID = combineRs.getInt("Game_ID");
+                String title = combineRs.getString("Title");
+                String pic = combineRs.getString("Thumbnail");
+                int rating = combineRs.getInt("Rating");
+                int sub1 = combineRs.getInt("Subgenre1");
+                int sub2 = combineRs.getInt("Subgenre2");
+                int sub3 = combineRs.getInt("Subgenre3");
+//              myLibraryTable.addRow(new Object[]{title, pic, rating, sub1, sub2, sub3});
+            }
+            
             // Displaying the library(later use)
             ResultSet dispLib = st.executeQuery("SELECT * FROM GAMES WHERE Game_ID ='"+currGame+"'");
-            for(int i  = 1; i < dispLib.getRow(); i++)
-            {
-                dispLib.getRowId(i);
-                int id = dispLib.getInt("Game_ID");
-                String thumbnail = dispLib.getString("Thumbnail");
-                String title = dispLib.getString("Title");
-                int sub1 = dispLib.getInt("Subgenre1");
-                int sub2 = dispLib.getInt("Subgenre2");
-                int sub3 = dispLib.getInt("Subgenre3");
-                newImg = new ImageIcon(getClass().getResource(thumbnail));
-                for(int x = 1; x < 35; x++)
-                {
-                    JLabel games = new JLabel();
-                    games.setIcon(newImg);
-                    myLibraryPanel.add(games);
-                }
-                
-            }
-            
-            ArrayList<Integer> RatedGames = new ArrayList<>();
-            //later use
-            String rateGamesSt = ("SELECT * FROM GameRatings");
-            
-            for(int i = 0; i < RatedGames.size(); i++)
-            {
-                st.executeQuery("SELECT * FROM Games WHERE game_id = RatedGames[i]");
-            }
+
         }
         catch(Exception ex)
         {
             JOptionPane.showMessageDialog(null,ex.getMessage());
         }
     }
-
+//            for(int i  = 1; i < dispLib.getRow(); i++)
+//            {
+//                dispLib.getRowId(i);
+//                int id = dispLib.getInt("Game_ID");
+//                String thumbnail = dispLib.getString("Thumbnail");
+//                String title = dispLib.getString("Title");
+//                int sub1 = dispLib.getInt("Subgenre1");
+//                int sub2 = dispLib.getInt("Subgenre2");
+//                int sub3 = dispLib.getInt("Subgenre3");
+//                newImg = new ImageIcon(getClass().getResource(thumbnail));
+//                String getRec = "SELECT Game_ID FROM Games WHERE Subgenre1 = "+sub1+" AND Subgenre2 = "+sub2+" AND Subgenre3 = "+sub3+"";
+//                for(int x = 1; x < 35; x++)
+//                {
+//                    JLabel games = new JLabel();
+//                    games.setIcon(newImg);
+//                    myLibraryPanel.add(games);
+//                }
+//                
+//            }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,13 +94,17 @@ public class ProfilePage extends javax.swing.JFrame {
         homeLabel = new javax.swing.JLabel();
         tabbedPanel = new javax.swing.JTabbedPane();
         myLibraryPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        myLibraryTable = new javax.swing.JTable();
         recommendationsPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        recommendTable = new javax.swing.JTable();
         usersPanel = new javax.swing.JPanel();
         usernameLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        backgroundPanel.setBackground(new java.awt.Color(139, 0, 0));
+        backgroundPanel.setBackground(new java.awt.Color(153, 153, 255));
 
         titlePanel.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -150,30 +160,69 @@ public class ProfilePage extends javax.swing.JFrame {
 
         myLibraryPanel.setBackground(new java.awt.Color(51, 51, 51));
 
+        myLibraryTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Title you rated", "Picture of game", "Your Rating", "Subgenre 1", "Subgenre 2", "Subgenre 3"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(myLibraryTable);
+
         javax.swing.GroupLayout myLibraryPanelLayout = new javax.swing.GroupLayout(myLibraryPanel);
         myLibraryPanel.setLayout(myLibraryPanelLayout);
         myLibraryPanelLayout.setHorizontalGroup(
             myLibraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 996, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 996, Short.MAX_VALUE)
         );
         myLibraryPanelLayout.setVerticalGroup(
             myLibraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 557, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
         );
 
         tabbedPanel.addTab("My Library", myLibraryPanel);
 
         recommendationsPanel.setBackground(new java.awt.Color(51, 51, 51));
 
+        recommendTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Titles we Recommended", "Picture", "Sungenre 1", "Subgenre 2", "Subgenre 3"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(recommendTable);
+
         javax.swing.GroupLayout recommendationsPanelLayout = new javax.swing.GroupLayout(recommendationsPanel);
         recommendationsPanel.setLayout(recommendationsPanelLayout);
         recommendationsPanelLayout.setHorizontalGroup(
             recommendationsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 996, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 996, Short.MAX_VALUE)
         );
         recommendationsPanelLayout.setVerticalGroup(
             recommendationsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 557, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
         );
 
         tabbedPanel.addTab("Recommendations", recommendationsPanel);
@@ -195,7 +244,7 @@ public class ProfilePage extends javax.swing.JFrame {
             usersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(usersPanelLayout.createSequentialGroup()
                 .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 370, Short.MAX_VALUE))
+                .addGap(0, 455, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout backgroundPanelLayout = new javax.swing.GroupLayout(backgroundPanel);
@@ -288,7 +337,11 @@ public class ProfilePage extends javax.swing.JFrame {
     private javax.swing.JPanel backgroundPanel;
     private javax.swing.JButton goButton;
     private javax.swing.JLabel homeLabel;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel myLibraryPanel;
+    private javax.swing.JTable myLibraryTable;
+    private javax.swing.JTable recommendTable;
     private javax.swing.JPanel recommendationsPanel;
     private javax.swing.JComboBox<String> seachComboBox;
     private javax.swing.JTabbedPane tabbedPanel;

@@ -51,10 +51,8 @@ public class Xenoblade extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,ex.getMessage());
         }
         
-        ImageIcon myImage = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("xenoblade.jpg")));
-        
-        Image img1 = myImage.getImage();
-        Image img2 = img1.getScaledInstance(pictureLabel.getWidth(), pictureLabel.getHeight(), Image.SCALE_SMOOTH);
+        Image img = FillForms.getImage("xenoblade");
+        Image img2 = img.getScaledInstance(pictureLabel.getWidth(), pictureLabel.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon x = new ImageIcon(img2);
         
         pictureLabel.setIcon(x);
@@ -89,7 +87,7 @@ public class Xenoblade extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel4.setBackground(new java.awt.Color(139, 0, 0));
+        jPanel4.setBackground(new java.awt.Color(153, 153, 255));
 
         titleLabel.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -109,7 +107,7 @@ public class Xenoblade extends javax.swing.JFrame {
         });
 
         descTextArea.setEditable(false);
-        descTextArea.setBackground(new java.awt.Color(139, 0, 0));
+        descTextArea.setBackground(new java.awt.Color(153, 153, 255));
         descTextArea.setColumns(20);
         descTextArea.setRows(5);
         jScrollPane3.setViewportView(descTextArea);
@@ -144,18 +142,18 @@ public class Xenoblade extends javax.swing.JFrame {
             .addComponent(homeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        ratingsPanel.setBackground(new java.awt.Color(139, 0, 0));
+        ratingsPanel.setBackground(new java.awt.Color(153, 153, 255));
         ratingsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ratings", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cooper Black", 0, 14))); // NOI18N
 
-        noRatingButton.setBackground(new java.awt.Color(139, 0, 0));
+        noRatingButton.setBackground(new java.awt.Color(153, 153, 255));
         ratingsGroup.add(noRatingButton);
         noRatingButton.setText("No Rating");
 
-        likeRatingButton.setBackground(new java.awt.Color(139, 0, 0));
+        likeRatingButton.setBackground(new java.awt.Color(153, 153, 255));
         ratingsGroup.add(likeRatingButton);
         likeRatingButton.setText("Like");
 
-        dislikeRatingButton.setBackground(new java.awt.Color(139, 0, 0));
+        dislikeRatingButton.setBackground(new java.awt.Color(153, 153, 255));
         ratingsGroup.add(dislikeRatingButton);
         dislikeRatingButton.setText("Dislike");
 
@@ -232,7 +230,7 @@ public class Xenoblade extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(subgenre2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ratingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
@@ -265,6 +263,7 @@ public class Xenoblade extends javax.swing.JFrame {
             int id = output.getInt("Game_ID");
             String query = "REPLACE INTO GameRatings(Game_ID, User_ID, Rating)" + " VALUES(?,?,?)";
             String user = User.getUsername();
+            int rating = 0;
 
             String check = "SELECT * FROM GameRatings WHERE Game_ID = ? AND User_ID = ?";
 
@@ -277,21 +276,21 @@ public class Xenoblade extends javax.swing.JFrame {
             {
                 if(likeRatingButton.isSelected())
                 {
-                    stmt.setInt(1, 34);
-                    stmt.setString(2, user);
-                    stmt.setInt(3, 1);
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating + 1);
                 }
-                if(dislikeRatingButton.isSelected())
+                else if(dislikeRatingButton.isSelected())
                 {
-                    stmt.setInt(1, 34);
-                    stmt.setString(2, user);
-                    stmt.setInt(3, -1);
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating - 1);
                 }
-                if(noRatingButton.isSelected())
+                else if(noRatingButton.isSelected())
                 {
-                    stmt.setInt(1, 34);
-                    stmt.setString(2, user);
-                    stmt.setInt(3, 0);
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating);
                 }
                 stmt.execute();
             }

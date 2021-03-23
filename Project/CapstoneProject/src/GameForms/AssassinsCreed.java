@@ -51,11 +51,8 @@ public class AssassinsCreed extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null,ex.getMessage());
         }
-        
-        ImageIcon myImage = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("ACO.jpg")));
-        
-        Image img1 = myImage.getImage();
-        Image img2 = img1.getScaledInstance(pictureLabel.getWidth(), pictureLabel.getHeight(), Image.SCALE_SMOOTH);
+        Image img = FillForms.getImage("ACO");
+        Image img2 = img.getScaledInstance(pictureLabel.getWidth(), pictureLabel.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon x = new ImageIcon(img2);
         
         pictureLabel.setIcon(x);
@@ -90,7 +87,7 @@ public class AssassinsCreed extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel4.setBackground(new java.awt.Color(139, 0, 0));
+        jPanel4.setBackground(new java.awt.Color(153, 153, 255));
 
         titleLabel.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -110,7 +107,7 @@ public class AssassinsCreed extends javax.swing.JFrame {
         });
 
         descTextArea.setEditable(false);
-        descTextArea.setBackground(new java.awt.Color(139, 0, 0));
+        descTextArea.setBackground(new java.awt.Color(153, 153, 255));
         descTextArea.setColumns(20);
         descTextArea.setRows(5);
         jScrollPane3.setViewportView(descTextArea);
@@ -145,18 +142,18 @@ public class AssassinsCreed extends javax.swing.JFrame {
             .addComponent(homeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        ratingsPanel.setBackground(new java.awt.Color(139, 0, 0));
+        ratingsPanel.setBackground(new java.awt.Color(153, 153, 255));
         ratingsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ratings", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cooper Black", 0, 14))); // NOI18N
 
-        noRatingButton.setBackground(new java.awt.Color(139, 0, 0));
+        noRatingButton.setBackground(new java.awt.Color(153, 153, 255));
         ratingsGroup.add(noRatingButton);
         noRatingButton.setText("No Rating");
 
-        likeRatingButton.setBackground(new java.awt.Color(139, 0, 0));
+        likeRatingButton.setBackground(new java.awt.Color(153, 153, 255));
         ratingsGroup.add(likeRatingButton);
         likeRatingButton.setText("Like");
 
-        dislikeRatingButton.setBackground(new java.awt.Color(139, 0, 0));
+        dislikeRatingButton.setBackground(new java.awt.Color(153, 153, 255));
         ratingsGroup.add(dislikeRatingButton);
         dislikeRatingButton.setText("Dislike");
 
@@ -263,52 +260,78 @@ public class AssassinsCreed extends javax.swing.JFrame {
             
             output.absolute(30);
             int id = output.getInt("Game_ID");
-            String query = "INSERT INTO GameRatings(Game_ID, User_ID, Rating)" + " VALUES(?,?,?)";
             String user = User.getUsername();
-           
+            int rating = 0;
+            
+            String query = "INSERT INTO GameRatings(Game_ID, User_ID, Rating) VALUES(?,?,?)";
+            String update = "UPDATE GameRatings Rating = "+rating+" WHERE Game_ID = "+id+" AND User_ID = '"+user+"'";
             String check = "SELECT * FROM GameRatings WHERE Game_ID = ? AND User_ID = ?";
             
             PreparedStatement stmt = con.prepareStatement(query);
-//            PreparedStatement checkst = con.prepareStatement(check);
-//            checkst.setInt(1, id);
-//            checkst.setString(2, user);
-//            checkst.executeQuery();
- 
-            ResultSet rs = st.executeQuery(check);
-            if(rs.next())
+            PreparedStatement updateQuery = con.prepareStatement(update);
+            PreparedStatement checkSt = con.prepareStatement(check);
+            
+            
+            ResultSet rsCheck = checkSt.executeQuery();
+            if(rsCheck != null)
             {
-                String delete = "DELETE FROM GameRatings WHERE Game_ID = ? AND User_ID = ?";
-                PreparedStatement deletePS = con.prepareStatement(delete);
-                deletePS.setInt(1, id);
-                deletePS.setString(2, user);
-                deletePS.execute();
+                if(likeRatingButton.isSelected())
+                {
+                    updateQuery.setInt(1,id);
+                    updateQuery.setString(2,user);
+                    updateQuery.setInt(3,rating + 1);
+                }
+                else if(dislikeRatingButton.isSelected())
+                {
+                    updateQuery.setInt(1,id);
+                    updateQuery.setString(2,user);
+                    updateQuery.setInt(3,rating - 1);
+                }
+                else if(noRatingButton.isSelected())
+                {
+                    updateQuery.setInt(1,id);
+                    updateQuery.setString(2,user);
+                    updateQuery.setInt(3,rating);
+                }
+                int x = updateQuery.executeUpdate();
+                if(x > 0)
+                {
+                JOptionPane.showMessageDialog(null, "Your current rating has now been updated");
+                }
             }
-            if(likeRatingButton.isSelected())
+            else
             {
-                stmt.setInt(1,30);
-                stmt.setString(2,user);
-                stmt.setInt(3,1);
-                stmt.executeUpdate();
-            }
-            else if(dislikeRatingButton.isSelected())
-            {
-                stmt.setInt(1,30);
-                stmt.setString(2,user);
-                stmt.setInt(3,-1);
-                stmt.executeUpdate();
-            }
-            else if(noRatingButton.isSelected())
-            {
-                stmt.setInt(1,30);
-                stmt.setString(2,user);
-                stmt.setInt(3,0);
-                stmt.executeUpdate();
+                if(likeRatingButton.isSelected())
+                {
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating + 1);
+                }
+                else if(dislikeRatingButton.isSelected())
+                {
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating - 1);
+                }
+                else if(noRatingButton.isSelected())
+                {
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating);
+                }
+                int x = stmt.executeUpdate();
+                if(x > 0)
+                {
+                JOptionPane.showMessageDialog(null, "Your rating has been inserted");
+                }
             }
             con.close();
         }
         catch(SQLException ex)
         {
             JOptionPane.showMessageDialog(null,ex.getMessage());
+            ex.printStackTrace();
+            System.err.println("Stack trace above.");
         }
     }//GEN-LAST:event_submitButtonActionPerformed
 

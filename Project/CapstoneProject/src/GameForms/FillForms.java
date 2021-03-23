@@ -5,6 +5,8 @@
  */
 package GameForms;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,12 +14,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
  * @author jevon
  */
 public class FillForms {
+
+    public static Image getImage(String path)
+    {
+        ImageIcon myImage = new ImageIcon(Toolkit.getDefaultToolkit().getImage(FillForms.class.getResource(path + ".jpg")));
+        
+        Image img1 = myImage.getImage();
+        
+        return img1;
+    }
 //    public static String getID(String query)
 //    {
 //        try

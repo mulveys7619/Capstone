@@ -52,10 +52,8 @@ public class XCOM2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,ex.getMessage());
         }
         
-        ImageIcon myImage = new ImageIcon(Toolkit.getDefaultToolkit().getImage(getClass().getResource("XCOM.jpg")));
-        
-        Image img1 = myImage.getImage();
-        Image img2 = img1.getScaledInstance(pictureLabel.getWidth(), pictureLabel.getHeight(), Image.SCALE_SMOOTH);
+        Image img = FillForms.getImage("XCOM");
+        Image img2 = img.getScaledInstance(pictureLabel.getWidth(), pictureLabel.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon x = new ImageIcon(img2);
         
         pictureLabel.setIcon(x);
@@ -90,7 +88,7 @@ public class XCOM2 extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel4.setBackground(new java.awt.Color(139, 0, 0));
+        jPanel4.setBackground(new java.awt.Color(153, 153, 255));
 
         titleLabel.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -100,18 +98,18 @@ public class XCOM2 extends javax.swing.JFrame {
         pictureLabel.setMaximumSize(new java.awt.Dimension(250, 250));
         pictureLabel.setPreferredSize(new java.awt.Dimension(250, 250));
 
-        ratingsPanel.setBackground(new java.awt.Color(139, 0, 0));
+        ratingsPanel.setBackground(new java.awt.Color(153, 153, 255));
         ratingsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ratings", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cooper Black", 0, 14))); // NOI18N
 
-        noRatingButton.setBackground(new java.awt.Color(139, 0, 0));
+        noRatingButton.setBackground(new java.awt.Color(153, 153, 255));
         ratingsButtonGroup.add(noRatingButton);
         noRatingButton.setText("No Rating");
 
-        likeRatingButton.setBackground(new java.awt.Color(139, 0, 0));
+        likeRatingButton.setBackground(new java.awt.Color(153, 153, 255));
         ratingsButtonGroup.add(likeRatingButton);
         likeRatingButton.setText("Like");
 
-        dislikeRatingButton.setBackground(new java.awt.Color(139, 0, 0));
+        dislikeRatingButton.setBackground(new java.awt.Color(153, 153, 255));
         ratingsButtonGroup.add(dislikeRatingButton);
         dislikeRatingButton.setText("Dislike");
 
@@ -148,7 +146,7 @@ public class XCOM2 extends javax.swing.JFrame {
         });
 
         descTextArea.setEditable(false);
-        descTextArea.setBackground(new java.awt.Color(139, 0, 0));
+        descTextArea.setBackground(new java.awt.Color(153, 153, 255));
         descTextArea.setColumns(20);
         descTextArea.setRows(5);
         jScrollPane3.setViewportView(descTextArea);
@@ -264,7 +262,7 @@ public class XCOM2 extends javax.swing.JFrame {
             output.absolute(18);
             int id = output.getInt("Game_ID");
             String user = User.getUsername();
-            JOptionPane.showMessageDialog(null, user);
+            int rating = 0;
             
             String check = "SELECT * FROM GameRatings WHERE Game_ID = ? AND User_ID = ?";
             String delete = "DELETE FROM GameRatings WHERE Game_ID = ? AND User_ID = "+user+"";
@@ -288,23 +286,23 @@ public class XCOM2 extends javax.swing.JFrame {
                 if(rs.next() == false)
                 { 
                     if(likeRatingButton.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 1);
-                    }
-                    if(dislikeRatingButton.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, -1);
-                    }
-                    if(noRatingButton.isSelected())
-                    {
-                        stmt.setInt(1, 18);
-                        stmt.setString(2, user);
-                        stmt.setInt(3, 0);
-                    }
+                {
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating + 1);
+                }
+                else if(dislikeRatingButton.isSelected())
+                {
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating - 1);
+                }
+                else if(noRatingButton.isSelected())
+                {
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating);
+                }
                     stmt.execute();
                 }
                 else
@@ -364,19 +362,15 @@ public class XCOM2 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea descTextArea;
     private javax.swing.JRadioButton dislikeRatingButton;
-    private javax.swing.JRadioButton dislikeRatingButton4;
     private javax.swing.JLabel homeButton;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JRadioButton likeRatingButton;
-    private javax.swing.JRadioButton likeRatingButton4;
     private javax.swing.JLabel mainLabel;
     private javax.swing.JRadioButton noRatingButton;
-    private javax.swing.JRadioButton noRatingButton1;
     private javax.swing.JLabel pictureLabel;
     private javax.swing.ButtonGroup ratingsButtonGroup;
     private javax.swing.JPanel ratingsPanel;
-    private javax.swing.JPanel ratingsPanel1;
     private javax.swing.JLabel subgenre1Label;
     private javax.swing.JLabel subgenre2Label;
     private javax.swing.JLabel subgenre3Label;
