@@ -31,7 +31,6 @@ public class XCOM2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "You have to logged in to rate a game");
             likeRatingButton.setEnabled(false);
             dislikeRatingButton.setEnabled(false);
-            noRatingButton.setEnabled(false);
             submitButton.setEnabled(false);
         }
             
@@ -73,7 +72,6 @@ public class XCOM2 extends javax.swing.JFrame {
         titleLabel = new javax.swing.JLabel();
         pictureLabel = new javax.swing.JLabel();
         ratingsPanel = new javax.swing.JPanel();
-        noRatingButton = new javax.swing.JRadioButton();
         likeRatingButton = new javax.swing.JRadioButton();
         dislikeRatingButton = new javax.swing.JRadioButton();
         submitButton = new javax.swing.JButton();
@@ -101,10 +99,6 @@ public class XCOM2 extends javax.swing.JFrame {
         ratingsPanel.setBackground(new java.awt.Color(153, 153, 255));
         ratingsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ratings", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cooper Black", 0, 14))); // NOI18N
 
-        noRatingButton.setBackground(new java.awt.Color(153, 153, 255));
-        ratingsButtonGroup.add(noRatingButton);
-        noRatingButton.setText("No Rating");
-
         likeRatingButton.setBackground(new java.awt.Color(153, 153, 255));
         ratingsButtonGroup.add(likeRatingButton);
         likeRatingButton.setText("Like");
@@ -118,19 +112,16 @@ public class XCOM2 extends javax.swing.JFrame {
         ratingsPanelLayout.setHorizontalGroup(
             ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ratingsPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(113, 113, 113)
                 .addComponent(likeRatingButton)
-                .addGap(131, 131, 131)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
                 .addComponent(dislikeRatingButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
-                .addComponent(noRatingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(68, 68, 68))
         );
         ratingsPanelLayout.setVerticalGroup(
             ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ratingsPanelLayout.createSequentialGroup()
                 .addGroup(ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noRatingButton)
                     .addComponent(likeRatingButton)
                     .addComponent(dislikeRatingButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -297,12 +288,6 @@ public class XCOM2 extends javax.swing.JFrame {
                     stmt.setString(2,user);
                     stmt.setInt(3,rating - 1);
                 }
-                else if(noRatingButton.isSelected())
-                {
-                    stmt.setInt(1,id);
-                    stmt.setString(2,user);
-                    stmt.setInt(3,rating);
-                }
                     stmt.execute();
                 }
                 else
@@ -367,7 +352,6 @@ public class XCOM2 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JRadioButton likeRatingButton;
     private javax.swing.JLabel mainLabel;
-    private javax.swing.JRadioButton noRatingButton;
     private javax.swing.JLabel pictureLabel;
     private javax.swing.ButtonGroup ratingsButtonGroup;
     private javax.swing.JPanel ratingsPanel;

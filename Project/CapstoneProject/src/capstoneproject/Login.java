@@ -170,7 +170,6 @@ public class Login extends javax.swing.JFrame {
             ResultSet output = st.executeQuery("SELECT * FROM USERS WHERE Username='"+user+"'");
             if(output.next())
             {
-
                 JOptionPane.showMessageDialog(null,"This user exist");
                 String realPassword = output.getString("Password");
                 if(false == pass.equals(realPassword))

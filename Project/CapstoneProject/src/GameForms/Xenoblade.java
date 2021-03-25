@@ -31,7 +31,6 @@ public class Xenoblade extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "You have to logged in to rate a game");
             likeRatingButton.setEnabled(false);
             dislikeRatingButton.setEnabled(false);
-            noRatingButton.setEnabled(false);
             submitButton.setEnabled(false);
         }
         try
@@ -81,7 +80,6 @@ public class Xenoblade extends javax.swing.JFrame {
         mainLabel = new javax.swing.JLabel();
         homeButton = new javax.swing.JLabel();
         ratingsPanel = new javax.swing.JPanel();
-        noRatingButton = new javax.swing.JRadioButton();
         likeRatingButton = new javax.swing.JRadioButton();
         dislikeRatingButton = new javax.swing.JRadioButton();
 
@@ -145,10 +143,6 @@ public class Xenoblade extends javax.swing.JFrame {
         ratingsPanel.setBackground(new java.awt.Color(153, 153, 255));
         ratingsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ratings", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cooper Black", 0, 14))); // NOI18N
 
-        noRatingButton.setBackground(new java.awt.Color(153, 153, 255));
-        ratingsGroup.add(noRatingButton);
-        noRatingButton.setText("No Rating");
-
         likeRatingButton.setBackground(new java.awt.Color(153, 153, 255));
         ratingsGroup.add(likeRatingButton);
         likeRatingButton.setText("Like");
@@ -162,19 +156,16 @@ public class Xenoblade extends javax.swing.JFrame {
         ratingsPanelLayout.setHorizontalGroup(
             ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ratingsPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(128, 128, 128)
                 .addComponent(likeRatingButton)
-                .addGap(131, 131, 131)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 163, Short.MAX_VALUE)
                 .addComponent(dislikeRatingButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
-                .addComponent(noRatingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(94, 94, 94))
         );
         ratingsPanelLayout.setVerticalGroup(
             ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ratingsPanelLayout.createSequentialGroup()
                 .addGroup(ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noRatingButton)
                     .addComponent(likeRatingButton)
                     .addComponent(dislikeRatingButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -286,12 +277,6 @@ public class Xenoblade extends javax.swing.JFrame {
                     stmt.setString(2,user);
                     stmt.setInt(3,rating - 1);
                 }
-                else if(noRatingButton.isSelected())
-                {
-                    stmt.setInt(1,id);
-                    stmt.setString(2,user);
-                    stmt.setInt(3,rating);
-                }
                 stmt.execute();
             }
             else
@@ -359,7 +344,6 @@ public class Xenoblade extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JRadioButton likeRatingButton;
     private javax.swing.JLabel mainLabel;
-    private javax.swing.JRadioButton noRatingButton;
     private javax.swing.JLabel pictureLabel;
     private javax.swing.ButtonGroup ratingsGroup;
     private javax.swing.JPanel ratingsPanel;

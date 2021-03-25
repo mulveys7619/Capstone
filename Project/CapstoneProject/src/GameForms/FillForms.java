@@ -31,20 +31,6 @@ public class FillForms {
         
         return img1;
     }
-//    public static String getID(String query)
-//    {
-//        try
-//        {
-//            Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
-//            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
-////            string idQuery = "SELECT * FROM GAMES WHERE G";
-//        } 
-//        catch(Exception ex)
-//        {
-//            JOptionPane.showMessageDialog(null, ex);
-//        }
-//        return idQuery;
-//    }
     public static String getTitle(int gameId)
     {
         String title = "";

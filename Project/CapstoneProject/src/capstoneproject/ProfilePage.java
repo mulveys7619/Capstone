@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import GameForms.AssassinsCreed;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -29,14 +30,18 @@ public class ProfilePage extends javax.swing.JFrame {
         initComponents();
         String user = User.getUsername();
         usernameLabel.setText(user);
+        
         try
         {
             ImageIcon newImg;
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
             Statement st = con.createStatement();
             
-            String currGame = "SELECT Game_ID FROM GameRatings";
-            ResultSet combineRs = st.executeQuery("SELECT * FROM Gameratings NATURAL JOIN Games");
+            ResultSet combineRs = st.executeQuery("SELECT ga.game_id, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID"
+                                                + "FROM Games ga, Gameratings gr "
+                                                + "JOIN games ga ON gr.game_id = ga.game_id"
+                                                + "WHERE gr.User_ID = "+user+"");
+            int i = 0;
             while(combineRs.next())
             {
                 int gameID = combineRs.getInt("Game_ID");
@@ -46,17 +51,38 @@ public class ProfilePage extends javax.swing.JFrame {
                 int sub1 = combineRs.getInt("Subgenre1");
                 int sub2 = combineRs.getInt("Subgenre2");
                 int sub3 = combineRs.getInt("Subgenre3");
-//              myLibraryTable.addRow(new Object[]{title, pic, rating, sub1, sub2, sub3});
+                
+                String rate = String.valueOf(rating);
+                String s1 = String.valueOf(sub1);
+                String s2 = String.valueOf(sub2);
+                String s3 = String.valueOf(sub3);
+                
+                DefaultTableModel tbModel = (DefaultTableModel)myLibraryTable.getModel();
+                String data[] = {title, pic, rate, s1, s2, s3};
+                tbModel.addRow(data);
+                i++;
+            }
+//            ResultSet recommendRs = st.executeQuery("SELECT Subgenre1 ")
+//            while(recommendRs.next())
+            {
+                int gameID = combineRs.getInt("Game_ID");
+                String title = combineRs.getString("Title");
+                String pic = combineRs.getString("Thumbnail");
+                int sub1 = combineRs.getInt("Subgenre1");
+                int sub2 = combineRs.getInt("Subgenre2");
+                int sub3 = combineRs.getInt("Subgenre3");
+                
             }
             
             // Displaying the library(later use)
-            ResultSet dispLib = st.executeQuery("SELECT * FROM GAMES WHERE Game_ID ='"+currGame+"'");
+//            ResultSet dispLib = st.executeQuery("SELECT * FROM GAMES WHERE Game_ID ='"+currGame+"'");
 
         }
         catch(Exception ex)
         {
             JOptionPane.showMessageDialog(null,ex.getMessage());
         }
+        
     }
 //            for(int i  = 1; i < dispLib.getRow(); i++)
 //            {
@@ -168,15 +194,22 @@ public class ProfilePage extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Title you rated", "Picture of game", "Your Rating", "Subgenre 1", "Subgenre 2", "Subgenre 3"
+                "Title", "Picture", "Your Rating", "Subgenre 1", "Subgenre 2", "Subgenre 3"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(myLibraryTable);
@@ -205,11 +238,18 @@ public class ProfilePage extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane2.setViewportView(recommendTable);
@@ -229,7 +269,7 @@ public class ProfilePage extends javax.swing.JFrame {
 
         usersPanel.setBackground(new java.awt.Color(51, 51, 51));
 
-        usernameLabel.setFont(new java.awt.Font("Cooper Black", 0, 48)); // NOI18N
+        usernameLabel.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
         usernameLabel.setForeground(new java.awt.Color(255, 255, 255));
         usernameLabel.setText("Username");
         usernameLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));

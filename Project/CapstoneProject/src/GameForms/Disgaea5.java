@@ -31,7 +31,6 @@ public class Disgaea5 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "You have to logged in to rate a game");
             likeRatingButton.setEnabled(false);
             dislikeRatingButton.setEnabled(false);
-            noRatingButton.setEnabled(false);
             submitButton.setEnabled(false);
         }
         try
@@ -81,7 +80,6 @@ public class Disgaea5 extends javax.swing.JFrame {
         mainLabel = new javax.swing.JLabel();
         homeButton = new javax.swing.JLabel();
         ratingsPanel = new javax.swing.JPanel();
-        noRatingButton = new javax.swing.JRadioButton();
         likeRatingButton = new javax.swing.JRadioButton();
         dislikeRatingButton = new javax.swing.JRadioButton();
 
@@ -145,10 +143,6 @@ public class Disgaea5 extends javax.swing.JFrame {
         ratingsPanel.setBackground(new java.awt.Color(153, 153, 255));
         ratingsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ratings", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cooper Black", 0, 14))); // NOI18N
 
-        noRatingButton.setBackground(new java.awt.Color(153, 153, 255));
-        ratingsGroup.add(noRatingButton);
-        noRatingButton.setText("No Rating");
-
         likeRatingButton.setBackground(new java.awt.Color(153, 153, 255));
         ratingsGroup.add(likeRatingButton);
         likeRatingButton.setText("Like");
@@ -162,19 +156,16 @@ public class Disgaea5 extends javax.swing.JFrame {
         ratingsPanelLayout.setHorizontalGroup(
             ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ratingsPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(107, 107, 107)
                 .addComponent(likeRatingButton)
-                .addGap(131, 131, 131)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
                 .addComponent(dislikeRatingButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
-                .addComponent(noRatingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(90, 90, 90))
         );
         ratingsPanelLayout.setVerticalGroup(
             ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ratingsPanelLayout.createSequentialGroup()
                 .addGroup(ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(noRatingButton)
                     .addComponent(likeRatingButton)
                     .addComponent(dislikeRatingButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -193,7 +184,7 @@ public class Disgaea5 extends javax.swing.JFrame {
                     .addComponent(pictureLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(subgenre1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                         .addComponent(subgenre3Label, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(344, 344, 344))
             .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -229,7 +220,7 @@ public class Disgaea5 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(subgenre2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(ratingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
@@ -284,12 +275,6 @@ public class Disgaea5 extends javax.swing.JFrame {
                     stmt.setInt(1,id);
                     stmt.setString(2,user);
                     stmt.setInt(3,rating - 1);
-                }
-                else if(noRatingButton.isSelected())
-                {
-                    stmt.setInt(1,id);
-                    stmt.setString(2,user);
-                    stmt.setInt(3,rating);
                 }
                 stmt.execute();
             }
@@ -358,7 +343,6 @@ public class Disgaea5 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JRadioButton likeRatingButton;
     private javax.swing.JLabel mainLabel;
-    private javax.swing.JRadioButton noRatingButton;
     private javax.swing.JLabel pictureLabel;
     private javax.swing.ButtonGroup ratingsGroup;
     private javax.swing.JPanel ratingsPanel;
