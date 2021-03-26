@@ -35,12 +35,16 @@ public class ProfilePage extends javax.swing.JFrame {
         {
             ImageIcon newImg;
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
-            Statement st = con.createStatement();
+            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             
-            ResultSet combineRs = st.executeQuery("SELECT ga.game_id, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID"
-                                                + "FROM Games ga, Gameratings gr "
-                                                + "JOIN games ga ON gr.game_id = ga.game_id"
-                                                + "WHERE gr.User_ID = "+user+"");
+            /* EXAMPLE QUERY 
+            SELECT ga.game_id, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID
+            FROM Games ga, Gameratings gr
+            WHERE gr.User_ID = 'Capstone23' AND gr.game_id = ga.game_id;
+            */String quote = "'";
+            String query = "SELECT ga.game_id, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID FROM Games ga, Gameratings gr WHERE gr.User_ID = "
+                    + quote + user + quote + " AND gr.game_id = ga.game_id";
+            ResultSet combineRs = st.executeQuery(query);
             int i = 0;
             while(combineRs.next())
             {
@@ -64,15 +68,15 @@ public class ProfilePage extends javax.swing.JFrame {
             }
 //            ResultSet recommendRs = st.executeQuery("SELECT Subgenre1 ")
 //            while(recommendRs.next())
-            {
-                int gameID = combineRs.getInt("Game_ID");
-                String title = combineRs.getString("Title");
-                String pic = combineRs.getString("Thumbnail");
-                int sub1 = combineRs.getInt("Subgenre1");
-                int sub2 = combineRs.getInt("Subgenre2");
-                int sub3 = combineRs.getInt("Subgenre3");
-                
-            }
+//            {
+//                int gameID = combineRs.getInt("Game_ID");
+//                String title = combineRs.getString("Title");
+//                String pic = combineRs.getString("Thumbnail");
+//                int sub1 = combineRs.getInt("Subgenre1");
+//                int sub2 = combineRs.getInt("Subgenre2");
+//                int sub3 = combineRs.getInt("Subgenre3");
+//                
+//            }
             
             // Displaying the library(later use)
 //            ResultSet dispLib = st.executeQuery("SELECT * FROM GAMES WHERE Game_ID ='"+currGame+"'");

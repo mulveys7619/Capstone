@@ -253,17 +253,17 @@ public class AssassinsCreed extends javax.swing.JFrame {
             int id = output.getInt("Game_ID");
             String user = User.getUsername();
             int rating = 0;
-            
+            String quote = "'";
             String query = "INSERT INTO GameRatings(Game_ID, User_ID, Rating) VALUES(?,?,?)";
-            String update = "UPDATE GameRatings Rating = "+rating+" WHERE Game_ID = "+id+" AND User_ID = '"+user+"'";
-            String check = "SELECT * FROM GameRatings WHERE Game_ID = ? AND User_ID = ?";
+            String update = "UPDATE GameRatings Rating = "+rating+" WHERE Game_ID = "+id+" AND User_ID = " + quote + user + quote;
+            String check = "SELECT * FROM GameRatings WHERE Game_ID = "+id+" AND User_ID = " + quote + user + quote;
             
             PreparedStatement stmt = con.prepareStatement(query);
             PreparedStatement updateQuery = con.prepareStatement(update);
             PreparedStatement checkSt = con.prepareStatement(check);
             
             
-            ResultSet rsCheck = checkSt.executeQuery();
+            ResultSet rsCheck = checkSt.executeQuery(check);
             if(rsCheck != null)
             {
                 if(likeRatingButton.isSelected())
