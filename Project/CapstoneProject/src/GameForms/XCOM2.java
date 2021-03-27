@@ -250,33 +250,24 @@ public class XCOM2 extends javax.swing.JFrame {
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet output = st.executeQuery("SELECT * FROM Games");
 
-            output.absolute(18);
-            int id = output.getInt("Game_ID");
+            int id = 18;
             String user = User.getUsername();
             int rating = 0;
             
-            String check = "SELECT * FROM GameRatings WHERE Game_ID = ? AND User_ID = ?";
-            String delete = "DELETE FROM GameRatings WHERE Game_ID = ? AND User_ID = "+user+"";
-            String insert = "INSERT INTO GameRatings(Game_ID, User_ID, Rating)" + " VALUES(?,?,?)";
+            String quote = "'";
+            String check = "SELECT * FROM GameRatings WHERE Game_ID = "+id+" AND User_ID = " + quote + user + quote;
+            String delete = "DELETE FROM GameRatings WHERE Game_ID = "+id+" AND User_ID = " + quote + user + quote;
+            String query = "INSERT INTO GameRatings(Game_ID, User_ID, Rating) VALUES(?,?,?)";
             
-            PreparedStatement checkst = con.prepareStatement(check);
-            checkst.setInt(1, 18);
-            checkst.setString(2,user);
+            PreparedStatement checkSt = con.prepareStatement(check);
             PreparedStatement deleteSt = con.prepareStatement(delete);
-            deleteSt.setInt(1,18);
-            deleteSt.setString(2,user);
-            PreparedStatement stmt = con.prepareStatement(insert);
-            st.execute(check);
-            ResultSet checkResult = checkst.getResultSet();
-            if(checkResult.isBeforeFirst())
+            PreparedStatement stmt = con.prepareStatement(query);
+            
+            ResultSet rsCheck = checkSt.executeQuery();
+            if(rsCheck.next())
             {
-                ResultSet rs = st.executeQuery(insert);
-                st.execute(delete);
-                JOptionPane.showMessageDialog(null,"Record has been deleted.");
-                
-                if(rs.next() == false)
-                { 
-                    if(likeRatingButton.isSelected())
+                deleteSt.executeUpdate();
+                if(likeRatingButton.isSelected())
                 {
                     stmt.setInt(1,id);
                     stmt.setString(2,user);
@@ -288,14 +279,33 @@ public class XCOM2 extends javax.swing.JFrame {
                     stmt.setString(2,user);
                     stmt.setInt(3,rating - 1);
                 }
-                    stmt.execute();
-                }
-                else
+                int x = stmt.executeUpdate();
+                if(x > 0)
                 {
-                    JOptionPane.showMessageDialog(null,"Nothing was selected. Select an option.");
+                    JOptionPane.showMessageDialog(null, "Your rating has been updated");
                 }
-                con.close();
             }
+            else
+            {
+                if(likeRatingButton.isSelected())
+                {
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating + 1);
+                }
+                else if(dislikeRatingButton.isSelected())
+                {
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating - 1);
+                }
+                int x = stmt.executeUpdate();
+                if(x > 0)
+                {
+                    JOptionPane.showMessageDialog(null, "Your rating has been inserted");
+                }
+            }
+            con.close();
         }
         catch(SQLException ex)
         {

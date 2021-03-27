@@ -33,7 +33,6 @@ public class ProfilePage extends javax.swing.JFrame {
         
         try
         {
-            ImageIcon newImg;
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             
@@ -60,6 +59,111 @@ public class ProfilePage extends javax.swing.JFrame {
                 String s1 = String.valueOf(sub1);
                 String s2 = String.valueOf(sub2);
                 String s3 = String.valueOf(sub3);
+                
+                if(rating == 1)
+                {
+                    rate = "Like";
+                }
+                if(rating == -1)
+                {
+                    rate = "Dislike";
+                }
+                if(sub1 == 1)
+                {
+                    s1 = "JRPG";
+                }
+                else if(sub2 == 1)
+                {
+                    s2 = "JRPG";
+                }
+                else if(sub3 == 1)
+                {
+                    s3 = "JRPG";
+                }
+                if(sub1 == 2)
+                {
+                    s1 = "Action RPG";
+                }
+                else if(sub2 == 2)
+                {
+                    s2 = "Action RPG";
+                }
+                else if(sub3 == 2)
+                {
+                    s3 = "Action RPG";
+                }
+                if(sub1 == 3)
+                {
+                    s1 = "MMORPG";
+                }
+                else if(sub2 == 3)
+                {
+                    s2 = "MMORPG";
+                }
+                else if(sub3 == 3)
+                {
+                    s3 = "MMORPG";
+                }
+                if(sub1 == 4)
+                {
+                    s1 = "Rogue";
+                }
+                else if(sub2 == 4)
+                {
+                    s2 = "Rogue";
+                }
+                else if(sub3 == 4)
+                {
+                    s3 = "Rogue";
+                }
+                if(sub1 == 5)
+                {
+                    s1 = "Turn Based";
+                }
+                else if(sub2 == 5)
+                {
+                    s2 = "Turn Based";
+                }
+                else if(sub3 == 5)
+                {
+                    s3 = "Turn Based";
+                }
+                if(sub1 == 6)
+                {
+                    s1 = "Tactics";
+                }
+                else if(sub2 == 6)
+                {
+                    s2 = "Tactics";
+                }
+                else if(sub3 == 6)
+                {
+                    s3 = "Tactics";
+                }
+                if(sub1 == 7)
+                {
+                    s1 = "Open World";
+                }
+                else if(sub2 == 7)
+                {
+                    s2 = "Open World";
+                }
+                else if(sub3 == 7)
+                {
+                    s3 = "Open World";
+                }
+                if(sub1 == 8)
+                {
+                    s1 = "";
+                }
+                else if(sub2 == 8)
+                {
+                    s2 = "";
+                }
+                else if(sub3 == 8)
+                {
+                    s3 = "";
+                }
                 
                 DefaultTableModel tbModel = (DefaultTableModel)myLibraryTable.getModel();
                 String data[] = {title, pic, rate, s1, s2, s3};
@@ -192,10 +296,7 @@ public class ProfilePage extends javax.swing.JFrame {
 
         myLibraryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Title", "Picture", "Your Rating", "Subgenre 1", "Subgenre 2", "Subgenre 3"

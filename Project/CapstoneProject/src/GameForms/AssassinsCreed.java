@@ -249,39 +249,39 @@ public class AssassinsCreed extends javax.swing.JFrame {
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet output = st.executeQuery("SELECT * FROM Games");
             
-            output.absolute(30);
-            int id = output.getInt("Game_ID");
+            int id = 30;
             String user = User.getUsername();
             int rating = 0;
+            
             String quote = "'";
-            String query = "INSERT INTO GameRatings(Game_ID, User_ID, Rating) VALUES(?,?,?)";
-            String update = "UPDATE GameRatings Rating = "+rating+" WHERE Game_ID = "+id+" AND User_ID = " + quote + user + quote;
             String check = "SELECT * FROM GameRatings WHERE Game_ID = "+id+" AND User_ID = " + quote + user + quote;
+            String delete = "DELETE FROM GameRatings WHERE Game_ID = "+id+" AND User_ID = " + quote + user + quote;
+            String query = "INSERT INTO GameRatings(Game_ID, User_ID, Rating) VALUES(?,?,?)";
             
-            PreparedStatement stmt = con.prepareStatement(query);
-            PreparedStatement updateQuery = con.prepareStatement(update);
             PreparedStatement checkSt = con.prepareStatement(check);
+            PreparedStatement deleteSt = con.prepareStatement(delete);
+            PreparedStatement stmt = con.prepareStatement(query);
             
-            
-            ResultSet rsCheck = checkSt.executeQuery(check);
-            if(rsCheck != null)
+            ResultSet rsCheck = checkSt.executeQuery();
+            if(rsCheck.next())
             {
+                deleteSt.executeUpdate();
                 if(likeRatingButton.isSelected())
                 {
-                    updateQuery.setInt(1,id);
-                    updateQuery.setString(2,user);
-                    updateQuery.setInt(3,rating + 1);
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating + 1);
                 }
                 else if(dislikeRatingButton.isSelected())
                 {
-                    updateQuery.setInt(1,id);
-                    updateQuery.setString(2,user);
-                    updateQuery.setInt(3,rating - 1);
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating - 1);
                 }
-                int x = updateQuery.executeUpdate();
+                int x = stmt.executeUpdate();
                 if(x > 0)
                 {
-                JOptionPane.showMessageDialog(null, "Your current rating has now been updated");
+                    JOptionPane.showMessageDialog(null, "Your rating has been updated");
                 }
             }
             else

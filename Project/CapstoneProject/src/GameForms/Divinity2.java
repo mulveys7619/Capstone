@@ -250,20 +250,42 @@ public class Divinity2 extends javax.swing.JFrame {
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet output = st.executeQuery("SELECT * FROM Games");
 
-            output.absolute(16);
-            int id = output.getInt("Game_ID");
-            String query = "REPLACE INTO GameRatings(Game_ID, User_ID, Rating)" + " VALUES(?,?,?)";
+            int id = 16;
             String user = User.getUsername();
             int rating = 0;
 
-            String check = "SELECT * FROM GameRatings WHERE Game_ID = ? AND User_ID = ?";
-
+            String quote = "'";
+            String check = "SELECT * FROM GameRatings WHERE Game_ID = "+id+" AND User_ID = " + quote + user + quote;
+            String delete = "DELETE FROM GameRatings WHERE Game_ID = "+id+" AND User_ID = " + quote + user + quote;
+            String query = "INSERT INTO GameRatings(Game_ID, User_ID, Rating) VALUES(?,?,?)";
+            
+            PreparedStatement checkSt = con.prepareStatement(check);
+            PreparedStatement deleteSt = con.prepareStatement(delete);
             PreparedStatement stmt = con.prepareStatement(query);
-            PreparedStatement checkst = con.prepareStatement(check);
-            checkst.setInt(2,id);
-            checkst.setString(3, user);
-            ResultSet rs = st.executeQuery(check);
-            if(rs.next() == false)
+            
+            ResultSet rsCheck = checkSt.executeQuery();
+            if(rsCheck.next())
+            {
+                deleteSt.executeUpdate();
+                if(likeRatingButton.isSelected())
+                {
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating + 1);
+                }
+                else if(dislikeRatingButton.isSelected())
+                {
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating - 1);
+                }
+                int x = stmt.executeUpdate();
+                if(x > 0)
+                {
+                    JOptionPane.showMessageDialog(null, "Your rating has been updated");
+                }
+            }
+            else
             {
                 if(likeRatingButton.isSelected())
                 {
@@ -277,15 +299,11 @@ public class Divinity2 extends javax.swing.JFrame {
                     stmt.setString(2,user);
                     stmt.setInt(3,rating - 1);
                 }
-                stmt.execute();
-            }
-            else
-            {
-                String update = "UPDATE GameRatings SET Rating = ? WHERE User_ID = ?, Game_ID = ?:";
-
-                PreparedStatement updateSt = con.prepareStatement(update);
-                updateSt.setInt(3, id);
-                updateSt.setString(2, user);
+                int x = stmt.executeUpdate();
+                if(x > 0)
+                {
+                    JOptionPane.showMessageDialog(null, "Your rating has been inserted");
+                }
             }
             con.close();
         }
