@@ -31,6 +31,7 @@ public class AssassinsCreed extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "You have to logged in to rate a game");
             likeRatingButton.setEnabled(false);
             dislikeRatingButton.setEnabled(false);
+            noRatingButton.setEnabled(false);
             submitButton.setEnabled(false);
         }
             
@@ -82,6 +83,7 @@ public class AssassinsCreed extends javax.swing.JFrame {
         ratingsPanel = new javax.swing.JPanel();
         likeRatingButton = new javax.swing.JRadioButton();
         dislikeRatingButton = new javax.swing.JRadioButton();
+        noRatingButton = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -151,23 +153,30 @@ public class AssassinsCreed extends javax.swing.JFrame {
         ratingsGroup.add(dislikeRatingButton);
         dislikeRatingButton.setText("Dislike");
 
+        noRatingButton.setBackground(new java.awt.Color(153, 153, 255));
+        ratingsGroup.add(noRatingButton);
+        noRatingButton.setText("No Rating");
+
         javax.swing.GroupLayout ratingsPanelLayout = new javax.swing.GroupLayout(ratingsPanel);
         ratingsPanel.setLayout(ratingsPanelLayout);
         ratingsPanelLayout.setHorizontalGroup(
             ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ratingsPanelLayout.createSequentialGroup()
-                .addGap(75, 75, 75)
+                .addGap(38, 38, 38)
                 .addComponent(likeRatingButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
+                .addGap(130, 130, 130)
                 .addComponent(dislikeRatingButton)
-                .addGap(83, 83, 83))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                .addComponent(noRatingButton)
+                .addGap(25, 25, 25))
         );
         ratingsPanelLayout.setVerticalGroup(
             ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ratingsPanelLayout.createSequentialGroup()
                 .addGroup(ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(likeRatingButton)
-                    .addComponent(dislikeRatingButton))
+                    .addComponent(dislikeRatingButton)
+                    .addComponent(noRatingButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -220,10 +229,10 @@ public class AssassinsCreed extends javax.swing.JFrame {
                     .addComponent(subgenre3Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(subgenre2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ratingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(30, 30, 30)
                 .addComponent(submitButton)
                 .addContainerGap())
         );
@@ -249,7 +258,8 @@ public class AssassinsCreed extends javax.swing.JFrame {
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet output = st.executeQuery("SELECT * FROM Games");
             
-            int id = 30;
+            output.absolute(30);
+            int id = output.getInt("Game_ID");
             String user = User.getUsername();
             int rating = 0;
             
@@ -278,6 +288,10 @@ public class AssassinsCreed extends javax.swing.JFrame {
                     stmt.setString(2,user);
                     stmt.setInt(3,rating - 1);
                 }
+                else if(noRatingButton.isSelected())
+                {
+                    JOptionPane.showMessageDialog(null, "Your rating has been deleted");
+                }
                 int x = stmt.executeUpdate();
                 if(x > 0)
                 {
@@ -297,6 +311,10 @@ public class AssassinsCreed extends javax.swing.JFrame {
                     stmt.setInt(1,id);
                     stmt.setString(2,user);
                     stmt.setInt(3,rating - 1);
+                }
+                else if(noRatingButton.isSelected())
+                {
+                    JOptionPane.showMessageDialog(null, "You chose not to rate the game");
                 }
                 int x = stmt.executeUpdate();
                 if(x > 0)
@@ -363,6 +381,7 @@ public class AssassinsCreed extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JRadioButton likeRatingButton;
     private javax.swing.JLabel mainLabel;
+    private javax.swing.JRadioButton noRatingButton;
     private javax.swing.JLabel pictureLabel;
     private javax.swing.ButtonGroup ratingsGroup;
     private javax.swing.JPanel ratingsPanel;

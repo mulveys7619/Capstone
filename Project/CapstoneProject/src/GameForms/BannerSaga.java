@@ -31,6 +31,7 @@ public class BannerSaga extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "You have to logged in to rate a game");
             likeRatingButton.setEnabled(false);
             dislikeRatingButton.setEnabled(false);
+            noRatingsButton.setEnabled(false);
             submitButton.setEnabled(false);
         }
             
@@ -83,6 +84,7 @@ public class BannerSaga extends javax.swing.JFrame {
         ratingsPanel = new javax.swing.JPanel();
         likeRatingButton = new javax.swing.JRadioButton();
         dislikeRatingButton = new javax.swing.JRadioButton();
+        noRatingsButton = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,23 +154,30 @@ public class BannerSaga extends javax.swing.JFrame {
         ratingsGroup.add(dislikeRatingButton);
         dislikeRatingButton.setText("Dislike");
 
+        noRatingsButton.setBackground(new java.awt.Color(153, 153, 255));
+        ratingsGroup.add(noRatingsButton);
+        noRatingsButton.setText("No Rating");
+
         javax.swing.GroupLayout ratingsPanelLayout = new javax.swing.GroupLayout(ratingsPanel);
         ratingsPanel.setLayout(ratingsPanelLayout);
         ratingsPanelLayout.setHorizontalGroup(
             ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ratingsPanelLayout.createSequentialGroup()
-                .addGap(106, 106, 106)
+                .addGap(38, 38, 38)
                 .addComponent(likeRatingButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
+                .addGap(130, 130, 130)
                 .addComponent(dislikeRatingButton)
-                .addGap(105, 105, 105))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                .addComponent(noRatingsButton)
+                .addGap(25, 25, 25))
         );
         ratingsPanelLayout.setVerticalGroup(
             ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ratingsPanelLayout.createSequentialGroup()
                 .addGroup(ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(likeRatingButton)
-                    .addComponent(dislikeRatingButton))
+                    .addComponent(dislikeRatingButton)
+                    .addComponent(noRatingsButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -222,7 +231,7 @@ public class BannerSaga extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(subgenre2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
                 .addGap(13, 13, 13)
                 .addComponent(ratingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -251,7 +260,8 @@ public class BannerSaga extends javax.swing.JFrame {
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet output = st.executeQuery("SELECT * FROM Games");
 
-            int id = 21;
+            output.absolute(21);
+            int id = output.getInt("Game_ID");
             String user = User.getUsername();
             int rating = 0;
 
@@ -280,6 +290,10 @@ public class BannerSaga extends javax.swing.JFrame {
                     stmt.setString(2,user);
                     stmt.setInt(3,rating - 1);
                 }
+                else if(noRatingButton.isSelected())
+                {
+                    JOptionPane.showMessageDialog(null, "Your rating has been deleted");
+                }
                 int x = stmt.executeUpdate();
                 if(x > 0)
                 {
@@ -299,6 +313,10 @@ public class BannerSaga extends javax.swing.JFrame {
                     stmt.setInt(1,id);
                     stmt.setString(2,user);
                     stmt.setInt(3,rating - 1);
+                }
+                else if(noRatingButton.isSelected())
+                {
+                    JOptionPane.showMessageDialog(null, "You chose not to rate the game");
                 }
                 int x = stmt.executeUpdate();
                 if(x > 0)
@@ -356,21 +374,38 @@ public class BannerSaga extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea descTextArea;
-    private javax.swing.JRadioButton dislikeRatingButton;
-    private javax.swing.JLabel homeButton;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JRadioButton likeRatingButton;
-    private javax.swing.JLabel mainLabel;
-    private javax.swing.JLabel pictureLabel;
-    private javax.swing.ButtonGroup ratingsGroup;
-    private javax.swing.JPanel ratingsPanel;
-    private javax.swing.JLabel subgenre1Label;
-    private javax.swing.JLabel subgenre2Label;
-    private javax.swing.JLabel subgenre3Label;
-    private javax.swing.JButton submitButton;
-    private javax.swing.JLabel titleLabel;
-    private javax.swing.JPanel titlePanel;
+    javax.swing.JTextArea descTextArea;
+    javax.swing.JRadioButton dislikeRatingButton;
+    javax.swing.JRadioButton dislikeRatingButton1;
+    javax.swing.JRadioButton dislikeRatingButton2;
+    javax.swing.JRadioButton dislikeRatingButton3;
+    javax.swing.JRadioButton dislikeRatingButton4;
+    javax.swing.JLabel homeButton;
+    javax.swing.JPanel jPanel4;
+    javax.swing.JScrollPane jScrollPane3;
+    javax.swing.JRadioButton likeRatingButton;
+    javax.swing.JRadioButton likeRatingButton1;
+    javax.swing.JRadioButton likeRatingButton2;
+    javax.swing.JRadioButton likeRatingButton3;
+    javax.swing.JRadioButton likeRatingButton4;
+    javax.swing.JLabel mainLabel;
+    javax.swing.JRadioButton noRatingButton;
+    javax.swing.JRadioButton noRatingButton1;
+    javax.swing.JRadioButton noRatingButton2;
+    javax.swing.JRadioButton noRatingButton3;
+    javax.swing.JRadioButton noRatingsButton;
+    javax.swing.JLabel pictureLabel;
+    javax.swing.ButtonGroup ratingsGroup;
+    javax.swing.JPanel ratingsPanel;
+    javax.swing.JPanel ratingsPanel1;
+    javax.swing.JPanel ratingsPanel2;
+    javax.swing.JPanel ratingsPanel3;
+    javax.swing.JPanel ratingsPanel4;
+    javax.swing.JLabel subgenre1Label;
+    javax.swing.JLabel subgenre2Label;
+    javax.swing.JLabel subgenre3Label;
+    javax.swing.JButton submitButton;
+    javax.swing.JLabel titleLabel;
+    javax.swing.JPanel titlePanel;
     // End of variables declaration//GEN-END:variables
 }

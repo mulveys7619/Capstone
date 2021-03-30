@@ -246,11 +246,13 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="likeRatingButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="221" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
                       <Component id="dislikeRatingButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                      <EmptySpace pref="127" max="32767" attributes="0"/>
+                      <Component id="noRatingButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -260,6 +262,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="likeRatingButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="dislikeRatingButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="noRatingButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -287,6 +290,17 @@
                   <ComponentRef name="ratingsGroup"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Dislike"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="noRatingButton">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="99" red="99" type="rgb"/>
+                </Property>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="ratingsGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="No Rating"/>
               </Properties>
             </Component>
           </SubComponents>
