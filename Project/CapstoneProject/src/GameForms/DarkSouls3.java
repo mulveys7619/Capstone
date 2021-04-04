@@ -146,12 +146,15 @@ public class DarkSouls3 extends javax.swing.JFrame {
         ratingsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ratings", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cooper Black", 0, 14))); // NOI18N
 
         likeRatingButton.setBackground(new java.awt.Color(153, 153, 255));
+        ratingsGroup.add(likeRatingButton);
         likeRatingButton.setText("Like");
 
         dislikeRatingButton.setBackground(new java.awt.Color(153, 153, 255));
+        ratingsGroup.add(dislikeRatingButton);
         dislikeRatingButton.setText("Dislike");
 
         noRatingButton.setBackground(new java.awt.Color(153, 153, 255));
+        ratingsGroup.add(noRatingButton);
         noRatingButton.setText("No Rating");
 
         javax.swing.GroupLayout ratingsPanelLayout = new javax.swing.GroupLayout(ratingsPanel);

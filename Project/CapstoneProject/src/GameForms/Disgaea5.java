@@ -51,7 +51,7 @@ public class Disgaea5 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,ex.getMessage());
         }
         
-        Image img = FillForms.getImage("disgaea");
+        Image img = FillForms.getImage("disgaea5");
         Image img2 = img.getScaledInstance(pictureLabel.getWidth(), pictureLabel.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon x = new ImageIcon(img2);
         
