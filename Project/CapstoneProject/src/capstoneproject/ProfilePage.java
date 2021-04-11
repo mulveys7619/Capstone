@@ -10,10 +10,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-import java.util.ArrayList;
-import GameForms.AssassinsCreed;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -36,18 +32,13 @@ public class ProfilePage extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             
-            /* EXAMPLE QUERY 
-            SELECT ga.game_id, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID
-            FROM Games ga, Gameratings gr
-            WHERE gr.User_ID = 'Capstone23' AND gr.game_id = ga.game_id;
-            */String quote = "'";
+            String quote = "'";
             String query = "SELECT ga.game_id, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID FROM Games ga, Gameratings gr WHERE gr.User_ID = "
                     + quote + user + quote + " AND gr.game_id = ga.game_id";
             ResultSet combineRs = st.executeQuery(query);
             int i = 0;
             while(combineRs.next())
             {
-                int gameID = combineRs.getInt("Game_ID");
                 String title = combineRs.getString("Title");
                 String pic = combineRs.getString("Thumbnail");
                 int rating = combineRs.getInt("Rating");
@@ -170,21 +161,29 @@ public class ProfilePage extends javax.swing.JFrame {
                 tbModel.addRow(data);
                 i++;
             }
-//            ResultSet recommendRs = st.executeQuery("SELECT Subgenre1 ")
-//            while(recommendRs.next())
-//            {
-//                int gameID = combineRs.getInt("Game_ID");
-//                String title = combineRs.getString("Title");
-//                String pic = combineRs.getString("Thumbnail");
-//                int sub1 = combineRs.getInt("Subgenre1");
-//                int sub2 = combineRs.getInt("Subgenre2");
-//                int sub3 = combineRs.getInt("Subgenre3");
-//                
-//            }
-            
-            // Displaying the library(later use)
-//            ResultSet dispLib = st.executeQuery("SELECT * FROM GAMES WHERE Game_ID ='"+currGame+"'");
-
+            String query2 = "SELECT ga.game_id, ga.Title, ga.Thumbnail, ga.Subgenre1, "
+                    + "ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID FROM Games ga, "
+                    + "Gameratings gr WHERE gr.User_ID = " + quote + user + quote + ""
+                    + "AND gr.Rating = "+ 1 +" AND ga.Subgenre1 = ? AND ga.Subgenre2 = ? AND ga.Subgenre3 = ?";
+                ResultSet recommendRs = st.executeQuery(query2);
+                int x = 0;
+                while(recommendRs.next())
+                {
+                    String recTitle = recommendRs.getString("Title");
+                    String recPic = recommendRs.getString("Thumbnail");
+                    int recSub1 = recommendRs.getInt("Subgenre1");
+                    int recSub2 = recommendRs.getInt("Subgenre2");
+                    int recSub3 = recommendRs.getInt("Subgenre3");
+                
+                    String recS1 = String.valueOf(recSub1);
+                    String recS2 = String.valueOf(recSub2);
+                    String recS3 = String.valueOf(recSub3);
+                
+                    DefaultTableModel tbModel2 = (DefaultTableModel)recommendTable.getModel();
+                    String recData[] = {recTitle, recPic, recS1, recS2, recS3};
+                    tbModel2.addRow(recData);
+                    x++;
+                }
         }
         catch(Exception ex)
         {
@@ -192,30 +191,6 @@ public class ProfilePage extends javax.swing.JFrame {
         }
         
     }
-//            for(int i  = 1; i < dispLib.getRow(); i++)
-//            {
-//                dispLib.getRowId(i);
-//                int id = dispLib.getInt("Game_ID");
-//                String thumbnail = dispLib.getString("Thumbnail");
-//                String title = dispLib.getString("Title");
-//                int sub1 = dispLib.getInt("Subgenre1");
-//                int sub2 = dispLib.getInt("Subgenre2");
-//                int sub3 = dispLib.getInt("Subgenre3");
-//                newImg = new ImageIcon(getClass().getResource(thumbnail));
-//                String getRec = "SELECT Game_ID FROM Games WHERE Subgenre1 = "+sub1+" AND Subgenre2 = "+sub2+" AND Subgenre3 = "+sub3+"";
-//                for(int x = 1; x < 35; x++)
-//                {
-//                    JLabel games = new JLabel();
-//                    games.setIcon(newImg);
-//                    myLibraryPanel.add(games);
-//                }
-//                
-//            }
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -303,7 +278,7 @@ public class ProfilePage extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -339,7 +314,7 @@ public class ProfilePage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Titles we Recommended", "Picture", "Sungenre 1", "Subgenre 2", "Subgenre 3"
+                "Titles we Recommended", "Picture", "Subgenre 1", "Subgenre 2", "Subgenre 3"
             }
         ) {
             Class[] types = new Class [] {

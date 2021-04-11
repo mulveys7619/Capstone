@@ -3,39 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/FinalFantasyXV.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/FireEmblem.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/DragonsDogma.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/DragonCrystal.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/BannerSaga.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/StarTrek.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/FinalFantasyX.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/TalesOfVesperia.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/Divinity2.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/ValkyriaChronicles.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/RogueLegacy.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/SMTDevilSurvivor.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/ChronoTrigger.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/Setsuna.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/Disgaea5.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/Xenoblade.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/AssassinsCreed.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/FinalFantasyXIV.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/KingdomHearts3.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/Bastion.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/XCOM2.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/DarkSouls3.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/Hades.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/Fallout76.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/Cyberpunk.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/PokemonMD.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/DyingLight.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/Skyrim.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/Destiny2.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/Wasteland2.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/DarkestDungeon.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/MassEffect.java</file>
-            <file>file:/C:/Users/jevon/Documents/GitHub/Capstone/Project/CapstoneProject/src/GameForms/DragonQuestXI.java</file>
+            <file>file:/D:/GitHub/Capstone/Project/CapstoneProject/src/GameForms/FillForms.java</file>
+            <file>file:/D:/GitHub/Capstone/Project/CapstoneProject/src/GameForms/GameFormTemplate.java</file>
+            <file>file:/D:/GitHub/Capstone/Project/CapstoneProject/src/capstoneproject/HomePage.java</file>
+            <file>file:/D:/GitHub/Capstone/Project/CapstoneProject/src/GameForms/DyingLight.java</file>
+            <file>file:/D:/GitHub/Capstone/Project/CapstoneProject/src/capstoneproject/CurrGame.java</file>
+            <file>file:/D:/GitHub/Capstone/Project/CapstoneProject/src/capstoneproject/CreateAccount.java</file>
         </group>
     </open-files>
 </project-private>

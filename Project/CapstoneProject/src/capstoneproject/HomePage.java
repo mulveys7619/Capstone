@@ -5,45 +5,9 @@
  */
 package capstoneproject;
 
-import GameForms.AssassinsCreed;
-import GameForms.BannerSaga;
-import GameForms.Bastion;
-import GameForms.ChronoTrigger;
-import GameForms.Cyberpunk;
-import GameForms.DarkSouls3;
-import GameForms.DarkestDungeon;
-import GameForms.Destiny2;
-import GameForms.Disgaea5;
-import GameForms.Divinity2;
-import GameForms.DragonCrystal;
-import GameForms.DragonQuestXI;
-import GameForms.DragonsDogma;
-import GameForms.DyingLight;
-import GameForms.Fallout76;
 import GameForms.FillForms;
-import GameForms.FinalFantasyX;
-import GameForms.FinalFantasyXIV;
-import GameForms.FinalFantasyXV;
-import GameForms.FireEmblem;
-import GameForms.Hades;
-import GameForms.KingdomHearts3;
-import GameForms.MassEffect;
-import GameForms.PokemonMD;
-import GameForms.RogueLegacy;
-import GameForms.SMTDevilSurvivor;
-import GameForms.Setsuna;
-import GameForms.Skyrim;
-import GameForms.StarTrek;
-import GameForms.TalesOfVesperia;
-import GameForms.ValkyriaChronicles;
-import GameForms.Wasteland2;
-import GameForms.Witcher3;
-import GameForms.WorldOfWarcraft;
-import GameForms.XCOM2;
-import GameForms.Xenoblade;
-import java.awt.Image;
-import java.awt.Toolkit;
-import javax.swing.ImageIcon;
+import GameForms.GameFormsTemplate;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -56,6 +20,12 @@ public class HomePage extends javax.swing.JFrame {
      */
     public HomePage() {
         initComponents();
+        String user = User.getUsername();
+        if(user == null)
+        {
+            logoutButton.setVisible(false);
+            logoutButton.setEnabled(false);
+        }
         String ACO = FillForms.getPicture(30);
         String bastion = FillForms.getPicture(4);
         String chrono = FillForms.getPicture(32);
@@ -92,285 +62,75 @@ public class HomePage extends javax.swing.JFrame {
         String xcom = FillForms.getPicture(18);
         String xenoblade = FillForms.getPicture(34);
         
-        ImageIcon myImage = new ImageIcon((ACO));
-        
-        Image img1 = myImage.getImage();
-        Image newimg = img1.getScaledInstance(ACOpic.getWidth(), ACOpic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x = new ImageIcon(newimg);
-        
-        ACOpic.setIcon(x);
-        
-        ImageIcon myImage2 = new ImageIcon((bastion));
-        
-        Image img2 = myImage2.getImage();
-        Image newimg2 = img2.getScaledInstance(bastionPic.getWidth(), bastionPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x2 = new ImageIcon(newimg2);
-        
-        bastionPic.setIcon(x2);
-        
-        ImageIcon myImage3 = new ImageIcon((chrono));
-        
-        Image img3 = myImage3.getImage();
-        Image newimg3 = img3.getScaledInstance(chronotriggerPic.getWidth(), chronotriggerPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x3 = new ImageIcon(newimg3);
-        
-        chronotriggerPic.setIcon(x3);
-        
-        ImageIcon myImage4 = new ImageIcon((cyberpunk));
-        
-        Image img4 = myImage4.getImage();
-        Image newimg4 = img4.getScaledInstance(cyberpunkPic.getWidth(), cyberpunkPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x4 = new ImageIcon(newimg4);
-        
-        cyberpunkPic.setIcon(x4);
-        
-        ImageIcon myImage5 = new ImageIcon((darksouls));
-        
-        Image img5 = myImage5.getImage();
-        Image newimg5 = img5.getScaledInstance(darksoulsPic.getWidth(), darksoulsPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x5 = new ImageIcon(newimg5);
-        
-        darksoulsPic.setIcon(x5);
-        
-        ImageIcon myImage6 = new ImageIcon((darkest));
-        
-        Image img6 = myImage6.getImage();
-        Image newimg6 = img6.getScaledInstance(darkestdungeonPic.getWidth(), darkestdungeonPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x6 = new ImageIcon(newimg6);
-        
-        darkestdungeonPic.setIcon(x6);
-        
-        ImageIcon myImage7 = new ImageIcon((destiny));
-        
-        Image img7 = myImage7.getImage();
-        Image newimg7 = img7.getScaledInstance(destinyPic.getWidth(), destinyPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x7 = new ImageIcon(newimg7);
-        
-        destinyPic.setIcon(x7);
-        
-        ImageIcon myImage8 = new ImageIcon((disgaea5));
-        
-        Image img8 = myImage8.getImage();
-        Image newimg8 = img8.getScaledInstance(disgaeaPic.getWidth(), disgaeaPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x8 = new ImageIcon(newimg8);
-        
-        disgaeaPic.setIcon(x8);
-        
-        ImageIcon myImage9 = new ImageIcon((divinity));
-        
-        Image img9 = myImage9.getImage();
-        Image newimg9 = img9.getScaledInstance(divinityPic.getWidth(), divinityPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x9 = new ImageIcon(newimg9);
-        
-        divinityPic.setIcon(x9);
-        
-        ImageIcon myImage10 = new ImageIcon((dragonCry));
-        
-        Image img10 = myImage10.getImage();
-        Image newimg10 = img10.getScaledInstance(dragoncryPic.getWidth(), dragoncryPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x10 = new ImageIcon(newimg10);
-        
-        dragoncryPic.setIcon(x10);
-        
-        ImageIcon myImage11 = new ImageIcon((dragonQuest));
-        
-        Image img11 = myImage11.getImage();
-        Image newimg11 = img11.getScaledInstance(dragonquestPic.getWidth(), dragonquestPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x11 = new ImageIcon(newimg11);
-        
-        dragonquestPic.setIcon(x11);
-        
-        ImageIcon myImage12 = new ImageIcon((dragonDogma));
-        
-        Image img12 = myImage12.getImage();
-        Image newimg12 = img12.getScaledInstance(dragonsdogmaPic.getWidth(), dragonsdogmaPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x12 = new ImageIcon(newimg12);
-        
-        dragonsdogmaPic.setIcon(x12);
-        
-        ImageIcon myImage13 = new ImageIcon((dyinglight));
-        
-        Image img13 = myImage13.getImage();
-        Image newimg13 = img13.getScaledInstance(dyinglightPic.getWidth(), dyinglightPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x13 = new ImageIcon(newimg13);
-        
-        dyinglightPic.setIcon(x13);
-        
-        ImageIcon myImage14 = new ImageIcon(fallout);
-        
-        Image img14 = myImage14.getImage();
-        Image newimg14 = img14.getScaledInstance(fallout76Pic.getWidth(), fallout76Pic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x14 = new ImageIcon(newimg14);
-        
-        fallout76Pic.setIcon(x14);
-        
-        ImageIcon myImage15 = new ImageIcon((ffX));
-        
-        Image img15 = myImage15.getImage();
-        Image newimg15 = img15.getScaledInstance(ffxPic.getWidth(), ffxPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x15 = new ImageIcon(newimg15);
-        
-        ffxPic.setIcon(x15);
-        
-        ImageIcon myImage16 = new ImageIcon((ffXIV));
-        
-        Image img16 = myImage16.getImage();
-        Image newimg16 = img16.getScaledInstance(ffXIVPic.getWidth(), ffXIVPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x16 = new ImageIcon(newimg16);
-        
-        ffXIVPic.setIcon(x16);
-        
-        ImageIcon myImage17 = new ImageIcon((ffXV));
-        
-        Image img17 = myImage17.getImage();
-        Image newimg17 = img17.getScaledInstance(ffXVPic.getWidth(), ffXVPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x17 = new ImageIcon(newimg17);
-        
-        ffXVPic.setIcon(x17);
-        
-        ImageIcon myImage18 = new ImageIcon((fireEmblem));
-        
-        Image img18 = myImage18.getImage();
-        Image newimg18 = img18.getScaledInstance(fireEmblemPic.getWidth(), fireEmblemPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x18 = new ImageIcon(newimg18);
-        
-        fireEmblemPic.setIcon(x18);
-        
-        ImageIcon myImage19 = new ImageIcon((hades));
-        
-        Image img19 = myImage19.getImage();
-        Image newimg19 = img19.getScaledInstance(hadesPic.getWidth(), hadesPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x19 = new ImageIcon(newimg19);
-        
-        hadesPic.setIcon(x19);
-        
-        ImageIcon myImage20 = new ImageIcon((setsuna));
-        
-        Image img20 = myImage20.getImage();
-        Image newimg20 = img20.getScaledInstance(setsunaPic.getWidth(), setsunaPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x20 = new ImageIcon(newimg20);
-        
-        setsunaPic.setIcon(x20);
-        
-        ImageIcon myImage21 = new ImageIcon((kingdomHearts));
-        
-        Image img21 = myImage21.getImage();
-        Image newimg21 = img21.getScaledInstance(kingdomheartsPic.getWidth(), kingdomheartsPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x21 = new ImageIcon(newimg21);
-        
-        kingdomheartsPic.setIcon(x21);
-        
-        ImageIcon myImage22 = new ImageIcon((massEffect));
-        
-        Image img22 = myImage22.getImage();
-        Image newimg22 = img22.getScaledInstance(masseffectPic.getWidth(), masseffectPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x22 = new ImageIcon(newimg22);
-        
-        masseffectPic.setIcon(x22);
-        
-        ImageIcon myImage23 = new ImageIcon((pokemon));
-        
-        Image img23 = myImage23.getImage();
-        Image newimg23 = img23.getScaledInstance(pokemonPic.getWidth(), pokemonPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x23 = new ImageIcon(newimg23);
-        
-        pokemonPic.setIcon(x23);
-        
-        ImageIcon myImage24 = new ImageIcon((rogue));
-        
-        Image img24 = myImage24.getImage();
-        Image newimg24 = img24.getScaledInstance(roguePic.getWidth(), roguePic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x24 = new ImageIcon(newimg24);
-        
-        roguePic.setIcon(x24);
-        
-        ImageIcon myImage25 = new ImageIcon((shinMegami));
-        
-        Image img25 = myImage25.getImage();
-        Image newimg25 = img25.getScaledInstance(shinmegamiPic.getWidth(), shinmegamiPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x25 = new ImageIcon(newimg25);
-        
-        shinmegamiPic.setIcon(x25);
-        
-        ImageIcon myImage26 = new ImageIcon((starTrek));
-        
-        Image img26 = myImage26.getImage();
-        Image newimg26 = img26.getScaledInstance(startrekPic.getWidth(), startrekPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x26 = new ImageIcon(newimg26);
-        
-        startrekPic.setIcon(x26);
-        
-        ImageIcon myImage27 = new ImageIcon((tales));
-        
-        Image img27 = myImage27.getImage();
-        Image newimg27 = img27.getScaledInstance(talesPic.getWidth(), talesPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x27 = new ImageIcon(newimg27);
-        
-        talesPic.setIcon(x27);
-        
-        ImageIcon myImage28 = new ImageIcon((bannerSaga));
-        
-        Image img28 = myImage28.getImage();
-        Image newimg28 = img28.getScaledInstance(bannerPic.getWidth(), bannerPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x28 = new ImageIcon(newimg28);
-        
-        bannerPic.setIcon(x28);
-        
-        ImageIcon myImage29 = new ImageIcon((skyrim));
-        
-        Image img29 = myImage29.getImage();
-        Image newimg29 = img29.getScaledInstance(skyrimPic.getWidth(), skyrimPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x29 = new ImageIcon(newimg29);
-        
-        skyrimPic.setIcon(x29);
-        
-        ImageIcon myImage30 = new ImageIcon((witcher));
-        
-        Image img30 = myImage30.getImage();
-        Image newimg30 = img30.getScaledInstance(witcherPic.getWidth(), witcherPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x30 = new ImageIcon(newimg30);
-        
-        witcherPic.setIcon(x30);
-        
-        ImageIcon myImage31 = new ImageIcon((valkyria));
-        
-        Image img31 = myImage31.getImage();
-        Image newimg31 = img31.getScaledInstance(valkyriaPic.getWidth(), valkyriaPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x31 = new ImageIcon(newimg31);
-        
-        valkyriaPic.setIcon(x31);
-        
-        ImageIcon myImage32 = new ImageIcon((wasteland));
-        
-        Image img32 = myImage32.getImage();
-        Image newimg32 = img32.getScaledInstance(wastelandPic.getWidth(), wastelandPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x32 = new ImageIcon(newimg32);
-        
-        wastelandPic.setIcon(x32);
-        
-        ImageIcon myImage33 = new ImageIcon((WoW));
-        
-        Image img33 = myImage33.getImage();
-        Image newimg33 = img33.getScaledInstance(WoWPic.getWidth(), WoWPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x33 = new ImageIcon(newimg33);
-        
-        WoWPic.setIcon(x33);
-        
-        ImageIcon myImage34 = new ImageIcon((xcom));
-        
-        Image img34 = myImage34.getImage();
-        Image newimg34 = img34.getScaledInstance(xcomPic.getWidth(), xcomPic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x34 = new ImageIcon(newimg34);
-        
-        xcomPic.setIcon(x34);
-        
-        ImageIcon myImage35 = new ImageIcon((xenoblade));
-        
-        Image img35 = myImage35.getImage();
-        Image newimg35 = img35.getScaledInstance(xenobladePic.getWidth(), xenobladePic.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon x35 = new ImageIcon(newimg35);
-        
-        xenobladePic.setIcon(x35);
+        ACOpic = FillForms.getImage(ACOpic, ACO);
+        
+        bastionPic = FillForms.getImage(bastionPic, bastion);
+        
+        chronotriggerPic = FillForms.getImage(chronotriggerPic, chrono);
+
+        cyberpunkPic = FillForms.getImage(cyberpunkPic, cyberpunk);
+
+        darksoulsPic = FillForms.getImage(darksoulsPic, darksouls);
+
+        darkestdungeonPic = FillForms.getImage(darkestdungeonPic, darkest);
+
+        destinyPic = FillForms.getImage(destinyPic, destiny);
+
+        disgaeaPic = FillForms.getImage(disgaeaPic, disgaea5);
+
+        divinityPic = FillForms.getImage(divinityPic, divinity);
+
+        dragoncryPic = FillForms.getImage(dragoncryPic, dragonCry);
+
+        dragonquestPic = FillForms.getImage(dragonquestPic, dragonQuest);
+        
+        dragonsdogmaPic = FillForms.getImage(dragonsdogmaPic, dragonDogma);
+
+        dyinglightPic = FillForms.getImage(dyinglightPic, dyinglight);
+
+        fallout76Pic = FillForms.getImage(fallout76Pic, fallout);
+
+        ffxPic = FillForms.getImage(ffxPic,ffX);
+
+        ffXIVPic = FillForms.getImage(ffXIVPic, ffXIV);
+
+        ffXVPic = FillForms.getImage(ffXVPic,ffXV);
+        
+        fireEmblemPic = FillForms.getImage(fireEmblemPic, fireEmblem);
+
+        hadesPic = FillForms.getImage(hadesPic, hades);
+
+        setsunaPic = FillForms.getImage(setsunaPic, setsuna);
+
+        kingdomheartsPic = FillForms.getImage(kingdomheartsPic, kingdomHearts);
+
+        masseffectPic = FillForms.getImage(masseffectPic, massEffect);
+
+        pokemonPic = FillForms.getImage(pokemonPic, pokemon);
+
+        roguePic = FillForms.getImage(roguePic, rogue);
+
+        shinmegamiPic = FillForms.getImage(shinmegamiPic, shinMegami);
+
+        startrekPic = FillForms.getImage(startrekPic, starTrek);
+
+        talesPic = FillForms.getImage(talesPic, tales);
+
+        bannerPic = FillForms.getImage(bannerPic, bannerSaga);
+
+        skyrimPic = FillForms.getImage(skyrimPic, skyrim);
+
+        witcherPic = FillForms.getImage(witcherPic, witcher);
+        
+        valkyriaPic = FillForms.getImage(valkyriaPic, valkyria);
+        
+        wastelandPic = FillForms.getImage(wastelandPic, wasteland);
+
+        WoWPic = FillForms.getImage(WoWPic, WoW);
+
+        xcomPic = FillForms.getImage(xcomPic, xcom);
+
+        xenobladePic = FillForms.getImage(xenobladePic, xenoblade);
         
     }
 
@@ -388,6 +148,7 @@ public class HomePage extends javax.swing.JFrame {
         mainLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
         profileButton = new javax.swing.JButton();
+        logoutButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -460,6 +221,16 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
+        logoutButton.setBackground(new java.awt.Color(0, 0, 0));
+        logoutButton.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
+        logoutButton.setForeground(new java.awt.Color(255, 255, 255));
+        logoutButton.setText("Logout");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -467,6 +238,8 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(mainLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -474,10 +247,11 @@ public class HomePage extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(profileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(mainLabel)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(profileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
@@ -500,7 +274,6 @@ public class HomePage extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
 
-        ACOpic.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ACOpic.setText("ACO");
         ACOpic.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ACOpic.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -925,212 +698,247 @@ public class HomePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ACOpicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ACOpicMouseClicked
-        AssassinsCreed ACO = new AssassinsCreed();
-        ACO.show();
+        CurrGame.SetGameID(30);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_ACOpicMouseClicked
 
     private void bastionPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bastionPicMouseClicked
-        Bastion bastion = new Bastion();
-        bastion.show();
+        CurrGame.SetGameID(4);
         dispose();
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
     }//GEN-LAST:event_bastionPicMouseClicked
 
     private void chronotriggerPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chronotriggerPicMouseClicked
-        ChronoTrigger chrono = new ChronoTrigger();
-        chrono.show();
+        CurrGame.SetGameID(32);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_chronotriggerPicMouseClicked
 
     private void cyberpunkPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cyberpunkPicMouseClicked
-        Cyberpunk cyberpunk = new Cyberpunk();
-        cyberpunk.show();
+        CurrGame.SetGameID(27);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_cyberpunkPicMouseClicked
 
     private void darksoulsPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_darksoulsPicMouseClicked
-        DarkSouls3 darksouls = new DarkSouls3();
-        darksouls.show();
+        CurrGame.SetGameID(1);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_darksoulsPicMouseClicked
 
     private void destinyPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_destinyPicMouseClicked
-        Destiny2 destiny = new Destiny2();
-        destiny.show();
+        CurrGame.SetGameID(9);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_destinyPicMouseClicked
 
     private void disgaeaPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_disgaeaPicMouseClicked
-        Disgaea5 disgaea = new Disgaea5();
-        disgaea.show();
+        CurrGame.SetGameID(22);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_disgaeaPicMouseClicked
 
     private void divinityPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_divinityPicMouseClicked
-        Divinity2 divinity = new Divinity2();
-        divinity.show();
+        CurrGame.SetGameID(16);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_divinityPicMouseClicked
 
     private void dragoncryPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dragoncryPicMouseClicked
-        DragonCrystal dragoncry = new DragonCrystal();
-        dragoncry.show();
+        CurrGame.SetGameID(14);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_dragoncryPicMouseClicked
 
     private void dragonquestPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dragonquestPicMouseClicked
-        DragonQuestXI dragonQuest = new DragonQuestXI();
-        dragonQuest.show();
+        CurrGame.SetGameID(33);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_dragonquestPicMouseClicked
 
     private void dragonsdogmaPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dragonsdogmaPicMouseClicked
-        DragonsDogma dragonsDogma = new DragonsDogma();
-        dragonsDogma.show();
+        CurrGame.SetGameID(29);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_dragonsdogmaPicMouseClicked
 
     private void dyinglightPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dyinglightPicMouseClicked
-        DyingLight dyingLight = new DyingLight();
-        dyingLight.show();
+        CurrGame.SetGameID(28);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_dyinglightPicMouseClicked
 
     private void fallout76PicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fallout76PicMouseClicked
-        Fallout76 fallout = new Fallout76();
-        fallout.show();
+        CurrGame.SetGameID(7);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_fallout76PicMouseClicked
 
     private void ffxPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ffxPicMouseClicked
-        FinalFantasyX ffx = new FinalFantasyX();
-        ffx.show();
+        CurrGame.SetGameID(19);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_ffxPicMouseClicked
 
     private void ffXIVPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ffXIVPicMouseClicked
-        FinalFantasyXIV ffxiv = new FinalFantasyXIV();
-        ffxiv.show();
+        CurrGame.SetGameID(6);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_ffXIVPicMouseClicked
 
     private void ffXVPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ffXVPicMouseClicked
-        FinalFantasyXV ffxv = new FinalFantasyXV();
-        ffxv.show();
+        CurrGame.SetGameID(5);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_ffXVPicMouseClicked
 
     private void fireEmblemPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fireEmblemPicMouseClicked
-        FireEmblem fireEmblem = new FireEmblem();
-        fireEmblem.show();
+        CurrGame.SetGameID(24);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_fireEmblemPicMouseClicked
 
     private void hadesPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hadesPicMouseClicked
-        Hades hades = new Hades();
-        hades.show();
+        CurrGame.SetGameID(12);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_hadesPicMouseClicked
 
     private void setsunaPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_setsunaPicMouseClicked
-        Setsuna setsuna = new Setsuna();
-        setsuna.show();
+        CurrGame.SetGameID(17);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_setsunaPicMouseClicked
 
     private void kingdomheartsPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_kingdomheartsPicMouseClicked
-        KingdomHearts3 kh3 = new KingdomHearts3();
-        kh3.show();
+        CurrGame.SetGameID(35);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_kingdomheartsPicMouseClicked
 
     private void masseffectPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_masseffectPicMouseClicked
-        MassEffect massEffect = new MassEffect();
-        massEffect.show();
+        CurrGame.SetGameID(3);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_masseffectPicMouseClicked
 
     private void pokemonPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pokemonPicMouseClicked
-        PokemonMD pokemon = new PokemonMD();
-        pokemon.show();
+        CurrGame.SetGameID(13);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_pokemonPicMouseClicked
 
     private void roguePicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_roguePicMouseClicked
-        RogueLegacy rogue = new RogueLegacy();
-        rogue.show();
+        CurrGame.SetGameID(15);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_roguePicMouseClicked
 
     private void shinmegamiPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_shinmegamiPicMouseClicked
-        SMTDevilSurvivor SMT = new SMTDevilSurvivor();
-        SMT.show();
+        CurrGame.SetGameID(25);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_shinmegamiPicMouseClicked
 
     private void startrekPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startrekPicMouseClicked
-        StarTrek starTrek = new StarTrek();
-        starTrek.show();
+        CurrGame.SetGameID(10);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_startrekPicMouseClicked
 
     private void talesPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_talesPicMouseClicked
-        TalesOfVesperia tales = new TalesOfVesperia();
-        tales.show();
+        CurrGame.SetGameID(31);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_talesPicMouseClicked
 
     private void bannerPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bannerPicMouseClicked
-        BannerSaga banner = new BannerSaga();
-        banner.show();
+        CurrGame.SetGameID(21);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_bannerPicMouseClicked
 
     private void skyrimPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_skyrimPicMouseClicked
-        Skyrim skyrim = new Skyrim();
-        skyrim.show();
+        CurrGame.SetGameID(26);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_skyrimPicMouseClicked
 
     private void witcherPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_witcherPicMouseClicked
-        Witcher3 witcher = new Witcher3();
-        witcher.show();
+        CurrGame.SetGameID(2);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_witcherPicMouseClicked
 
     private void valkyriaPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_valkyriaPicMouseClicked
-        ValkyriaChronicles valkyria = new ValkyriaChronicles();
-        valkyria.show();
+        CurrGame.SetGameID(20);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_valkyriaPicMouseClicked
 
     private void wastelandPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wastelandPicMouseClicked
-        Wasteland2 wasteland = new Wasteland2();
-        wasteland.show();
+        CurrGame.SetGameID(23);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_wastelandPicMouseClicked
 
     private void WoWPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WoWPicMouseClicked
-        WorldOfWarcraft WoW = new WorldOfWarcraft();
-        WoW.show();
+        CurrGame.SetGameID(8);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_WoWPicMouseClicked
 
     private void xcomPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xcomPicMouseClicked
-        XCOM2 xcom = new XCOM2();
-        xcom.show();
+        CurrGame.SetGameID(18);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_xcomPicMouseClicked
 
     private void xenobladePicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_xenobladePicMouseClicked
-        Xenoblade xenoblade = new Xenoblade();
-        xenoblade.show();
+        CurrGame.SetGameID(34);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_xenobladePicMouseClicked
 
     private void darkestdungeonPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_darkestdungeonPicMouseClicked
-        DarkestDungeon darkdungeon = new DarkestDungeon();
-        darkdungeon.show();
+        CurrGame.SetGameID(11);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
         dispose();
     }//GEN-LAST:event_darkestdungeonPicMouseClicked
 
@@ -1145,6 +953,15 @@ public class HomePage extends javax.swing.JFrame {
         viewProfile.show();
         dispose();
     }//GEN-LAST:event_profileButtonActionPerformed
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        User.setUsername(null);
+        User.setPassword(null);
+        dispose();
+        JOptionPane.showMessageDialog(null,"You successfully logged out.");
+        HomePage hm = new HomePage();
+        hm.show();
+    }//GEN-LAST:event_logoutButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1213,6 +1030,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel kingdomheartsPic;
     private javax.swing.JButton loginButton;
+    private javax.swing.JButton logoutButton;
     private javax.swing.JLabel mainLabel;
     private javax.swing.JLabel masseffectPic;
     private javax.swing.JLabel pokemonPic;

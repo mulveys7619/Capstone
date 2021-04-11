@@ -23,13 +23,16 @@ import javax.swing.JLabel;
  */
 public class FillForms {
 
-    public static Image getImage(String path)
+    public static JLabel getImage(JLabel label, String path)
     {
         ImageIcon myImage = new ImageIcon(Toolkit.getDefaultToolkit().getImage(FillForms.class.getResource(path + ".jpg")));
         
-        Image img1 = myImage.getImage();
+        Image img = myImage.getImage();
+        Image img2 = img.getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon x = new ImageIcon(img2);
         
-        return img1;
+        label.setIcon(x);
+        return label;
     }
     public static String getTitle(int gameId)
     {
