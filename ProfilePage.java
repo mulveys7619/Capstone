@@ -10,47 +10,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-//import javax.swing.JFrame;
 import java.util.ArrayList;
+import GameForms.AssassinsCreed;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-//import GameForms.FillForms;
-//import GameForms.BannerSaga;
+import javax.swing.table.DefaultTableModel;
 
-import GameForms.AssassinsCreed;
-import GameForms.Bastion;
-import GameForms.ChronoTrigger;
-import GameForms.Cyberpunk;
-import GameForms.DarkSouls3;
-//import GameForms.DarkestDungeon;
-//import GameForms.Destiny2;
-//import GameForms.Disgaea5;
-//import GameForms.Divinity2;
-//import GameForms.DragonCrystal;
-//import GameForms.DragonQuestXI;
-//import GameForms.DragonsDogma;
-//import GameForms.DyingLight;
-//import GameForms.Fallout76;
-//import GameForms.FinalFantasyX;
-//import GameForms.FinalFantasyXIV;
-//import GameForms.FinalFantasyXV;
-//import GameForms.FireEmblem;
-//import GameForms.Hades;
-//import GameForms.KingdomHearts3;
-//import GameForms.MassEffect;
-//import GameForms.PokemonMD;
-//import GameForms.RogueLegacy;
-//import GameForms.SMTDevilSurvivor;
-//import GameForms.Setsuna;
-//import GameForms.Skyrim;
-//import GameForms.StarTrek;
-//import GameForms.TalesOfVesperia;
-//import GameForms.ValkyriaChronicles;
-//import GameForms.Wasteland2;
-//import GameForms.Witcher3;
-//import GameForms.WorldOfWarcraft;
-//import GameForms.XCOM2;
-//import GameForms.Xenoblade;
 
 /**
  *
@@ -65,50 +30,320 @@ public class ProfilePage extends javax.swing.JFrame {
         initComponents();
         String user = User.getUsername();
         usernameLabel.setText(user);
+        
         try
         {
-            ImageIcon newImg;
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
-            Statement st = con.createStatement();
+            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             
-            //String currGame = ("SELECT Game_ID FROM Game");
-            String gamerating = ("SELECT * FROM GameRating");
-            // Displaying the library(later use)
-            ResultSet dispLib = st.executeQuery("SELECT * FROM GAMERATING WHERE Game_ID ='"+gamerating+"'");
-            for(int i  = 1; i < dispLib.getRow(); i++)
+            /* EXAMPLE QUERY 
+            SELECT ga.game_id, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID
+            FROM Games ga, Gameratings gr
+            WHERE gr.User_ID = 'Capstone23' AND gr.game_id = ga.game_id;
+            */String quote = "'";
+            String query = "SELECT ga.game_id, ga.Title, ga.Thumbnail, ga.Subgenre1, "
+                    + "ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID FROM Games ga, "
+                    + "Gameratings gr WHERE gr.User_ID = "
+                    + quote + user + quote + " AND gr.game_id = ga.game_id";
+            String query2 = "SELECT ga.game_id, ga.Title, ga.Thumbnail, ga.Subgenre1, "
+                    + "ga.Subgenre2, ga.Subgenre3, gr.User_ID FROM Games ga, "
+                    + "Gameratings gr WHERE gr.User_ID = " + quote + user + quote + ""
+                    + "AND ga.Title = 1 AND gr.game_id = ga.game_id";
+            ResultSet combineRs = st.executeQuery(query);
+            ResultSet combineRs2 = st.executeQuery(query2);
+            int i = 0;
+            while(combineRs.next())
             {
-                dispLib.getRowId(i);
-                int id = dispLib.getInt("Game_ID");
-                String thumbnail = dispLib.getString("Thumbnail");
-                String title = dispLib.getString("Title");
-                int sub1 = dispLib.getInt("Subgenre1");
-                int sub2 = dispLib.getInt("Subgenre2");
-                int sub3 = dispLib.getInt("Subgenre3");
-                newImg = new ImageIcon(getClass().getResource(thumbnail));
-                for(int x = 1; x < 35; x++)
+                int gameID = combineRs.getInt("Game_ID");
+                String title = combineRs.getString("Title");
+                String pic = combineRs.getString("Thumbnail");
+                int rating = combineRs.getInt("Rating");
+                int sub1 = combineRs.getInt("Subgenre1");
+                int sub2 = combineRs.getInt("Subgenre2");
+                int sub3 = combineRs.getInt("Subgenre3");
+                
+                String rate = String.valueOf(rating);
+                String s1 = String.valueOf(sub1);
+                String s2 = String.valueOf(sub2);
+                String s3 = String.valueOf(sub3);
+                
+                if(rating == 1)
                 {
-                    JLabel games = new JLabel();
-                    games.setIcon(newImg);
-                    myLibraryPanel.add(games);
+                    rate = "Like";
+                }
+                if(rating == -1)
+                {
+                    rate = "Dislike";
+                }
+                if(sub1 == 1)
+                {
+                    s1 = "JRPG";
+                }
+                else if(sub2 == 1)
+                {
+                    s2 = "JRPG";
+                }
+                else if(sub3 == 1)
+                {
+                    s3 = "JRPG";
+                }
+                if(sub1 == 2)
+                {
+                    s1 = "Action RPG";
+                }
+                else if(sub2 == 2)
+                {
+                    s2 = "Action RPG";
+                }
+                else if(sub3 == 2)
+                {
+                    s3 = "Action RPG";
+                }
+                if(sub1 == 3)
+                {
+                    s1 = "MMORPG";
+                }
+                else if(sub2 == 3)
+                {
+                    s2 = "MMORPG";
+                }
+                else if(sub3 == 3)
+                {
+                    s3 = "MMORPG";
+                }
+                if(sub1 == 4)
+                {
+                    s1 = "Rogue";
+                }
+                else if(sub2 == 4)
+                {
+                    s2 = "Rogue";
+                }
+                else if(sub3 == 4)
+                {
+                    s3 = "Rogue";
+                }
+                if(sub1 == 5)
+                {
+                    s1 = "Turn Based";
+                }
+                else if(sub2 == 5)
+                {
+                    s2 = "Turn Based";
+                }
+                else if(sub3 == 5)
+                {
+                    s3 = "Turn Based";
+                }
+                if(sub1 == 6)
+                {
+                    s1 = "Tactics";
+                }
+                else if(sub2 == 6)
+                {
+                    s2 = "Tactics";
+                }
+                else if(sub3 == 6)
+                {
+                    s3 = "Tactics";
+                }
+                if(sub1 == 7)
+                {
+                    s1 = "Open World";
+                }
+                else if(sub2 == 7)
+                {
+                    s2 = "Open World";
+                }
+                else if(sub3 == 7)
+                {
+                    s3 = "Open World";
+                }
+                if(sub1 == 8)
+                {
+                    s1 = "";
+                }
+                else if(sub2 == 8)
+                {
+                    s2 = "";
+                }
+                else if(sub3 == 8)
+                {
+                    s3 = "";
                 }
                 
+                DefaultTableModel tbModel = (DefaultTableModel)myLibraryTable.getModel();
+                String data[] = {title, pic, rate, s1, s2, s3};
+                tbModel.addRow(data);
+                i++;
             }
-            
-            ArrayList<Integer> RatedGames = new ArrayList<>();
-            //later use
-            String rateGamesSt = ("SELECT * FROM GameRatings");
-            
-            for(int i = 0; i < RatedGames.size(); i++)
+            while(combineRs2.next())
             {
-                st.executeQuery("SELECT * FROM Games WHERE game_id = RatedGames[i]");
+                int gameID = combineRs.getInt("Game_ID");
+                String title = combineRs.getString("Title");
+                String pic = combineRs.getString("Thumbnail");
+//                int rating = combineRs.getInt("Rating");
+                int sub1 = combineRs.getInt("Subgenre1");
+                int sub2 = combineRs.getInt("Subgenre2");
+                int sub3 = combineRs.getInt("Subgenre3");
+                
+//                String rate = String.valueOf(rating);
+                String s1 = String.valueOf(sub1);
+                String s2 = String.valueOf(sub2);
+                String s3 = String.valueOf(sub3);
+                
+//                if(rating == 1)
+//                {
+//                    rate = "Like";
+//                }
+//                if(rating == -1)
+//                {
+//                    rate = "Dislike";
+//                }
+                if(sub1 == 1)
+                {
+                    s1 = "JRPG";
+                }
+                else if(sub2 == 1)
+                {
+                    s2 = "JRPG";
+                }
+                else if(sub3 == 1)
+                {
+                    s3 = "JRPG";
+                }
+                if(sub1 == 2)
+                {
+                    s1 = "Action RPG";
+                }
+                else if(sub2 == 2)
+                {
+                    s2 = "Action RPG";
+                }
+                else if(sub3 == 2)
+                {
+                    s3 = "Action RPG";
+                }
+                if(sub1 == 3)
+                {
+                    s1 = "MMORPG";
+                }
+                else if(sub2 == 3)
+                {
+                    s2 = "MMORPG";
+                }
+                else if(sub3 == 3)
+                {
+                    s3 = "MMORPG";
+                }
+                if(sub1 == 4)
+                {
+                    s1 = "Rogue";
+                }
+                else if(sub2 == 4)
+                {
+                    s2 = "Rogue";
+                }
+                else if(sub3 == 4)
+                {
+                    s3 = "Rogue";
+                }
+                if(sub1 == 5)
+                {
+                    s1 = "Turn Based";
+                }
+                else if(sub2 == 5)
+                {
+                    s2 = "Turn Based";
+                }
+                else if(sub3 == 5)
+                {
+                    s3 = "Turn Based";
+                }
+                if(sub1 == 6)
+                {
+                    s1 = "Tactics";
+                }
+                else if(sub2 == 6)
+                {
+                    s2 = "Tactics";
+                }
+                else if(sub3 == 6)
+                {
+                    s3 = "Tactics";
+                }
+                if(sub1 == 7)
+                {
+                    s1 = "Open World";
+                }
+                else if(sub2 == 7)
+                {
+                    s2 = "Open World";
+                }
+                else if(sub3 == 7)
+                {
+                    s3 = "Open World";
+                }
+                if(sub1 == 8)
+                {
+                    s1 = "";
+                }
+                else if(sub2 == 8)
+                {
+                    s2 = "";
+                }
+                else if(sub3 == 8)
+                {
+                    s3 = "";
+                }
+                
+                DefaultTableModel tbModel = (DefaultTableModel)myLibraryTable.getModel();
+                String data[] = {title, pic, s1, s2, s3};
+                tbModel.addRow(data);
+                i++;
             }
+//            ResultSet recommendRs = st.executeQuery("SELECT Subgenre1 ")
+//            while(recommendRs.next())
+//            {
+//                int gameID = combineRs.getInt("Game_ID");
+//                String title = combineRs.getString("Title");
+//                String pic = combineRs.getString("Thumbnail");
+//                int sub1 = combineRs.getInt("Subgenre1");
+//                int sub2 = combineRs.getInt("Subgenre2");
+//                int sub3 = combineRs.getInt("Subgenre3");
+//                
+//            }
+            
+            // Displaying the library(later use)
+//            ResultSet dispLib = st.executeQuery("SELECT * FROM GAMES WHERE Game_ID ='"+currGame+"'");
+
         }
         catch(Exception ex)
         {
             JOptionPane.showMessageDialog(null,ex.getMessage());
         }
+        
     }
-
+    
+//            for(int i  = 1; i < dispLib.getRow(); i++)
+//            {
+//                dispLib.getRowId(i);
+//                int id = dispLib.getInt("Game_ID");
+//                String thumbnail = dispLib.getString("Thumbnail");
+//                String title = dispLib.getString("Title");
+//                int sub1 = dispLib.getInt("Subgenre1");
+//                int sub2 = dispLib.getInt("Subgenre2");
+//                int sub3 = dispLib.getInt("Subgenre3");
+//                newImg = new ImageIcon(getClass().getResource(thumbnail));
+//                String getRec = "SELECT Game_ID FROM Games WHERE Subgenre1 = "+sub1+" AND Subgenre2 = "+sub2+" AND Subgenre3 = "+sub3+"";
+//                for(int x = 1; x < 35; x++)
+//                {
+//                    JLabel games = new JLabel();
+//                    games.setIcon(newImg);
+//                    myLibraryPanel.add(games);
+//                }
+//                
+//            }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -126,18 +361,17 @@ public class ProfilePage extends javax.swing.JFrame {
         homeLabel = new javax.swing.JLabel();
         tabbedPanel = new javax.swing.JTabbedPane();
         myLibraryPanel = new javax.swing.JPanel();
-        ACOpic = new javax.swing.JLabel();
-        bastionPic = new javax.swing.JLabel();
-        chronotriggerPic = new javax.swing.JLabel();
-        cyberpunkPic = new javax.swing.JLabel();
-        darksoulsPic = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        myLibraryTable = new javax.swing.JTable();
         recommendationsPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        recommendTable = new javax.swing.JTable();
         usersPanel = new javax.swing.JPanel();
         usernameLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        backgroundPanel.setBackground(new java.awt.Color(139, 0, 0));
+        backgroundPanel.setBackground(new java.awt.Color(153, 153, 255));
 
         titlePanel.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -193,94 +427,87 @@ public class ProfilePage extends javax.swing.JFrame {
 
         myLibraryPanel.setBackground(new java.awt.Color(51, 51, 51));
 
-        ACOpic.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ACOpic.setText("ACO");
-        ACOpic.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        ACOpic.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ACOpicMouseClicked(evt);
-            }
-        });
+        myLibraryTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        bastionPic.setText("bastion");
-        bastionPic.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bastionPicMouseClicked(evt);
+            },
+            new String [] {
+                "Title", "Picture", "Your Rating", "Subgenre 1", "Subgenre 2", "Subgenre 3"
             }
-        });
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
-        chronotriggerPic.setText("chronotrigger");
-        chronotriggerPic.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                chronotriggerPicMouseClicked(evt);
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
             }
-        });
 
-        cyberpunkPic.setText("cyberpunk");
-        cyberpunkPic.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cyberpunkPicMouseClicked(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-
-        darksoulsPic.setText("darksouls");
-        darksoulsPic.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                darksoulsPicMouseClicked(evt);
-            }
-        });
+        jScrollPane1.setViewportView(myLibraryTable);
 
         javax.swing.GroupLayout myLibraryPanelLayout = new javax.swing.GroupLayout(myLibraryPanel);
         myLibraryPanel.setLayout(myLibraryPanelLayout);
         myLibraryPanelLayout.setHorizontalGroup(
             myLibraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(myLibraryPanelLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(ACOpic, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(bastionPic, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(chronotriggerPic, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(cyberpunkPic, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(darksoulsPic, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
-                .addGap(393, 393, 393))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 996, Short.MAX_VALUE)
         );
         myLibraryPanelLayout.setVerticalGroup(
             myLibraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(myLibraryPanelLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(myLibraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ACOpic, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(myLibraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(bastionPic, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(chronotriggerPic, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cyberpunkPic, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(darksoulsPic, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(394, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
         );
 
         tabbedPanel.addTab("My Library", myLibraryPanel);
 
         recommendationsPanel.setBackground(new java.awt.Color(51, 51, 51));
 
+        recommendTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Titles we Recommended", "Picture", "Sungenre 1", "Subgenre 2", "Subgenre 3"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(recommendTable);
+
         javax.swing.GroupLayout recommendationsPanelLayout = new javax.swing.GroupLayout(recommendationsPanel);
         recommendationsPanel.setLayout(recommendationsPanelLayout);
         recommendationsPanelLayout.setHorizontalGroup(
             recommendationsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 996, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 996, Short.MAX_VALUE)
         );
         recommendationsPanelLayout.setVerticalGroup(
             recommendationsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 557, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
         );
 
         tabbedPanel.addTab("Recommendations", recommendationsPanel);
 
         usersPanel.setBackground(new java.awt.Color(51, 51, 51));
 
-        usernameLabel.setFont(new java.awt.Font("Cooper Black", 0, 48)); // NOI18N
+        usernameLabel.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
         usernameLabel.setForeground(new java.awt.Color(255, 255, 255));
         usernameLabel.setText("Username");
         usernameLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
@@ -295,7 +522,7 @@ public class ProfilePage extends javax.swing.JFrame {
             usersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(usersPanelLayout.createSequentialGroup()
                 .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 370, Short.MAX_VALUE))
+                .addGap(0, 455, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout backgroundPanelLayout = new javax.swing.GroupLayout(backgroundPanel);
@@ -348,36 +575,6 @@ public class ProfilePage extends javax.swing.JFrame {
         home.show();
     }//GEN-LAST:event_homeLabelMouseClicked
 
-    private void ACOpicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ACOpicMouseClicked
-        AssassinsCreed ACO = new AssassinsCreed();
-        ACO.show();
-        dispose();
-    }//GEN-LAST:event_ACOpicMouseClicked
-
-    private void bastionPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bastionPicMouseClicked
-        Bastion bastion = new Bastion();
-        bastion.show();
-        dispose();
-    }//GEN-LAST:event_bastionPicMouseClicked
-
-    private void chronotriggerPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chronotriggerPicMouseClicked
-        ChronoTrigger chrono = new ChronoTrigger();
-        chrono.show();
-        dispose();
-    }//GEN-LAST:event_chronotriggerPicMouseClicked
-
-    private void cyberpunkPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cyberpunkPicMouseClicked
-        Cyberpunk cyberpunk = new Cyberpunk();
-        cyberpunk.show();
-        dispose();
-    }//GEN-LAST:event_cyberpunkPicMouseClicked
-
-    private void darksoulsPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_darksoulsPicMouseClicked
-        DarkSouls3 darksouls = new DarkSouls3();
-        darksouls.show();
-        dispose();
-    }//GEN-LAST:event_darksoulsPicMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -415,15 +612,14 @@ public class ProfilePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel ACOpic;
     private javax.swing.JPanel backgroundPanel;
-    private javax.swing.JLabel bastionPic;
-    private javax.swing.JLabel chronotriggerPic;
-    private javax.swing.JLabel cyberpunkPic;
-    private javax.swing.JLabel darksoulsPic;
     private javax.swing.JButton goButton;
     private javax.swing.JLabel homeLabel;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel myLibraryPanel;
+    private javax.swing.JTable myLibraryTable;
+    private javax.swing.JTable recommendTable;
     private javax.swing.JPanel recommendationsPanel;
     private javax.swing.JComboBox<String> seachComboBox;
     private javax.swing.JTabbedPane tabbedPanel;
