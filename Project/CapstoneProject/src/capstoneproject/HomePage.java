@@ -23,8 +23,8 @@ public class HomePage extends javax.swing.JFrame {
         String user = User.getUsername();
         if(user == null)
         {
-            logoutButton.setVisible(false);
-            logoutButton.setEnabled(false);
+            profileButton.setVisible(false);
+            profileButton.setEnabled(false);
         }
         String ACO = FillForms.getPicture(30);
         String bastion = FillForms.getPicture(4);
@@ -148,7 +148,6 @@ public class HomePage extends javax.swing.JFrame {
         mainLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
         profileButton = new javax.swing.JButton();
-        logoutButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -221,16 +220,6 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
-        logoutButton.setBackground(new java.awt.Color(0, 0, 0));
-        logoutButton.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
-        logoutButton.setForeground(new java.awt.Color(255, 255, 255));
-        logoutButton.setText("Logout");
-        logoutButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -238,8 +227,6 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(mainLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -251,7 +238,6 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(mainLabel)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
@@ -954,15 +940,6 @@ public class HomePage extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_profileButtonActionPerformed
 
-    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        User.setUsername(null);
-        User.setPassword(null);
-        dispose();
-        JOptionPane.showMessageDialog(null,"You successfully logged out.");
-        HomePage hm = new HomePage();
-        hm.show();
-    }//GEN-LAST:event_logoutButtonActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -1030,7 +1007,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel kingdomheartsPic;
     private javax.swing.JButton loginButton;
-    private javax.swing.JButton logoutButton;
     private javax.swing.JLabel mainLabel;
     private javax.swing.JLabel masseffectPic;
     private javax.swing.JLabel pokemonPic;

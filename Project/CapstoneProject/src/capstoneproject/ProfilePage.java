@@ -33,11 +33,10 @@ public class ProfilePage extends javax.swing.JFrame {
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             
             String quote = "'";
-            String query = "SELECT ga.game_id, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID FROM Games ga, Gameratings gr WHERE gr.User_ID = "
+            String query = "SELECT ga.Game_ID, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID FROM Games ga, Gameratings gr WHERE gr.User_ID = "
                     + quote + user + quote + " AND gr.game_id = ga.game_id";
             ResultSet combineRs = st.executeQuery(query);
-            int i = 0;
-            while(combineRs.next())
+            if(combineRs.next())
             {
                 String title = combineRs.getString("Title");
                 String pic = combineRs.getString("Thumbnail");
@@ -51,14 +50,7 @@ public class ProfilePage extends javax.swing.JFrame {
                 String s2 = String.valueOf(sub2);
                 String s3 = String.valueOf(sub3);
                 
-                if(rating == 1)
-                {
-                    rate = "Like";
-                }
-                if(rating == -1)
-                {
-                    rate = "Dislike";
-                }
+                
                 if(sub1 == 1)
                 {
                     s1 = "JRPG";
@@ -155,41 +147,158 @@ public class ProfilePage extends javax.swing.JFrame {
                 {
                     s3 = "";
                 }
+                if(rating == 1)
+                {
+                    rate = "Like";
+                }
+                else if(rating == -1)
+                {
+                    rate = "Dislike";
+                }
                 
                 DefaultTableModel tbModel = (DefaultTableModel)myLibraryTable.getModel();
                 String data[] = {title, pic, rate, s1, s2, s3};
                 tbModel.addRow(data);
-                i++;
+                    /*
+                    SELECT ga.Game_ID, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.USER_ID 
+                    FROM Games ga, GameRatings gr 
+                    WHERE gr.USER_ID = 'Capstone23' AND gr.Rating = 1 AND (ga.Subgenre1 = 7 OR ga.subgenre2 = 7 OR ga.subgenre3 = 7) AND (ga.subgenre1 = 1 OR ga.subgenre2 = 1 OR ga.subgenre3 = 1);
+                    */
             }
-            String query2 = "SELECT ga.game_id, ga.Title, ga.Thumbnail, ga.Subgenre1, "
-                    + "ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID FROM Games ga, "
-                    + "Gameratings gr WHERE gr.User_ID = " + quote + user + quote + ""
-                    + "AND gr.Rating = "+ 1 +" AND ga.Subgenre1 = ? AND ga.Subgenre2 = ? AND ga.Subgenre3 = ?";
-                ResultSet recommendRs = st.executeQuery(query2);
-                int x = 0;
-                while(recommendRs.next())
-                {
-                    String recTitle = recommendRs.getString("Title");
-                    String recPic = recommendRs.getString("Thumbnail");
-                    int recSub1 = recommendRs.getInt("Subgenre1");
-                    int recSub2 = recommendRs.getInt("Subgenre2");
-                    int recSub3 = recommendRs.getInt("Subgenre3");
-                
-                    String recS1 = String.valueOf(recSub1);
-                    String recS2 = String.valueOf(recSub2);
-                    String recS3 = String.valueOf(recSub3);
-                
-                    DefaultTableModel tbModel2 = (DefaultTableModel)recommendTable.getModel();
-                    String recData[] = {recTitle, recPic, recS1, recS2, recS3};
-                    tbModel2.addRow(recData);
-                    x++;
-                }
         }
         catch(Exception ex)
         {
             JOptionPane.showMessageDialog(null,ex.getMessage());
         }
-        
+        try
+        {
+            Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
+            Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+            String quote = "'";
+            String recQuery = "SELECT ga.Game_ID, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
+                    + "FROM Games ga, GameRatings gr "
+                    + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.Rating = 1 AND (ga.Subgenre1 = 1 OR ga.Subgenre2 = 1 OR ga.Subgenre3 = 1)"
+                    + "AND (ga.Subgenre1 = 7 OR ga.Subgenre2 = 7 OR ga.Subgenre3 = 7)";
+            ResultSet recommendRs = st.executeQuery(recQuery);
+            while(recommendRs.next())
+            {   
+                String recTitle = recommendRs.getString("Title");
+                String recPic = recommendRs.getString("Thumbnail");
+                int recSub1 = recommendRs.getInt("Subgenre1");
+                int recSub2 = recommendRs.getInt("Subgenre2");
+                int recSub3 = recommendRs.getInt("Subgenre3");
+                    
+                String recS1 = String.valueOf(recSub1);
+                String recS2 = String.valueOf(recSub2);
+                String recS3 = String.valueOf(recSub3);
+                        
+//                if(recSub1 == 1)
+//                {
+//                    recS1 = "JRPG";
+//                }
+//                else if(recSub2 == 1)
+//                {
+//                    recS2 = "JRPG";
+//                }
+//                else if(recSub3 == 1)
+//                {
+//                    recS3 = "JRPG";
+//                }
+//                if(recSub1 == 2)
+//                {
+//                    recS1 = "Action RPG";
+//                }
+//                else if(recSub2 == 2)
+//                {
+//                    recS2 = "Action RPG";
+//                }
+//                else if(recSub3 == 2)
+//                {
+//                    recS3 = "Action RPG";
+//                }
+//                if(recSub1 == 3)
+//                {
+//                    recS1 = "MMORPG";
+//                }
+//                else if(recSub2 == 3)
+//                {
+//                    recS2 = "MMORPG";
+//                }
+//                else if(recSub3 == 3)
+//                {
+//                    recS3 = "MMORPG";
+//                }
+//                if(recSub1 == 4)
+//                {
+//                    recS1 = "Rogue";
+//                }
+//                else if(recSub2 == 4)
+//                {
+//                    recS2 = "Rogue";
+//                }
+//                else if(recSub3 == 4)
+//                {
+//                    recS3 = "Rogue";
+//                }
+//                if(recSub1 == 5)
+//                {
+//                    recS1 = "Turn Based";
+//                }
+//                else if(recSub2 == 5)
+//                {
+//                    recS2 = "Turn Based";
+//                }
+//                else if(recSub3 == 5)
+//                {
+//                    recS3 = "Turn Based";
+//                }
+//                if(recSub1 == 6)
+//                {
+//                    recS1 = "Tactics";
+//                }
+//                else if(recSub2 == 6)
+//                {
+//                    recS2 = "Tactics";
+//                }
+//                else if(recSub3 == 6)
+//                {
+//                    recS3 = "Tactics";
+//                }
+//                if(recSub1 == 7)
+//                {
+//                    recS1 = "Open World";
+//                }
+//                else if(recSub2 == 7)
+//                {
+//                    recS2 = "Open World";
+//                }
+//                else if(recSub3 == 7)
+//                {
+//                    recS3 = "Open World";
+//                }
+//                if(recSub1 == 8)
+//                {
+//                    recS1 = "";
+//                }
+//                else if(recSub2 == 8)
+//                {
+//                    recS2 = "";
+//                }
+//                else if(recSub3 == 8)
+//                {
+//                    recS3 = "";
+//                }
+                    
+                        DefaultTableModel tbModel2 = (DefaultTableModel)recommendTable.getModel();
+                        String data2[] = {recTitle, recPic, recS1, recS2, recS3};
+                        tbModel2.addRow(data2);
+                    }
+        }
+        catch(SQLException ex)
+        {
+            
+        }
+                  
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -201,6 +310,7 @@ public class ProfilePage extends javax.swing.JFrame {
         seachComboBox = new javax.swing.JComboBox<>();
         goButton = new javax.swing.JButton();
         homeLabel = new javax.swing.JLabel();
+        logoutButton = new javax.swing.JButton();
         tabbedPanel = new javax.swing.JTabbedPane();
         myLibraryPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -243,15 +353,27 @@ public class ProfilePage extends javax.swing.JFrame {
             }
         });
 
+        logoutButton.setBackground(new java.awt.Color(0, 0, 0));
+        logoutButton.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
+        logoutButton.setForeground(new java.awt.Color(255, 255, 255));
+        logoutButton.setText("Logout");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
         titlePanel.setLayout(titlePanelLayout);
         titlePanelLayout.setHorizontalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(titlePanelLayout.createSequentialGroup()
                 .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 360, Short.MAX_VALUE)
                 .addComponent(homeLabel)
-                .addGap(314, 314, 314)
+                .addGap(150, 150, 150)
+                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(seachComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(goButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -263,6 +385,7 @@ public class ProfilePage extends javax.swing.JFrame {
                 .addComponent(homeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(goButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(seachComboBox)
+            .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         tabbedPanel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -390,7 +513,7 @@ public class ProfilePage extends javax.swing.JFrame {
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addComponent(usersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(1376, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -416,6 +539,15 @@ public class ProfilePage extends javax.swing.JFrame {
         dispose();
         home.show();
     }//GEN-LAST:event_homeLabelMouseClicked
+
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        User.setUsername(null);
+        User.setPassword(null);
+        dispose();
+        JOptionPane.showMessageDialog(null,"You successfully logged out.");
+        HomePage hm = new HomePage();
+        hm.show();
+    }//GEN-LAST:event_logoutButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -459,6 +591,7 @@ public class ProfilePage extends javax.swing.JFrame {
     private javax.swing.JLabel homeLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton logoutButton;
     private javax.swing.JPanel myLibraryPanel;
     private javax.swing.JTable myLibraryTable;
     private javax.swing.JTable recommendTable;
