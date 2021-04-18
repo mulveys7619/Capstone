@@ -34,8 +34,9 @@ public class ProfilePage extends javax.swing.JFrame {
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             
             String quote = "'";
-            String query = "SELECT ga.Game_ID, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID FROM Games ga, Gameratings gr WHERE gr.User_ID = "
-                    + quote + user + quote + " AND gr.game_id = ga.game_id";
+            String query = "SELECT ga.Game_ID, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
+                    + "FROM Games ga, Gameratings gr "
+                    + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.game_id = ga.game_id";
             ResultSet combineRs = st.executeQuery(query);
             while(combineRs.next())
             {
