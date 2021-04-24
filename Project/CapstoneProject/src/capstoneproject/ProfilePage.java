@@ -11,6 +11,8 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.lang.Math;
+import java.util.ArrayList;
 
 
 /**
@@ -53,110 +55,85 @@ public class ProfilePage extends javax.swing.JFrame {
                 String s3 = String.valueOf(sub3);
                 
                 
-                if(sub1 == 1)
+                switch(sub1)
                 {
-                    s1 = "JRPG";
+                    case 1:
+                        s1 = "JRPG";
+                        break;
+                    case 2:
+                        s1 = "Action RPG";
+                        break;
+                    case 3:
+                        s1 = "MMORPG";
+                        break;
+                    case 4:
+                        s1 = "Rogue";
+                        break;
+                    case 5:
+                        s1 = "Turn Based";
+                        break;
+                    case 6:
+                        s1 = "Tactics";
+                        break;
+                    case 7:
+                        s1 = "Open World";
+                        break;
+                    default:
+                        break;
                 }
-                else if(sub2 == 1)
+                switch(sub2)
                 {
-                    s2 = "JRPG";
+                    case 1:
+                        s2 = "JRPG";
+                        break;
+                    case 2:
+                        s2 = "Action RPG";
+                        break;
+                    case 3:
+                        s2 = "MMORPG";
+                        break;
+                    case 4:
+                        s2 = "Rogue";
+                        break;
+                    case 5:
+                        s2 = "Turn Based";
+                        break;
+                    case 6:
+                        s2 = "Tactics";
+                        break;
+                    case 7:
+                        s2 = "Open World";
+                        break;
+                    default:
+                        break;
                 }
-                else if(sub3 == 1)
+                switch(sub3)
                 {
-                    s3 = "JRPG";
+                    case 1:
+                        s3 = "JRPG";
+                        break;
+                    case 2:
+                        s3 = "Action RPG";
+                        break;
+                    case 3:
+                        s3 = "MMORPG";
+                        break;
+                    case 4:
+                        s3 = "Rogue";
+                        break;
+                    case 5:
+                        s3 = "Turn Based";
+                        break;
+                    case 6:
+                        s3 = "Tactics";
+                        break;
+                    case 7:
+                        s3 = "Open World";
+                        break;
+                    default:
+                        break;
                 }
-                if(sub1 == 2)
-                {
-                    s1 = "Action RPG";
-                }
-                else if(sub2 == 2)
-                {
-                    s2 = "Action RPG";
-                }
-                else if(sub3 == 2)
-                {
-                    s3 = "Action RPG";
-                }
-                if(sub1 == 3)
-                {
-                    s1 = "MMORPG";
-                }
-                else if(sub2 == 3)
-                {
-                    s2 = "MMORPG";
-                }
-                else if(sub3 == 3)
-                {
-                    s3 = "MMORPG";
-                }
-                if(sub1 == 4)
-                {
-                    s1 = "Rogue";
-                }
-                else if(sub2 == 4)
-                {
-                    s2 = "Rogue";
-                }
-                else if(sub3 == 4)
-                {
-                    s3 = "Rogue";
-                }
-                if(sub1 == 5)
-                {
-                    s1 = "Turn Based";
-                }
-                else if(sub2 == 5)
-                {
-                    s2 = "Turn Based";
-                }
-                else if(sub3 == 5)
-                {
-                    s3 = "Turn Based";
-                }
-                if(sub1 == 6)
-                {
-                    s1 = "Tactics";
-                }
-                else if(sub2 == 6)
-                {
-                    s2 = "Tactics";
-                }
-                else if(sub3 == 6)
-                {
-                    s3 = "Tactics";
-                }
-                if(sub1 == 7)
-                {
-                    s1 = "Open World";
-                }
-                else if(sub2 == 7)
-                {
-                    s2 = "Open World";
-                }
-                else if(sub3 == 7)
-                {
-                    s3 = "Open World";
-                }
-                if(sub1 == 8)
-                {
-                    s1 = "";
-                }
-                else if(sub2 == 8)
-                {
-                    s2 = "";
-                }
-                else if(sub3 == 8)
-                {
-                    s3 = "";
-                }
-                if(rating == 1)
-                {
-                    rate = "Like";
-                }
-                else if(rating == -1)
-                {
-                    rate = "Dislike";
-                }
+                
                 
                 DefaultTableModel tbModel = (DefaultTableModel)myLibraryTable.getModel();
                 String data[] = {title, pic, rate, s1, s2, s3};
@@ -439,25 +416,278 @@ public class ProfilePage extends javax.swing.JFrame {
             Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             String quote = "'";
-            String recQuery = "SELECT DISTINCT ga.Game_ID, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
+            
+            
+            String checkQuery = "SELECT Game_ID FROM GameRatings WHERE User_ID = " + quote + user + quote + " AND Rating = 1";
+            ArrayList<Integer> idList = new ArrayList<>();
+            ResultSet checkRs = st.executeQuery(checkQuery);
+            String subCheck = "SELECT * FROM GAMES WHERE GAME_ID IN (";
+            int size = 0;
+            int count = 0;
+            while(checkRs.next())
+            {
+                checkRs.last();
+                size = checkRs.getRow();
+            }
+            checkRs.beforeFirst();
+            while(checkRs.next())
+            {
+                count++;
+                if(count < size)
+                {
+                    subCheck += checkRs.getInt("Game_ID") + ", ";
+                }
+                else 
+                {
+                    subCheck += checkRs.getInt("Game_ID");
+                }
+            }
+
+            subCheck += ")";
+            ResultSet getSubCheck = checkRs;
+            while(checkRs.next())
+            {
+//                PreparedStatement checkSubSt = con.prepareStatement(subCheck);
+//                checkSubSt.setInt(1,checkRs.getInt("Game_ID"));
+//                getSubCheck = checkSubSt.executeQuery();
+                idList.add(checkRs.getInt("Game_ID"));
+            }
+            PreparedStatement subCheckPs = con.prepareStatement(subCheck);
+            ResultSet subCheckRs = subCheckPs.executeQuery();
+            int jrpg = 1;
+            int arpg = 2;
+            int mmo = 3;
+            int rogue = 4;
+            int turnBased = 5;
+            int tactics = 6;
+            int openWorld = 7;
+            int jrpgCount = 0;
+            int arpgCount = 0;
+            int mmoCount = 0;
+            int rogueCount = 0;
+            int turnBasedCount = 0;
+            int tacticsCount = 0;
+            int openWorldCount = 0;
+            
+            while(subCheckRs.next())
+            {
+                String recTitle = subCheckRs.getString("Title");
+                String recPic = subCheckRs.getString("Thumbnail");
+                int recSub1 = subCheckRs.getInt("Subgenre1");
+                int recSub2 = subCheckRs.getInt("Subgenre2");
+                int recSub3 = subCheckRs.getInt("Subgenre3");
+                    
+                String recS1 = String.valueOf(recSub1);
+                String recS2 = String.valueOf(recSub2);
+                String recS3 = String.valueOf(recSub3);
+                
+                switch(recSub1)
+                {
+                    case 1:
+                        jrpgCount++;
+                        break;
+                    case 2:
+                        arpgCount++;
+                        break;
+                    case 3:
+                        mmoCount++;
+                        break;
+                    case 4:
+                        rogueCount++;
+                        break;
+                    case 5:
+                        turnBasedCount++;
+                        break;
+                    case 6:
+                        tacticsCount++;
+                        break;
+                    case 7:
+                        openWorldCount++;
+                        break;
+                    default:
+                        break;
+                }
+                switch(recSub2)
+                {
+                    case 1:
+                        jrpgCount++;
+                        break;
+                    case 2:
+                        arpgCount++;
+                        break;
+                    case 3:
+                        mmoCount++;
+                        break;
+                    case 4:
+                        rogueCount++;
+                        break;
+                    case 5:
+                        turnBasedCount++;
+                        break;
+                    case 6:
+                        tacticsCount++;
+                        break;
+                    case 7:
+                        openWorldCount++;
+                        break;
+                    default:
+                        break;
+                }
+                switch(recSub3)
+                {
+                    case 1:
+                        jrpgCount++;
+                        break;
+                    case 2:
+                        arpgCount++;
+                        break;
+                    case 3:
+                        mmoCount++;
+                        break;
+                    case 4:
+                        rogueCount++;
+                        break;
+                    case 5:
+                        turnBasedCount++;
+                        break;
+                    case 6:
+                        tacticsCount++;
+                        break;
+                    case 7:
+                        openWorldCount++;
+                        break;
+                    default:
+                        break;
+                }
+                
+            }
+            // most counted genre
+            int prio1 = 0;
+            // checks if prio1 is filled already. if filled will be true
+            boolean prio1check = false;
+            // 2nd most counted genre
+            int prio2 = 0;
+            // checks if prio2 is filled already. if filled will be true
+            boolean prio2check = false;
+            // 3rd most counted genre
+            int prio3 = 0;
+            // checks if prio3 is filled already. if filled will be true
+            boolean prio3check = false;
+            
+            // array of all count values
+            int[] countArray = {jrpgCount, arpgCount, mmoCount, rogueCount, turnBasedCount, tacticsCount, openWorldCount};
+            // array of genre id values
+            int[] genreArray = {jrpg, arpg, mmo, rogue, turnBased, tactics, openWorld};
+            
+            // first for loop determines what element to compare
+            for (int i = 0; i < countArray.length; i++)
+            {
+                // second for loop lets countArray[i] compare to every other element in array
+                for(int x = 0; x < countArray.length; x++)
+                {
+                    // if prio1 is not already filled and if original int wasn't removed
+                    if(prio1check != true && countArray[i] != -1)
+                    {
+                        // if i > x or i = x, make i prio1
+                        if (countArray[i] >= countArray[x])
+                        {
+                            prio1 = genreArray[i];
+                        }
+                        // if i < x, make x prio1
+                        else
+                        {
+                            prio1 = genreArray[x];
+                        }
+                    }
+                    // if prio2 is not already filled and if original int wasn't removed
+                    else if(prio2check != true && countArray[i] != -1)
+                    {
+                        // if i > x or i = x, make i prio2
+                        if (countArray[i] >= countArray[x])
+                        {
+                            prio2 = genreArray[i];
+                        }
+                        // if i < x, make x prio2
+                        else
+                        {
+                            prio2 = genreArray[x];
+                        }
+                    }
+                    // if prio3 is not already filled and if original int wasn't removed
+                    else if(prio3check != true && countArray[i] != -1)
+                    {
+                        // if i > x or i = x, make i prio3
+                        if (countArray[i] >= countArray[x])
+                        {
+                            prio3 = genreArray[i];
+                        }
+                        // if i < x, make x prio3
+                        else
+                        {
+                            prio3 = genreArray[x];
+                        }
+                    }
+                }
+                // if prio1 has new value, make prio1check true so it doesn't compare for it again
+                if (prio1 != 0)
+                {
+                    prio1check = true;
+                    // make element in countArray that was highest -1 so it is no longer the largest int
+                    countArray[prio1 - 1] = -1;
+                    
+                }
+                // if prio2 has new value, make prio1check true so it doesn't compare for it again
+                if (prio2 != 0)
+                {
+                    prio2check = true;
+                     // make element in countArray that was highest -1 so it is no longer the largest int
+                    countArray[prio2 - 1] = -1;
+                }
+                // if prio3 has new value, make prio1check true so it doesn't compare for it again
+                if (prio3 != 0)
+                {
+                    prio3check = true;
+                     // make element in countArray that was highest -1 so it is no longer the largest int
+                    countArray[prio3 - 1] = -1;
+                }
+            }
+           String recQuery = "SELECT DISTINCT ga.Game_ID, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
                     + "FROM Games ga, GameRatings gr "
-                    + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.Rating = 1 AND (ga.Subgenre1 = 1 OR ga.Subgenre2 = 1)"
-                    + "AND (ga.Subgenre1 = 7 OR ga.Subgenre2 = 7 OR ga.Subgenre3 = 7)";
+                    + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.Rating = 1 AND (ga.Subgenre1 = "+prio1+" OR ga.Subgenre2 = "+prio1+")"
+                    + "AND (ga.Subgenre1 = "+prio2+" OR ga.Subgenre2 = "+prio2+")";
             ResultSet recommendRs = st.executeQuery(recQuery);
+            JOptionPane.showMessageDialog(null, prio1 + " " + prio2 + " " +  prio3);
+//            // set '?' in sql statement to prio1, prio2, and prio3
+//            subPS.setInt(1, prio1);
+//            subPS.setInt(2, prio2);
+//            subPS.setInt(3, prio3);
+//            subPS.setInt(4, prio1);
+//            subPS.setInt(5, prio2);
+//            subPS.setInt(6, prio3);
+//            subPS.setInt(7, prio1);
+//            subPS.setInt(8, prio2);
+//            subPS.setInt(9, prio3);
+//            
+//            // save query results as a result set
+//            ResultSet subRS = subPS.executeQuery();
             while(recommendRs.next())
             {
+                // save each field as a variable
                 String recTitle = recommendRs.getString("Title");
                 String recPic = recommendRs.getString("Thumbnail");
                 int recSub1 = recommendRs.getInt("Subgenre1");
                 int recSub2 = recommendRs.getInt("Subgenre2");
                 int recSub3 = recommendRs.getInt("Subgenre3");
-                    
+                
+                // display genre names instead of id
                 String recS1 = String.valueOf(recSub1);
                 String recS2 = String.valueOf(recSub2);
                 String recS3 = String.valueOf(recSub3);
-            
+                // declare table
                 DefaultTableModel tbModel2 = (DefaultTableModel)recommendTable.getModel();
+                // create row for current resultset
                 String data2[] = {recTitle, recPic, recS1, recS2, recS3};
+                // add row to table
                 tbModel2.addRow(data2);
             }
         }
