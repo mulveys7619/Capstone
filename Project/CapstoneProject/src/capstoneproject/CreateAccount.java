@@ -29,14 +29,14 @@ public class CreateAccount extends javax.swing.JFrame {
         backgroundPanel = new javax.swing.JPanel();
         createaccountLabel = new javax.swing.JLabel();
         usernameLabel = new javax.swing.JLabel();
-        usernameTextbox = new java.awt.TextField();
         passwordLabel = new javax.swing.JLabel();
         createaccountButton = new javax.swing.JButton();
         closeButton = new javax.swing.JButton();
         emailLabel = new javax.swing.JLabel();
-        emailTextbox = new java.awt.TextField();
-        passwordField = new javax.swing.JPasswordField();
         showpassCheck = new javax.swing.JCheckBox();
+        passwordField = new javax.swing.JPasswordField();
+        usernameTextbox = new javax.swing.JTextField();
+        emailTextbox = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,10 +49,6 @@ public class CreateAccount extends javax.swing.JFrame {
 
         usernameLabel.setFont(new java.awt.Font("Cooper Black", 0, 18)); // NOI18N
         usernameLabel.setText("Username:");
-
-        usernameTextbox.setBackground(new java.awt.Color(0, 0, 0));
-        usernameTextbox.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        usernameTextbox.setForeground(new java.awt.Color(255, 255, 255));
 
         passwordLabel.setFont(new java.awt.Font("Cooper Black", 0, 18)); // NOI18N
         passwordLabel.setText("Password:");
@@ -80,13 +76,6 @@ public class CreateAccount extends javax.swing.JFrame {
         emailLabel.setFont(new java.awt.Font("Cooper Black", 0, 18)); // NOI18N
         emailLabel.setText("Email:");
 
-        emailTextbox.setBackground(new java.awt.Color(0, 0, 0));
-        emailTextbox.setForeground(new java.awt.Color(255, 255, 255));
-
-        passwordField.setBackground(new java.awt.Color(0, 0, 0));
-        passwordField.setFont(new java.awt.Font("Cooper Black", 0, 13)); // NOI18N
-        passwordField.setForeground(new java.awt.Color(255, 255, 255));
-
         showpassCheck.setBackground(new java.awt.Color(153, 153, 255));
         showpassCheck.setText("Show Password");
         showpassCheck.addActionListener(new java.awt.event.ActionListener() {
@@ -94,6 +83,18 @@ public class CreateAccount extends javax.swing.JFrame {
                 showpassCheckActionPerformed(evt);
             }
         });
+
+        passwordField.setBackground(new java.awt.Color(0, 0, 0));
+        passwordField.setFont(new java.awt.Font("Cooper Black", 0, 13)); // NOI18N
+        passwordField.setForeground(new java.awt.Color(255, 255, 255));
+
+        usernameTextbox.setBackground(new java.awt.Color(0, 0, 0));
+        usernameTextbox.setFont(new java.awt.Font("Cooper Black", 0, 13)); // NOI18N
+        usernameTextbox.setForeground(new java.awt.Color(255, 255, 255));
+
+        emailTextbox.setBackground(new java.awt.Color(0, 0, 0));
+        emailTextbox.setFont(new java.awt.Font("Cooper Black", 0, 13)); // NOI18N
+        emailTextbox.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout backgroundPanelLayout = new javax.swing.GroupLayout(backgroundPanel);
         backgroundPanel.setLayout(backgroundPanelLayout);
@@ -118,9 +119,9 @@ public class CreateAccount extends javax.swing.JFrame {
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(usernameTextbox, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                            .addComponent(emailTextbox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(passwordField))
+                            .addComponent(usernameTextbox)
+                            .addComponent(passwordField)
+                            .addComponent(emailTextbox, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(showpassCheck)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -131,19 +132,19 @@ public class CreateAccount extends javax.swing.JFrame {
             .addGroup(backgroundPanelLayout.createSequentialGroup()
                 .addComponent(createaccountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(66, 66, 66)
-                .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernameLabel)
                     .addComponent(usernameTextbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(29, 29, 29)
                 .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordLabel)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(showpassCheck))
+                    .addComponent(showpassCheck)
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailLabel)
                     .addComponent(emailTextbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
+                .addGap(57, 57, 57)
                 .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createaccountButton)
                     .addComponent(closeButton))
@@ -229,7 +230,7 @@ public class CreateAccount extends javax.swing.JFrame {
         }
         else
         {
-           passwordField.setEchoChar('*');
+            passwordField.setEchoChar('*');
         }
     }//GEN-LAST:event_showpassCheckActionPerformed
 
@@ -356,11 +357,11 @@ public class CreateAccount extends javax.swing.JFrame {
     private javax.swing.JButton createaccountButton;
     private javax.swing.JLabel createaccountLabel;
     private javax.swing.JLabel emailLabel;
-    private java.awt.TextField emailTextbox;
+    private javax.swing.JTextField emailTextbox;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JCheckBox showpassCheck;
     private javax.swing.JLabel usernameLabel;
-    private java.awt.TextField usernameTextbox;
+    private javax.swing.JTextField usernameTextbox;
     // End of variables declaration//GEN-END:variables
 }

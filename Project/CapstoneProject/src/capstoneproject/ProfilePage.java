@@ -78,6 +78,9 @@ public class ProfilePage extends javax.swing.JFrame {
                     case 7:
                         s1 = "Open World";
                         break;
+                    case 8:
+                        s3 = "";
+                        break;
                     default:
                         break;
                 }
@@ -104,6 +107,9 @@ public class ProfilePage extends javax.swing.JFrame {
                     case 7:
                         s2 = "Open World";
                         break;
+                    case 8:
+                        s3 = "";
+                        break;
                     default:
                         break;
                 }
@@ -129,6 +135,9 @@ public class ProfilePage extends javax.swing.JFrame {
                         break;
                     case 7:
                         s3 = "Open World";
+                        break;
+                    case 8:
+                        s3 = "";
                         break;
                     default:
                         break;
@@ -419,7 +428,6 @@ public class ProfilePage extends javax.swing.JFrame {
             
             
             String checkQuery = "SELECT Game_ID FROM GameRatings WHERE User_ID = " + quote + user + quote + " AND Rating = 1";
-            ArrayList<Integer> idList = new ArrayList<>();
             ResultSet checkRs = st.executeQuery(checkQuery);
             String subCheck = "SELECT * FROM GAMES WHERE GAME_ID IN (";
             int size = 0;
@@ -442,16 +450,7 @@ public class ProfilePage extends javax.swing.JFrame {
                     subCheck += checkRs.getInt("Game_ID");
                 }
             }
-
             subCheck += ")";
-            ResultSet getSubCheck = checkRs;
-            while(checkRs.next())
-            {
-//                PreparedStatement checkSubSt = con.prepareStatement(subCheck);
-//                checkSubSt.setInt(1,checkRs.getInt("Game_ID"));
-//                getSubCheck = checkSubSt.executeQuery();
-                idList.add(checkRs.getInt("Game_ID"));
-            }
             PreparedStatement subCheckPs = con.prepareStatement(subCheck);
             ResultSet subCheckRs = subCheckPs.executeQuery();
             int jrpg = 1;
@@ -586,10 +585,12 @@ public class ProfilePage extends javax.swing.JFrame {
                 for(int x = 0; x < countArray.length; x++)
                 {
                     // if prio1 is not already filled and if original int wasn't removed
+                    
+                    // this number wont be used but it is to help start prio2 as the main priority
                     if(prio1check != true && countArray[i] != -1)
                     {
                         // if i > x or i = x, make i prio1
-                        if (countArray[i] >= countArray[x])
+                        if (countArray[x] > countArray[i])
                         {
                             prio1 = genreArray[i];
                         }
@@ -600,10 +601,10 @@ public class ProfilePage extends javax.swing.JFrame {
                         }
                     }
                     // if prio2 is not already filled and if original int wasn't removed
-                    else if(prio2check != true && countArray[i] != -1)
+                    else if(prio2check != true && countArray[x] != -1)
                     {
                         // if i > x or i = x, make i prio2
-                        if (countArray[i] >= countArray[x])
+                        if (countArray[i] > countArray[x])
                         {
                             prio2 = genreArray[i];
                         }
@@ -614,10 +615,10 @@ public class ProfilePage extends javax.swing.JFrame {
                         }
                     }
                     // if prio3 is not already filled and if original int wasn't removed
-                    else if(prio3check != true && countArray[i] != -1)
+                    else if(prio3check != true && countArray[x] != -1)
                     {
                         // if i > x or i = x, make i prio3
-                        if (countArray[i] >= countArray[x])
+                        if (countArray[i] > countArray[x])
                         {
                             prio3 = genreArray[i];
                         }
@@ -653,23 +654,12 @@ public class ProfilePage extends javax.swing.JFrame {
             }
            String recQuery = "SELECT DISTINCT ga.Game_ID, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
                     + "FROM Games ga, GameRatings gr "
-                    + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.Rating = 1 AND (ga.Subgenre1 = "+prio1+" OR ga.Subgenre2 = "+prio1+")"
-                    + "AND (ga.Subgenre1 = "+prio2+" OR ga.Subgenre2 = "+prio2+")";
+                    + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.Rating = 1 AND (ga.Subgenre1 = "+prio2+" OR ga.Subgenre2 = "+prio2+" OR ga.subgenre3 = "+prio2+")"
+                    + "AND (ga.Subgenre1 = "+prio3+" OR ga.Subgenre2 = "+prio3+" OR ga.Subgenre3 = "+prio3+")";
             ResultSet recommendRs = st.executeQuery(recQuery);
+            // this shows the numbers for the subgenres and there a lil weird but pull the right numbers
             JOptionPane.showMessageDialog(null, prio1 + " " + prio2 + " " +  prio3);
-//            // set '?' in sql statement to prio1, prio2, and prio3
-//            subPS.setInt(1, prio1);
-//            subPS.setInt(2, prio2);
-//            subPS.setInt(3, prio3);
-//            subPS.setInt(4, prio1);
-//            subPS.setInt(5, prio2);
-//            subPS.setInt(6, prio3);
-//            subPS.setInt(7, prio1);
-//            subPS.setInt(8, prio2);
-//            subPS.setInt(9, prio3);
-//            
-//            // save query results as a result set
-//            ResultSet subRS = subPS.executeQuery();
+
             while(recommendRs.next())
             {
                 // save each field as a variable
@@ -683,6 +673,94 @@ public class ProfilePage extends javax.swing.JFrame {
                 String recS1 = String.valueOf(recSub1);
                 String recS2 = String.valueOf(recSub2);
                 String recS3 = String.valueOf(recSub3);
+                
+                switch(recSub1)
+                {
+                    case 1:
+                        recS1 = "JRPG";
+                        break;
+                    case 2:
+                        recS1 = "Action RPG";
+                        break;
+                    case 3:
+                        recS1 = "MMORPG";
+                        break;
+                    case 4:
+                        recS1 = "Rogue";
+                        break;
+                    case 5:
+                        recS1 = "Turn Based";
+                        break;
+                    case 6:
+                        recS1 = "Tactics";
+                        break;
+                    case 7:
+                        recS1 = "Open World";
+                        break;
+                    case 8:
+                        recS1 = "";
+                        break;
+                    default:
+                        break;
+                }
+                switch(recSub2)
+                {
+                    case 1:
+                        recS2 = "JRPG";
+                        break;
+                    case 2:
+                        recS2 = "Action RPG";
+                        break;
+                    case 3:
+                        recS2 = "MMORPG";
+                        break;
+                    case 4:
+                        recS2 = "Rogue";
+                        break;
+                    case 5:
+                        recS2 = "Turn Based";
+                        break;
+                    case 6:
+                        recS2 = "Tactics";
+                        break;
+                    case 7:
+                        recS2 = "Open World";
+                        break;
+                    case 8:
+                        recS2 = "";
+                        break;
+                    default:
+                        break;
+                }
+                switch(recSub3)
+                {
+                    case 1:
+                        recS3 = "JRPG";
+                        break;
+                    case 2:
+                        recS3 = "Action RPG";
+                        break;
+                    case 3:
+                        recS3 = "MMORPG";
+                        break;
+                    case 4:
+                        recS3 = "Rogue";
+                        break;
+                    case 5:
+                        recS3 = "Turn Based";
+                        break;
+                    case 6:
+                        recS3 = "Tactics";
+                        break;
+                    case 7:
+                        recS3 = "Open World";
+                        break;
+                    case 8:
+                        recS3 = "";
+                        break;
+                    default:
+                        break;
+                }
                 // declare table
                 DefaultTableModel tbModel2 = (DefaultTableModel)recommendTable.getModel();
                 // create row for current resultset
