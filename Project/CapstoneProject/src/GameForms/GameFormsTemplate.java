@@ -108,7 +108,7 @@ public class GameFormsTemplate extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
         titlePanel.setBackground(new java.awt.Color(153, 153, 255));
         titlePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 4));
@@ -135,29 +135,32 @@ public class GameFormsTemplate extends javax.swing.JFrame {
             .addComponent(homeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        pictureLabel.setBackground(new java.awt.Color(51, 51, 51));
         pictureLabel.setText("Picture");
 
-        titleLabel.setBackground(new java.awt.Color(0, 0, 0));
+        titleLabel.setBackground(new java.awt.Color(51, 51, 51));
         titleLabel.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(255, 255, 255));
         titleLabel.setText("Title");
 
-        likesLabel.setBackground(new java.awt.Color(0, 0, 0));
+        likesLabel.setBackground(new java.awt.Color(51, 51, 51));
         likesLabel.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
         likesLabel.setForeground(new java.awt.Color(255, 255, 255));
         likesLabel.setText("Likes");
 
-        disklikesLabel.setBackground(new java.awt.Color(0, 0, 0));
+        disklikesLabel.setBackground(new java.awt.Color(51, 51, 51));
         disklikesLabel.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
         disklikesLabel.setForeground(new java.awt.Color(255, 255, 255));
         disklikesLabel.setText("Dislikes");
 
-        genreHeaderLabel.setBackground(new java.awt.Color(0, 0, 0));
+        genreHeaderLabel.setBackground(new java.awt.Color(51, 51, 51));
         genreHeaderLabel.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
         genreHeaderLabel.setForeground(new java.awt.Color(255, 255, 255));
         genreHeaderLabel.setText("Genre");
 
-        synopsisText.setBackground(new java.awt.Color(0, 0, 0));
+        synopsisScroll.setBackground(new java.awt.Color(51, 51, 51));
+
+        synopsisText.setBackground(new java.awt.Color(51, 51, 51));
         synopsisText.setColumns(20);
         synopsisText.setFont(new java.awt.Font("Segoe UI Symbol", 0, 12)); // NOI18N
         synopsisText.setForeground(new java.awt.Color(255, 255, 255));
@@ -165,41 +168,41 @@ public class GameFormsTemplate extends javax.swing.JFrame {
         synopsisText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         synopsisScroll.setViewportView(synopsisText);
 
-        synopsisLabel.setBackground(new java.awt.Color(255, 255, 255));
+        synopsisLabel.setBackground(new java.awt.Color(51, 51, 51));
         synopsisLabel.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
         synopsisLabel.setForeground(new java.awt.Color(255, 255, 255));
         synopsisLabel.setText("Synopsis");
 
-        subgenre1Label.setBackground(new java.awt.Color(0, 0, 0));
+        subgenre1Label.setBackground(new java.awt.Color(51, 51, 51));
         subgenre1Label.setFont(new java.awt.Font("Cooper Black", 0, 18)); // NOI18N
         subgenre1Label.setForeground(new java.awt.Color(255, 255, 255));
         subgenre1Label.setText("subgenre1");
 
-        subgenre2Label.setBackground(new java.awt.Color(0, 0, 0));
+        subgenre2Label.setBackground(new java.awt.Color(51, 51, 51));
         subgenre2Label.setFont(new java.awt.Font("Cooper Black", 0, 18)); // NOI18N
         subgenre2Label.setForeground(new java.awt.Color(255, 255, 255));
         subgenre2Label.setText("subgenre2");
 
-        subgenre3Label.setBackground(new java.awt.Color(0, 0, 0));
+        subgenre3Label.setBackground(new java.awt.Color(51, 51, 51));
         subgenre3Label.setFont(new java.awt.Font("Cooper Black", 0, 18)); // NOI18N
         subgenre3Label.setForeground(new java.awt.Color(255, 255, 255));
         subgenre3Label.setText("subgenre3");
 
-        ratingsPanel.setBackground(new java.awt.Color(0, 0, 0));
+        ratingsPanel.setBackground(new java.awt.Color(51, 51, 51));
         ratingsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ratings", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cooper Black", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         ratingsPanel.setForeground(new java.awt.Color(255, 255, 255));
 
-        likeRatingButton.setBackground(new java.awt.Color(0, 0, 0));
+        likeRatingButton.setBackground(new java.awt.Color(51, 51, 51));
         ratingsGroup.add(likeRatingButton);
         likeRatingButton.setForeground(new java.awt.Color(255, 255, 255));
         likeRatingButton.setText("Like");
 
-        dislikeRatingButton.setBackground(new java.awt.Color(0, 0, 0));
+        dislikeRatingButton.setBackground(new java.awt.Color(51, 51, 51));
         ratingsGroup.add(dislikeRatingButton);
         dislikeRatingButton.setForeground(new java.awt.Color(255, 255, 255));
         dislikeRatingButton.setText("Dislike");
 
-        noRatingButton.setBackground(new java.awt.Color(0, 0, 0));
+        noRatingButton.setBackground(new java.awt.Color(51, 51, 51));
         ratingsGroup.add(noRatingButton);
         noRatingButton.setForeground(new java.awt.Color(255, 255, 255));
         noRatingButton.setText("No Rating");

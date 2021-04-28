@@ -11,8 +11,6 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import java.lang.Math;
-import java.util.ArrayList;
 
 
 /**
@@ -654,7 +652,7 @@ public class ProfilePage extends javax.swing.JFrame {
             }
            String recQuery = "SELECT DISTINCT ga.Game_ID, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
                     + "FROM Games ga, GameRatings gr "
-                    + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.Rating = 1 AND (ga.Subgenre1 = "+prio2+" OR ga.Subgenre2 = "+prio2+" OR ga.subgenre3 = "+prio2+")"
+                    + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.Rating = 1 AND NOT gr.Rating = -1 AND (ga.Subgenre1 = "+prio2+" OR ga.Subgenre2 = "+prio2+" OR ga.subgenre3 = "+prio2+")"
                     + "AND (ga.Subgenre1 = "+prio3+" OR ga.Subgenre2 = "+prio3+" OR ga.Subgenre3 = "+prio3+")";
             ResultSet recommendRs = st.executeQuery(recQuery);
             // this shows the numbers for the subgenres and there a lil weird but pull the right numbers

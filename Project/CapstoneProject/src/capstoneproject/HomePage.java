@@ -7,7 +7,6 @@ package capstoneproject;
 
 import GameForms.FillForms;
 import GameForms.GameFormsTemplate;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -148,9 +147,7 @@ public class HomePage extends javax.swing.JFrame {
         mainLabel = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
         profileButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        addGamesButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
         ACOpic = new javax.swing.JLabel();
@@ -220,6 +217,16 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
+        addGamesButton.setBackground(new java.awt.Color(0, 0, 0));
+        addGamesButton.setFont(new java.awt.Font("Cooper Black", 0, 26)); // NOI18N
+        addGamesButton.setForeground(new java.awt.Color(255, 255, 255));
+        addGamesButton.setText("Add Games");
+        addGamesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addGamesButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -228,38 +235,25 @@ public class HomePage extends javax.swing.JFrame {
                 .addComponent(mainLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(addGamesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(profileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(mainLabel)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(addGamesButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(profileButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mainLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(loginButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1431, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-        );
-
-        jScrollPane1.setViewportView(jPanel3);
-
-        jLabel1.setFont(new java.awt.Font("Cooper Black", 0, 18)); // NOI18N
-        jLabel1.setText("Trending Games");
-
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
 
+        ACOpic.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ACOpic.setText("ACO");
         ACOpic.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ACOpic.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -524,11 +518,10 @@ public class HomePage extends javax.swing.JFrame {
                     .addComponent(fireEmblemPic, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                     .addComponent(bastionPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(hadesPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(chronotriggerPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
-                    .addComponent(xcomPic, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(hadesPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(chronotriggerPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                    .addComponent(xcomPic, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -580,11 +573,11 @@ public class HomePage extends javax.swing.JFrame {
                             .addComponent(ffXIVPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(valkyriaPic, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addGap(6, 6, 6)
                         .addComponent(xenobladePic, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(darkestdungeonPic)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -648,26 +641,19 @@ public class HomePage extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 1070, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(98, 98, 98)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -684,6 +670,18 @@ public class HomePage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        Login logForm = new Login();
+        logForm.show();
+        dispose();
+    }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
+        ProfilePage viewProfile = new ProfilePage();
+        viewProfile.show();
+        dispose();
+    }//GEN-LAST:event_profileButtonActionPerformed
+
     private void ACOpicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ACOpicMouseClicked
         CurrGame.SetGameID(30);
         GameFormsTemplate gf = new GameFormsTemplate();
@@ -693,9 +691,9 @@ public class HomePage extends javax.swing.JFrame {
 
     private void bastionPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bastionPicMouseClicked
         CurrGame.SetGameID(4);
-        dispose();
         GameFormsTemplate gf = new GameFormsTemplate();
         gf.show();
+        dispose();
     }//GEN-LAST:event_bastionPicMouseClicked
 
     private void chronotriggerPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chronotriggerPicMouseClicked
@@ -768,6 +766,13 @@ public class HomePage extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_dyinglightPicMouseClicked
 
+    private void ffxPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ffxPicMouseClicked
+        CurrGame.SetGameID(19);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
+        dispose();
+    }//GEN-LAST:event_ffxPicMouseClicked
+
     private void fallout76PicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fallout76PicMouseClicked
         CurrGame.SetGameID(7);
         GameFormsTemplate gf = new GameFormsTemplate();
@@ -775,12 +780,12 @@ public class HomePage extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_fallout76PicMouseClicked
 
-    private void ffxPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ffxPicMouseClicked
-        CurrGame.SetGameID(19);
+    private void valkyriaPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_valkyriaPicMouseClicked
+        CurrGame.SetGameID(20);
         GameFormsTemplate gf = new GameFormsTemplate();
         gf.show();
         dispose();
-    }//GEN-LAST:event_ffxPicMouseClicked
+    }//GEN-LAST:event_valkyriaPicMouseClicked
 
     private void ffXIVPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ffXIVPicMouseClicked
         CurrGame.SetGameID(6);
@@ -852,19 +857,19 @@ public class HomePage extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_shinmegamiPicMouseClicked
 
-    private void startrekPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startrekPicMouseClicked
-        CurrGame.SetGameID(10);
-        GameFormsTemplate gf = new GameFormsTemplate();
-        gf.show();
-        dispose();
-    }//GEN-LAST:event_startrekPicMouseClicked
-
     private void talesPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_talesPicMouseClicked
         CurrGame.SetGameID(31);
         GameFormsTemplate gf = new GameFormsTemplate();
         gf.show();
         dispose();
     }//GEN-LAST:event_talesPicMouseClicked
+
+    private void startrekPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_startrekPicMouseClicked
+        CurrGame.SetGameID(10);
+        GameFormsTemplate gf = new GameFormsTemplate();
+        gf.show();
+        dispose();
+    }//GEN-LAST:event_startrekPicMouseClicked
 
     private void bannerPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bannerPicMouseClicked
         CurrGame.SetGameID(21);
@@ -886,13 +891,6 @@ public class HomePage extends javax.swing.JFrame {
         gf.show();
         dispose();
     }//GEN-LAST:event_witcherPicMouseClicked
-
-    private void valkyriaPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_valkyriaPicMouseClicked
-        CurrGame.SetGameID(20);
-        GameFormsTemplate gf = new GameFormsTemplate();
-        gf.show();
-        dispose();
-    }//GEN-LAST:event_valkyriaPicMouseClicked
 
     private void wastelandPicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wastelandPicMouseClicked
         CurrGame.SetGameID(23);
@@ -929,17 +927,9 @@ public class HomePage extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_darkestdungeonPicMouseClicked
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        Login logForm = new Login();
-        logForm.show();
-        dispose();
-    }//GEN-LAST:event_loginButtonActionPerformed
-
-    private void profileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileButtonActionPerformed
-        ProfilePage viewProfile = new ProfilePage();
-        viewProfile.show();
-        dispose();
-    }//GEN-LAST:event_profileButtonActionPerformed
+    private void addGamesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addGamesButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addGamesButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -978,50 +968,85 @@ public class HomePage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ACOpic;
+    private javax.swing.JLabel ACOpic1;
     private javax.swing.JLabel WoWPic;
+    private javax.swing.JLabel WoWPic1;
+    private javax.swing.JButton addGamesButton;
     private javax.swing.JLabel bannerPic;
+    private javax.swing.JLabel bannerPic1;
     private javax.swing.JLabel bastionPic;
+    private javax.swing.JLabel bastionPic1;
     private javax.swing.JLabel chronotriggerPic;
+    private javax.swing.JLabel chronotriggerPic1;
     private javax.swing.JLabel cyberpunkPic;
+    private javax.swing.JLabel cyberpunkPic1;
     private javax.swing.JLabel darkestdungeonPic;
+    private javax.swing.JLabel darkestdungeonPic1;
     private javax.swing.JLabel darksoulsPic;
+    private javax.swing.JLabel darksoulsPic1;
     private javax.swing.JLabel destinyPic;
+    private javax.swing.JLabel destinyPic1;
     private javax.swing.JLabel disgaeaPic;
+    private javax.swing.JLabel disgaeaPic1;
     private javax.swing.JLabel divinityPic;
+    private javax.swing.JLabel divinityPic1;
     private javax.swing.JLabel dragoncryPic;
+    private javax.swing.JLabel dragoncryPic1;
     private javax.swing.JLabel dragonquestPic;
+    private javax.swing.JLabel dragonquestPic1;
     private javax.swing.JLabel dragonsdogmaPic;
+    private javax.swing.JLabel dragonsdogmaPic1;
     private javax.swing.JLabel dyinglightPic;
+    private javax.swing.JLabel dyinglightPic1;
     private javax.swing.JLabel fallout76Pic;
+    private javax.swing.JLabel fallout76Pic1;
     private javax.swing.JLabel ffXIVPic;
+    private javax.swing.JLabel ffXIVPic1;
     private javax.swing.JLabel ffXVPic;
+    private javax.swing.JLabel ffXVPic1;
     private javax.swing.JLabel ffxPic;
+    private javax.swing.JLabel ffxPic1;
     private javax.swing.JLabel fireEmblemPic;
+    private javax.swing.JLabel fireEmblemPic1;
     private javax.swing.JLabel hadesPic;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel hadesPic1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel kingdomheartsPic;
+    private javax.swing.JLabel kingdomheartsPic1;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel mainLabel;
     private javax.swing.JLabel masseffectPic;
+    private javax.swing.JLabel masseffectPic1;
     private javax.swing.JLabel pokemonPic;
+    private javax.swing.JLabel pokemonPic1;
     private javax.swing.JButton profileButton;
     private javax.swing.JLabel roguePic;
+    private javax.swing.JLabel roguePic1;
     private javax.swing.JLabel setsunaPic;
+    private javax.swing.JLabel setsunaPic1;
     private javax.swing.JLabel shinmegamiPic;
+    private javax.swing.JLabel shinmegamiPic1;
     private javax.swing.JLabel skyrimPic;
+    private javax.swing.JLabel skyrimPic1;
     private javax.swing.JLabel startrekPic;
+    private javax.swing.JLabel startrekPic1;
     private javax.swing.JLabel talesPic;
+    private javax.swing.JLabel talesPic1;
     private javax.swing.JLabel valkyriaPic;
+    private javax.swing.JLabel valkyriaPic1;
     private javax.swing.JLabel wastelandPic;
+    private javax.swing.JLabel wastelandPic1;
     private javax.swing.JLabel witcherPic;
+    private javax.swing.JLabel witcherPic1;
     private javax.swing.JLabel xcomPic;
+    private javax.swing.JLabel xcomPic1;
     private javax.swing.JLabel xenobladePic;
+    private javax.swing.JLabel xenobladePic1;
     // End of variables declaration//GEN-END:variables
 }

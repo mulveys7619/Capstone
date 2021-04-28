@@ -40,7 +40,7 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
+          <Color blue="33" green="33" red="33" type="rgb"/>
         </Property>
       </Properties>
 
@@ -178,13 +178,16 @@
         </Container>
         <Component class="javax.swing.JLabel" name="pictureLabel">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="33" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Picture"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="titleLabel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Cooper Black" size="24" style="0"/>
@@ -198,7 +201,7 @@
         <Component class="javax.swing.JLabel" name="likesLabel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Cooper Black" size="24" style="0"/>
@@ -212,7 +215,7 @@
         <Component class="javax.swing.JLabel" name="disklikesLabel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Cooper Black" size="24" style="0"/>
@@ -226,7 +229,7 @@
         <Component class="javax.swing.JLabel" name="genreHeaderLabel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Cooper Black" size="24" style="0"/>
@@ -238,6 +241,11 @@
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="synopsisScroll">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="33" type="rgb"/>
+            </Property>
+          </Properties>
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
@@ -247,7 +255,7 @@
             <Component class="javax.swing.JTextArea" name="synopsisText">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -269,7 +277,7 @@
         <Component class="javax.swing.JLabel" name="synopsisLabel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Cooper Black" size="36" style="0"/>
@@ -283,7 +291,7 @@
         <Component class="javax.swing.JLabel" name="subgenre1Label">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Cooper Black" size="18" style="0"/>
@@ -297,7 +305,7 @@
         <Component class="javax.swing.JLabel" name="subgenre2Label">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Cooper Black" size="18" style="0"/>
@@ -311,7 +319,7 @@
         <Component class="javax.swing.JLabel" name="subgenre3Label">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Cooper Black" size="18" style="0"/>
@@ -325,7 +333,7 @@
         <Container class="javax.swing.JPanel" name="ratingsPanel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
+              <Color blue="33" green="33" red="33" type="rgb"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -368,7 +376,7 @@
             <Component class="javax.swing.JRadioButton" name="likeRatingButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="ratingsGroup"/>
@@ -382,7 +390,7 @@
             <Component class="javax.swing.JRadioButton" name="dislikeRatingButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="ratingsGroup"/>
@@ -396,7 +404,7 @@
             <Component class="javax.swing.JRadioButton" name="noRatingButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="33" green="33" red="33" type="rgb"/>
                 </Property>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="ratingsGroup"/>
