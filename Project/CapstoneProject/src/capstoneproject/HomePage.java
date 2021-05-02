@@ -195,7 +195,7 @@ public class HomePage extends javax.swing.JFrame {
 
         mainLabel.setFont(new java.awt.Font("Cooper Black", 0, 48)); // NOI18N
         mainLabel.setForeground(new java.awt.Color(255, 255, 255));
-        mainLabel.setText("Capstone");
+        mainLabel.setText("RPG Recommender");
 
         loginButton.setBackground(new java.awt.Color(0, 0, 0));
         loginButton.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
@@ -232,7 +232,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(mainLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(mainLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(profileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -254,7 +254,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
 
         ACOpic.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ACOpic.setText("ACO");
+        ACOpic.setText("Assassin's Creed Odyssey");
         ACOpic.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ACOpic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -262,161 +262,162 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
-        bastionPic.setText("bastion");
+        bastionPic.setText("Bastion");
         bastionPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bastionPicMouseClicked(evt);
             }
         });
 
-        chronotriggerPic.setText("chronotrigger");
+        chronotriggerPic.setText("Chronotrigger");
         chronotriggerPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 chronotriggerPicMouseClicked(evt);
             }
         });
 
-        cyberpunkPic.setText("cyberpunk");
+        cyberpunkPic.setText("CyberPunk 2077");
         cyberpunkPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cyberpunkPicMouseClicked(evt);
             }
         });
 
-        darksoulsPic.setText("darksouls");
+        darksoulsPic.setText("Dark Souls 3");
         darksoulsPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 darksoulsPicMouseClicked(evt);
             }
         });
 
-        destinyPic.setText("destiny");
+        destinyPic.setText("Destiny 2");
         destinyPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 destinyPicMouseClicked(evt);
             }
         });
 
-        disgaeaPic.setText("digaea");
+        disgaeaPic.setText("Disgaea 5");
         disgaeaPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 disgaeaPicMouseClicked(evt);
             }
         });
 
-        divinityPic.setText("divinity");
+        divinityPic.setText("Divinity Original Sin 2");
+        divinityPic.setToolTipText("");
         divinityPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 divinityPicMouseClicked(evt);
             }
         });
 
-        dragoncryPic.setText("dragoncrystal");
+        dragoncryPic.setText("Dragon Crystal");
         dragoncryPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dragoncryPicMouseClicked(evt);
             }
         });
 
-        dragonquestPic.setText("dragonquest");
+        dragonquestPic.setText("Dragon Quest XI");
         dragonquestPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dragonquestPicMouseClicked(evt);
             }
         });
 
-        dragonsdogmaPic.setText("dragonsdogma");
+        dragonsdogmaPic.setText("Dragon's Dogma");
         dragonsdogmaPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dragonsdogmaPicMouseClicked(evt);
             }
         });
 
-        dyinglightPic.setText("dyinglight");
+        dyinglightPic.setText("Dying Light");
         dyinglightPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 dyinglightPicMouseClicked(evt);
             }
         });
 
-        ffxPic.setText("ffx");
+        ffxPic.setText("FInal Fantasy X");
         ffxPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ffxPicMouseClicked(evt);
             }
         });
 
-        fallout76Pic.setText("fallout");
+        fallout76Pic.setText("Fallout 76");
         fallout76Pic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fallout76PicMouseClicked(evt);
             }
         });
 
-        valkyriaPic.setText("valkyria");
+        valkyriaPic.setText("Valkyria Chronoicles");
         valkyriaPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 valkyriaPicMouseClicked(evt);
             }
         });
 
-        ffXIVPic.setText("ffxiv");
+        ffXIVPic.setText("FInal Fantasy XIV");
         ffXIVPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ffXIVPicMouseClicked(evt);
             }
         });
 
-        ffXVPic.setText("ffxv");
+        ffXVPic.setText("Final Fantasy XV");
         ffXVPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ffXVPicMouseClicked(evt);
             }
         });
 
-        fireEmblemPic.setText("fireEmblem");
+        fireEmblemPic.setText("Fire Emblem");
         fireEmblemPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 fireEmblemPicMouseClicked(evt);
             }
         });
 
-        hadesPic.setText("hades");
+        hadesPic.setText("Hades");
         hadesPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 hadesPicMouseClicked(evt);
             }
         });
 
-        setsunaPic.setText("setsuna");
+        setsunaPic.setText("I am Setsuna");
         setsunaPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 setsunaPicMouseClicked(evt);
             }
         });
 
-        kingdomheartsPic.setText("kingdomhearts");
+        kingdomheartsPic.setText("Kingdom Hearts 3");
         kingdomheartsPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 kingdomheartsPicMouseClicked(evt);
             }
         });
 
-        masseffectPic.setText("masseffect");
+        masseffectPic.setText("Mass Effect");
         masseffectPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 masseffectPicMouseClicked(evt);
             }
         });
 
-        pokemonPic.setText("pokemon");
+        pokemonPic.setText("Pokemon Mystery Dungeon");
         pokemonPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pokemonPicMouseClicked(evt);
             }
         });
 
-        roguePic.setText("reoguelegacy");
+        roguePic.setText("Rogue LEgacy");
         roguePic.setToolTipText("");
         roguePic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -424,56 +425,57 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
-        shinmegamiPic.setText("shinmegami");
+        shinmegamiPic.setText("Shin Megami");
         shinmegamiPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 shinmegamiPicMouseClicked(evt);
             }
         });
 
-        talesPic.setText("talesofvesperia");
+        talesPic.setText("Tales of Vesperia");
         talesPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 talesPicMouseClicked(evt);
             }
         });
 
-        startrekPic.setText("startrek");
+        startrekPic.setText("Star Trek");
         startrekPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 startrekPicMouseClicked(evt);
             }
         });
 
-        bannerPic.setText("bannersaga");
+        bannerPic.setText("Banner Saga");
         bannerPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 bannerPicMouseClicked(evt);
             }
         });
 
-        skyrimPic.setText("skyrim");
+        skyrimPic.setText("Skyrim");
         skyrimPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 skyrimPicMouseClicked(evt);
             }
         });
 
-        witcherPic.setText("witcher");
+        witcherPic.setText("Witcher 3");
+        witcherPic.setToolTipText("");
         witcherPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 witcherPicMouseClicked(evt);
             }
         });
 
-        wastelandPic.setText("wasteland2");
+        wastelandPic.setText("Wasteland 2");
         wastelandPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 wastelandPicMouseClicked(evt);
             }
         });
 
-        WoWPic.setText("WoW");
+        WoWPic.setText("World of Warcraft");
         WoWPic.setToolTipText("");
         WoWPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -481,21 +483,21 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
-        xcomPic.setText("xcom");
+        xcomPic.setText("XCOM 2");
         xcomPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 xcomPicMouseClicked(evt);
             }
         });
 
-        xenobladePic.setText("xenoblade");
+        xenobladePic.setText("Xenoblade ");
         xenobladePic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 xenobladePicMouseClicked(evt);
             }
         });
 
-        darkestdungeonPic.setText("darkestdungeon");
+        darkestdungeonPic.setText("Darkest Dungeon");
         darkestdungeonPic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 darkestdungeonPicMouseClicked(evt);
@@ -509,28 +511,29 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(wastelandPic, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-                    .addComponent(ACOpic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ffXVPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(wastelandPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ffXVPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ACOpic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(WoWPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(fireEmblemPic, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                     .addComponent(bastionPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(hadesPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(chronotriggerPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                    .addComponent(xcomPic, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(xcomPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(xenobladePic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(setsunaPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cyberpunkPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(setsunaPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cyberpunkPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(kingdomheartsPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                            .addComponent(kingdomheartsPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(darksoulsPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -538,11 +541,11 @@ public class HomePage extends javax.swing.JFrame {
                             .addComponent(destinyPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pokemonPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                            .addComponent(pokemonPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(disgaeaPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(roguePic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                            .addComponent(roguePic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(divinityPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -551,10 +554,10 @@ public class HomePage extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(startrekPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dragonquestPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
+                            .addComponent(dragonquestPic, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(talesPic, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                            .addComponent(talesPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(dragonsdogmaPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -566,18 +569,14 @@ public class HomePage extends javax.swing.JFrame {
                             .addComponent(fallout76Pic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(witcherPic, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                            .addComponent(witcherPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ffxPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ffXIVPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(valkyriaPic, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(xenobladePic, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(darkestdungeonPic)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                            .addComponent(valkyriaPic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(darkestdungeonPic))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -928,7 +927,9 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_darkestdungeonPicMouseClicked
 
     private void addGamesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addGamesButtonActionPerformed
-        // TODO add your handling code here:
+        AddGames ad = new AddGames();
+        ad.show();
+        dispose();
     }//GEN-LAST:event_addGamesButtonActionPerformed
 
     /**
@@ -968,85 +969,48 @@ public class HomePage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ACOpic;
-    private javax.swing.JLabel ACOpic1;
     private javax.swing.JLabel WoWPic;
-    private javax.swing.JLabel WoWPic1;
     private javax.swing.JButton addGamesButton;
     private javax.swing.JLabel bannerPic;
-    private javax.swing.JLabel bannerPic1;
     private javax.swing.JLabel bastionPic;
-    private javax.swing.JLabel bastionPic1;
     private javax.swing.JLabel chronotriggerPic;
-    private javax.swing.JLabel chronotriggerPic1;
     private javax.swing.JLabel cyberpunkPic;
-    private javax.swing.JLabel cyberpunkPic1;
     private javax.swing.JLabel darkestdungeonPic;
-    private javax.swing.JLabel darkestdungeonPic1;
     private javax.swing.JLabel darksoulsPic;
-    private javax.swing.JLabel darksoulsPic1;
     private javax.swing.JLabel destinyPic;
-    private javax.swing.JLabel destinyPic1;
     private javax.swing.JLabel disgaeaPic;
-    private javax.swing.JLabel disgaeaPic1;
     private javax.swing.JLabel divinityPic;
-    private javax.swing.JLabel divinityPic1;
     private javax.swing.JLabel dragoncryPic;
-    private javax.swing.JLabel dragoncryPic1;
     private javax.swing.JLabel dragonquestPic;
-    private javax.swing.JLabel dragonquestPic1;
     private javax.swing.JLabel dragonsdogmaPic;
-    private javax.swing.JLabel dragonsdogmaPic1;
     private javax.swing.JLabel dyinglightPic;
-    private javax.swing.JLabel dyinglightPic1;
     private javax.swing.JLabel fallout76Pic;
-    private javax.swing.JLabel fallout76Pic1;
     private javax.swing.JLabel ffXIVPic;
-    private javax.swing.JLabel ffXIVPic1;
     private javax.swing.JLabel ffXVPic;
-    private javax.swing.JLabel ffXVPic1;
     private javax.swing.JLabel ffxPic;
-    private javax.swing.JLabel ffxPic1;
     private javax.swing.JLabel fireEmblemPic;
-    private javax.swing.JLabel fireEmblemPic1;
     private javax.swing.JLabel hadesPic;
-    private javax.swing.JLabel hadesPic1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel kingdomheartsPic;
-    private javax.swing.JLabel kingdomheartsPic1;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel mainLabel;
     private javax.swing.JLabel masseffectPic;
-    private javax.swing.JLabel masseffectPic1;
     private javax.swing.JLabel pokemonPic;
-    private javax.swing.JLabel pokemonPic1;
     private javax.swing.JButton profileButton;
     private javax.swing.JLabel roguePic;
-    private javax.swing.JLabel roguePic1;
     private javax.swing.JLabel setsunaPic;
-    private javax.swing.JLabel setsunaPic1;
     private javax.swing.JLabel shinmegamiPic;
-    private javax.swing.JLabel shinmegamiPic1;
     private javax.swing.JLabel skyrimPic;
-    private javax.swing.JLabel skyrimPic1;
     private javax.swing.JLabel startrekPic;
-    private javax.swing.JLabel startrekPic1;
     private javax.swing.JLabel talesPic;
-    private javax.swing.JLabel talesPic1;
     private javax.swing.JLabel valkyriaPic;
-    private javax.swing.JLabel valkyriaPic1;
     private javax.swing.JLabel wastelandPic;
-    private javax.swing.JLabel wastelandPic1;
     private javax.swing.JLabel witcherPic;
-    private javax.swing.JLabel witcherPic1;
     private javax.swing.JLabel xcomPic;
-    private javax.swing.JLabel xcomPic1;
     private javax.swing.JLabel xenobladePic;
-    private javax.swing.JLabel xenobladePic1;
     // End of variables declaration//GEN-END:variables
 }

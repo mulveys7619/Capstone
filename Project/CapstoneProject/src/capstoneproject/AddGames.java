@@ -154,9 +154,9 @@ public class AddGames extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 0, 153));
         jPanel1.setForeground(new java.awt.Color(102, 0, 153));
 
-        cap_nav.setFont(new java.awt.Font("Kanit ExtraBold", 0, 48)); // NOI18N
+        cap_nav.setFont(new java.awt.Font("Cooper Black", 0, 48)); // NOI18N
         cap_nav.setForeground(new java.awt.Color(255, 255, 255));
-        cap_nav.setText("Capstone");
+        cap_nav.setText("RPG Recommender");
         cap_nav.setName(""); // NOI18N
         cap_nav.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -170,8 +170,8 @@ public class AddGames extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cap_nav, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1195, Short.MAX_VALUE))
+                .addComponent(cap_nav, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,7 +187,7 @@ public class AddGames extends javax.swing.JFrame {
         formDesc.setFont(new java.awt.Font("Cooper Black", 2, 36)); // NOI18N
         formDesc.setForeground(new java.awt.Color(255, 255, 255));
         formDesc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formDesc.setText("ADD A GAME TO CAPSTONE");
+        formDesc.setText("ADD A GAME TO RPG RECOMMEND");
 
         titleLabel.setFont(new java.awt.Font("Cooper Black", 3, 24)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -289,7 +289,7 @@ public class AddGames extends javax.swing.JFrame {
                                     .addComponent(sub2Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(sub1Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(sub3Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 329, Short.MAX_VALUE)))
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)

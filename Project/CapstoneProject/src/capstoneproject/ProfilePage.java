@@ -34,14 +34,13 @@ public class ProfilePage extends javax.swing.JFrame {
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             
             String quote = "'";
-            String query = "SELECT ga.Game_ID, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
+            String query = "SELECT ga.Game_ID, ga.Title, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
                     + "FROM Games ga, Gameratings gr "
                     + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.game_id = ga.game_id";
             ResultSet combineRs = st.executeQuery(query);
             while(combineRs.next())
             {
                 String title = combineRs.getString("Title");
-                String pic = combineRs.getString("Thumbnail");
                 int rating = combineRs.getInt("Rating");
                 int sub1 = combineRs.getInt("Subgenre1");
                 int sub2 = combineRs.getInt("Subgenre2");
@@ -143,7 +142,7 @@ public class ProfilePage extends javax.swing.JFrame {
                 
                 
                 DefaultTableModel tbModel = (DefaultTableModel)myLibraryTable.getModel();
-                String data[] = {title, pic, rate, s1, s2, s3};
+                String data[] = {title, rate, s1, s2, s3};
                 tbModel.addRow(data);
             }
         }
@@ -159,8 +158,6 @@ public class ProfilePage extends javax.swing.JFrame {
         backgroundPanel = new javax.swing.JPanel();
         titlePanel = new javax.swing.JPanel();
         titleLabel = new javax.swing.JLabel();
-        seachComboBox = new javax.swing.JComboBox<>();
-        goButton = new javax.swing.JButton();
         homeLabel = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
         tabbedPanel = new javax.swing.JTabbedPane();
@@ -172,7 +169,10 @@ public class ProfilePage extends javax.swing.JFrame {
         recommendTable = new javax.swing.JTable();
         usersPanel = new javax.swing.JPanel();
         usernameLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        secondGenreLabel = new javax.swing.JLabel();
+        likedGenresLabel = new javax.swing.JLabel();
+        firstGenreLabel = new javax.swing.JLabel();
+        recommendationButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -182,19 +182,8 @@ public class ProfilePage extends javax.swing.JFrame {
 
         titleLabel.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(255, 255, 255));
-        titleLabel.setText("Capstone");
+        titleLabel.setText("RPG Recommender");
         titleLabel.setName("Capstone"); // NOI18N
-
-        seachComboBox.setBackground(new java.awt.Color(204, 204, 204));
-        seachComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Explore..", "aRPG", "MMORPG", "Roguelike RPG", "Turn-Based RPG", "Tactical", "Open World RPG", "JRPG" }));
-        seachComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seachComboBoxActionPerformed(evt);
-            }
-        });
-
-        goButton.setBackground(new java.awt.Color(204, 204, 204));
-        goButton.setText("Go");
 
         homeLabel.setBackground(new java.awt.Color(0, 0, 0));
         homeLabel.setFont(new java.awt.Font("Cooper Black", 0, 36)); // NOI18N
@@ -221,25 +210,18 @@ public class ProfilePage extends javax.swing.JFrame {
         titlePanelLayout.setHorizontalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(titlePanelLayout.createSequentialGroup()
-                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(homeLabel)
-                .addGap(150, 150, 150)
-                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(seachComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(goButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(502, 502, 502)
+                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         titlePanelLayout.setVerticalGroup(
             titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(titlePanelLayout.createSequentialGroup()
-                .addComponent(titleLabel)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(goButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(seachComboBox)
-            .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(homeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(homeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         tabbedPanel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -251,14 +233,14 @@ public class ProfilePage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title", "Picture", "Your Rating", "Subgenre 1", "Subgenre 2", "Subgenre 3"
+                "Title", "Your Rating", "Subgenre 1", "Subgenre 2", "Subgenre 3"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -291,14 +273,14 @@ public class ProfilePage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Titles we Recommended", "Picture", "Subgenre 1", "Subgenre 2", "Subgenre 3"
+                "Titles we Recommended", "Subgenre 1", "Subgenre 2", "Subgenre 3"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -331,23 +313,50 @@ public class ProfilePage extends javax.swing.JFrame {
         usernameLabel.setText("Username");
         usernameLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
 
+        secondGenreLabel.setBackground(new java.awt.Color(51, 51, 51));
+        secondGenreLabel.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
+        secondGenreLabel.setForeground(new java.awt.Color(255, 255, 255));
+
+        likedGenresLabel.setBackground(new java.awt.Color(51, 51, 51));
+        likedGenresLabel.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
+        likedGenresLabel.setForeground(new java.awt.Color(255, 255, 255));
+        likedGenresLabel.setText("Most Liked Genres:");
+
+        firstGenreLabel.setBackground(new java.awt.Color(51, 51, 51));
+        firstGenreLabel.setFont(new java.awt.Font("Cooper Black", 0, 24)); // NOI18N
+        firstGenreLabel.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout usersPanelLayout = new javax.swing.GroupLayout(usersPanel);
         usersPanel.setLayout(usersPanelLayout);
         usersPanelLayout.setHorizontalGroup(
             usersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+            .addComponent(usernameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, usersPanelLayout.createSequentialGroup()
+                .addComponent(likedGenresLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(166, 166, 166))
+            .addGroup(usersPanelLayout.createSequentialGroup()
+                .addGroup(usersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(secondGenreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(firstGenreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         usersPanelLayout.setVerticalGroup(
             usersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(usersPanelLayout.createSequentialGroup()
                 .addComponent(usernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 455, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(likedGenresLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(firstGenreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(secondGenreLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(227, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Testing");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        recommendationButton.setText("See Recommendations");
+        recommendationButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                recommendationButtonActionPerformed(evt);
             }
         });
 
@@ -357,15 +366,16 @@ public class ProfilePage extends javax.swing.JFrame {
             backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(titlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(backgroundPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1001, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(usersPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(backgroundPanelLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(backgroundPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1001, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(usersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(backgroundPanelLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(recommendationButton)))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         backgroundPanelLayout.setVerticalGroup(
             backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,7 +389,7 @@ public class ProfilePage extends javax.swing.JFrame {
                         .addGap(56, 56, 56)
                         .addComponent(usersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30)
-                .addComponent(jButton1)
+                .addComponent(recommendationButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -397,10 +407,6 @@ public class ProfilePage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void seachComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seachComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_seachComboBoxActionPerformed
-
     private void homeLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_homeLabelMouseClicked
         HomePage home = new HomePage();
         dispose();
@@ -416,7 +422,7 @@ public class ProfilePage extends javax.swing.JFrame {
         hm.show();
     }//GEN-LAST:event_logoutButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void recommendationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recommendationButtonActionPerformed
         String user = User.getUsername();
         try 
         {
@@ -469,7 +475,6 @@ public class ProfilePage extends javax.swing.JFrame {
             while(subCheckRs.next())
             {
                 String recTitle = subCheckRs.getString("Title");
-                String recPic = subCheckRs.getString("Thumbnail");
                 int recSub1 = subCheckRs.getInt("Subgenre1");
                 int recSub2 = subCheckRs.getInt("Subgenre2");
                 int recSub3 = subCheckRs.getInt("Subgenre3");
@@ -588,14 +593,14 @@ public class ProfilePage extends javax.swing.JFrame {
                     if(prio1check != true && countArray[i] != -1)
                     {
                         // if i > x or i = x, make i prio1
-                        if (countArray[x] > countArray[i])
+                        if (countArray[i] > countArray[x])
                         {
-                            prio1 = genreArray[i];
+                            prio1 = genreArray[x];
                         }
                         // if i < x, make x prio1
                         else
                         {
-                            prio1 = genreArray[x];
+                            prio1 = genreArray[i];
                         }
                     }
                     // if prio2 is not already filled and if original int wasn't removed
@@ -633,7 +638,6 @@ public class ProfilePage extends javax.swing.JFrame {
                     prio1check = true;
                     // make element in countArray that was highest -1 so it is no longer the largest int
                     countArray[prio1 - 1] = -1;
-                    
                 }
                 // if prio2 has new value, make prio1check true so it doesn't compare for it again
                 if (prio2 != 0)
@@ -650,19 +654,68 @@ public class ProfilePage extends javax.swing.JFrame {
                     countArray[prio3 - 1] = -1;
                 }
             }
-           String recQuery = "SELECT DISTINCT ga.Game_ID, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
+           String recQuery = "SELECT DISTINCT ga.Game_ID, ga.Title, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
                     + "FROM Games ga, GameRatings gr "
-                    + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.Rating = 1 AND NOT gr.Rating = -1 AND (ga.Subgenre1 = "+prio2+" OR ga.Subgenre2 = "+prio2+" OR ga.subgenre3 = "+prio2+")"
+                    + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.Rating = 1 AND (ga.Subgenre1 = "+prio2+" OR ga.Subgenre2 = "+prio2+" OR ga.subgenre3 = "+prio2+")"
                     + "AND (ga.Subgenre1 = "+prio3+" OR ga.Subgenre2 = "+prio3+" OR ga.Subgenre3 = "+prio3+")";
             ResultSet recommendRs = st.executeQuery(recQuery);
-            // this shows the numbers for the subgenres and there a lil weird but pull the right numbers
-            JOptionPane.showMessageDialog(null, prio1 + " " + prio2 + " " +  prio3);
+            switch(prio2)
+                {
+                    case 1:
+                        firstGenreLabel.setText("JRPG");
+                        break;
+                    case 2:
+                        firstGenreLabel.setText("Action RPG");
+                        break;
+                    case 3:
+                        firstGenreLabel.setText("MMORPG");
+                        break;
+                    case 4:
+                        firstGenreLabel.setText("Rogue");
+                        break;
+                    case 5:
+                        firstGenreLabel.setText("Turn Based");
+                        break;
+                    case 6:
+                        firstGenreLabel.setText("Tactics");
+                        break;
+                    case 7:
+                        firstGenreLabel.setText("Open World");
+                        break;
+                    default:
+                        break;
+                }
+            switch(prio3)
+                {
+                    case 1:
+                        secondGenreLabel.setText("JRPG");
+                        break;
+                    case 2:
+                        secondGenreLabel.setText("Action RPG");
+                        break;
+                    case 3:
+                        secondGenreLabel.setText("MMORPG");
+                        break;
+                    case 4:
+                        secondGenreLabel.setText("Rogue");
+                        break;
+                    case 5:
+                        secondGenreLabel.setText("Turn Based");
+                        break;
+                    case 6:
+                        secondGenreLabel.setText("Tactics");
+                        break;
+                    case 7:
+                        secondGenreLabel.setText("Open World");
+                        break;
+                    default:
+                        break;
+                }
 
             while(recommendRs.next())
             {
                 // save each field as a variable
                 String recTitle = recommendRs.getString("Title");
-                String recPic = recommendRs.getString("Thumbnail");
                 int recSub1 = recommendRs.getInt("Subgenre1");
                 int recSub2 = recommendRs.getInt("Subgenre2");
                 int recSub3 = recommendRs.getInt("Subgenre3");
@@ -762,7 +815,7 @@ public class ProfilePage extends javax.swing.JFrame {
                 // declare table
                 DefaultTableModel tbModel2 = (DefaultTableModel)recommendTable.getModel();
                 // create row for current resultset
-                String data2[] = {recTitle, recPic, recS1, recS2, recS3};
+                String data2[] = {recTitle, recS1, recS2, recS3};
                 // add row to table
                 tbModel2.addRow(data2);
             }
@@ -771,7 +824,7 @@ public class ProfilePage extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(null,ex.getMessage());
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_recommendationButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -811,17 +864,18 @@ public class ProfilePage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
-    private javax.swing.JButton goButton;
+    private javax.swing.JLabel firstGenreLabel;
     private javax.swing.JLabel homeLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel likedGenresLabel;
     private javax.swing.JButton logoutButton;
     private javax.swing.JPanel myLibraryPanel;
     private javax.swing.JTable myLibraryTable;
     private javax.swing.JTable recommendTable;
+    private javax.swing.JButton recommendationButton;
     private javax.swing.JPanel recommendationsPanel;
-    private javax.swing.JComboBox<String> seachComboBox;
+    private javax.swing.JLabel secondGenreLabel;
     private javax.swing.JTabbedPane tabbedPanel;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JPanel titlePanel;
