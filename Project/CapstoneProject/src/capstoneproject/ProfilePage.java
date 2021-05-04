@@ -590,10 +590,10 @@ public class ProfilePage extends javax.swing.JFrame {
                     // if prio1 is not already filled and if original int wasn't removed
                     
                     // this number wont be used but it is to help start prio2 as the main priority
-                    if(prio1check != true && countArray[i] != -1)
+                    if(prio1check != true && countArray[x] != -1)
                     {
                         // if i > x or i = x, make i prio1
-                        if (countArray[i] > countArray[x])
+                        if (countArray[x] > countArray[i])
                         {
                             prio1 = genreArray[x];
                         }
@@ -607,14 +607,14 @@ public class ProfilePage extends javax.swing.JFrame {
                     else if(prio2check != true && countArray[x] != -1)
                     {
                         // if i > x or i = x, make i prio2
-                        if (countArray[i] > countArray[x])
+                        if (countArray[x] > countArray[i])
                         {
-                            prio2 = genreArray[i];
+                            prio2 = genreArray[x];
                         }
                         // if i < x, make x prio2
                         else
                         {
-                            prio2 = genreArray[x];
+                            prio2 = genreArray[i];
                         }
                     }
                     // if prio3 is not already filled and if original int wasn't removed
@@ -654,12 +654,14 @@ public class ProfilePage extends javax.swing.JFrame {
                     countArray[prio3 - 1] = -1;
                 }
             }
-           String recQuery = "SELECT DISTINCT ga.Game_ID, ga.Title, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
+           String recQuery = "SELECT DISTINCT ga.Game_ID, ga.Title, ga.Subgenre1, "
+                   + "ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
                     + "FROM Games ga, GameRatings gr "
-                    + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.Rating = 1 AND (ga.Subgenre1 = "+prio2+" OR ga.Subgenre2 = "+prio2+" OR ga.subgenre3 = "+prio2+")"
-                    + "AND (ga.Subgenre1 = "+prio3+" OR ga.Subgenre2 = "+prio3+" OR ga.Subgenre3 = "+prio3+")";
+                    + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.Rating = 1 "
+                   + "AND (ga.Subgenre1 = "+prio1+" OR ga.Subgenre2 "
+                   + "= "+prio1+" OR ga.subgenre3 = "+prio1+")";
             ResultSet recommendRs = st.executeQuery(recQuery);
-            switch(prio2)
+            switch(prio1)
                 {
                     case 1:
                         firstGenreLabel.setText("JRPG");
@@ -681,32 +683,6 @@ public class ProfilePage extends javax.swing.JFrame {
                         break;
                     case 7:
                         firstGenreLabel.setText("Open World");
-                        break;
-                    default:
-                        break;
-                }
-            switch(prio3)
-                {
-                    case 1:
-                        secondGenreLabel.setText("JRPG");
-                        break;
-                    case 2:
-                        secondGenreLabel.setText("Action RPG");
-                        break;
-                    case 3:
-                        secondGenreLabel.setText("MMORPG");
-                        break;
-                    case 4:
-                        secondGenreLabel.setText("Rogue");
-                        break;
-                    case 5:
-                        secondGenreLabel.setText("Turn Based");
-                        break;
-                    case 6:
-                        secondGenreLabel.setText("Tactics");
-                        break;
-                    case 7:
-                        secondGenreLabel.setText("Open World");
                         break;
                     default:
                         break;
