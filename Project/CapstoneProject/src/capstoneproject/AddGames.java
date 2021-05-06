@@ -124,6 +124,7 @@ public class AddGames extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         mainPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         cap_nav = new javax.swing.JLabel();
@@ -145,6 +146,9 @@ public class AddGames extends javax.swing.JFrame {
         sub1Combo = new javax.swing.JComboBox<>();
         browseButton = new javax.swing.JButton();
         imgLabel = new javax.swing.JLabel();
+        ratingsPanel = new javax.swing.JPanel();
+        likeRatingButton = new javax.swing.JRadioButton();
+        dislikeRatingButton = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -267,6 +271,38 @@ public class AddGames extends javax.swing.JFrame {
         imgLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imgLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
+        ratingsPanel.setBackground(new java.awt.Color(51, 51, 51));
+        ratingsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ratings", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cooper Black", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
+        ratingsPanel.setForeground(new java.awt.Color(255, 255, 255));
+
+        likeRatingButton.setBackground(new java.awt.Color(51, 51, 51));
+        buttonGroup1.add(likeRatingButton);
+        likeRatingButton.setForeground(new java.awt.Color(255, 255, 255));
+        likeRatingButton.setText("Like");
+
+        dislikeRatingButton.setBackground(new java.awt.Color(51, 51, 51));
+        buttonGroup1.add(dislikeRatingButton);
+        dislikeRatingButton.setForeground(new java.awt.Color(255, 255, 255));
+        dislikeRatingButton.setText("Dislike");
+
+        javax.swing.GroupLayout ratingsPanelLayout = new javax.swing.GroupLayout(ratingsPanel);
+        ratingsPanel.setLayout(ratingsPanelLayout);
+        ratingsPanelLayout.setHorizontalGroup(
+            ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ratingsPanelLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(likeRatingButton)
+                .addGap(130, 130, 130)
+                .addComponent(dislikeRatingButton)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        ratingsPanelLayout.setVerticalGroup(
+            ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ratingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(likeRatingButton)
+                .addComponent(dislikeRatingButton))
+        );
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -289,7 +325,7 @@ public class AddGames extends javax.swing.JFrame {
                                     .addComponent(sub2Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(sub1Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(sub3Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 329, Short.MAX_VALUE)))
+                        .addGap(0, 360, Short.MAX_VALUE)))
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -299,7 +335,8 @@ public class AddGames extends javax.swing.JFrame {
                                 .addGap(12, 12, 12)
                                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(browseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(imgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(imgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(ratingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(requiredFieldLabel)
@@ -330,7 +367,9 @@ public class AddGames extends javax.swing.JFrame {
                         .addComponent(imgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(browseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(188, 188, 188)
+                        .addGap(18, 18, 18)
+                        .addComponent(ratingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(122, 122, 122)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -351,7 +390,7 @@ public class AddGames extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(gameDescLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
@@ -528,7 +567,113 @@ public class AddGames extends javax.swing.JFrame {
             addRecordPS.setInt(6, sub2);
             addRecordPS.setInt(7, sub3);
             addRecordPS.executeUpdate();
+String user = User.getUsername();
 
+      int rating = 0;
+
+
+
+      String quote = "'";
+
+      String check = "SELECT * FROM GameRatings WHERE Game_ID = "+id+" AND User_ID = " + quote + user + quote;
+
+      String delete = "DELETE FROM GameRatings WHERE Game_ID = "+id+" AND User_ID = " + quote + user + quote;
+
+      String query = "INSERT INTO GameRatings(Game_ID, User_ID, Rating) VALUES(?,?,?)";
+
+
+
+      PreparedStatement checkSt = con.prepareStatement(check);
+
+      PreparedStatement deleteSt = con.prepareStatement(delete);
+
+      PreparedStatement stmt = con.prepareStatement(query);
+
+
+
+      ResultSet rsCheck = checkSt.executeQuery();
+
+      if(rsCheck.next())
+
+      {
+
+        deleteSt.executeUpdate();
+
+        if(likeRatingButton.isSelected())
+
+        {
+
+          stmt.setInt(1,id);
+
+          stmt.setString(2,user);
+
+          stmt.setInt(3,rating + 1);
+
+        }
+
+        else if(dislikeRatingButton.isSelected())
+
+        {
+
+          stmt.setInt(1,id);
+
+          stmt.setString(2,user);
+
+          stmt.setInt(3,rating - 1);
+
+        }
+
+        int x = stmt.executeUpdate();
+
+        if(x > 0)
+
+        {
+
+          JOptionPane.showMessageDialog(null, "Your rating has been updated");
+
+        }
+
+      }
+
+      else
+
+      {
+
+        if(likeRatingButton.isSelected())
+
+        {
+
+          stmt.setInt(1,id);
+
+          stmt.setString(2,user);
+
+          stmt.setInt(3,rating + 1);
+
+        }
+
+        else if(dislikeRatingButton.isSelected())
+
+        {
+
+          stmt.setInt(1,id);
+
+          stmt.setString(2,user);
+
+          stmt.setInt(3,rating - 1);
+
+        }
+
+        int x = stmt.executeUpdate();
+
+        if(x > 0)
+
+        {
+
+          JOptionPane.showMessageDialog(null, "Your rating has been inserted");
+
+        }
+
+      }
             con.close();
 
             JOptionPane.showMessageDialog(null, "Game Added");
@@ -580,15 +725,19 @@ public class AddGames extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton browseButton;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel cap_nav;
+    private javax.swing.JRadioButton dislikeRatingButton;
     private javax.swing.JLabel formDesc;
     private javax.swing.JLabel gameDescLabel;
     private javax.swing.JTextArea gameDescText;
     private javax.swing.JLabel imgLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JRadioButton likeRatingButton;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel ratingsPanel;
     private javax.swing.JLabel requiredFieldLabel;
     private javax.swing.JComboBox<String> sub1Combo;
     private javax.swing.JLabel sub1Label;

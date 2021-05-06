@@ -24,6 +24,13 @@ public class HomePage extends javax.swing.JFrame {
         {
             profileButton.setVisible(false);
             profileButton.setEnabled(false);
+            addGamesButton.setVisible(false);
+            addGamesButton.setEnabled(false);
+        }
+        else if(user == user)
+        {
+            loginButton.setVisible(false);
+            loginButton.setEnabled(false);
         }
         String ACO = FillForms.getPicture(30);
         String bastion = FillForms.getPicture(4);

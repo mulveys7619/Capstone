@@ -51,6 +51,27 @@ public class ProfilePage extends javax.swing.JFrame {
                 String s2 = String.valueOf(sub2);
                 String s3 = String.valueOf(sub3);
                 
+                switch(rating)
+
+                {
+
+                    case 1:
+
+                        rate = "Like";
+
+                        break;
+
+                    case -1:
+
+                        rate = "Dislike";
+
+                        break;
+
+                default:
+
+            break;
+
+                }  
                 
                 switch(sub1)
                 {
@@ -590,31 +611,31 @@ public class ProfilePage extends javax.swing.JFrame {
                     // if prio1 is not already filled and if original int wasn't removed
                     
                     // this number wont be used but it is to help start prio2 as the main priority
-                    if(prio1check != true && countArray[x] != -1)
+                    if(prio1check != true && countArray[i] != -1)
                     {
                         // if i > x or i = x, make i prio1
                         if (countArray[x] > countArray[i])
                         {
-                            prio1 = genreArray[x];
+                            prio1 = genreArray[i];
                         }
                         // if i < x, make x prio1
                         else
                         {
-                            prio1 = genreArray[i];
+                            prio1 = genreArray[x];
                         }
                     }
                     // if prio2 is not already filled and if original int wasn't removed
                     else if(prio2check != true && countArray[x] != -1)
                     {
                         // if i > x or i = x, make i prio2
-                        if (countArray[x] > countArray[i])
+                        if (countArray[i] > countArray[x])
                         {
-                            prio2 = genreArray[x];
+                            prio2 = genreArray[i];
                         }
                         // if i < x, make x prio2
                         else
                         {
-                            prio2 = genreArray[i];
+                            prio2 = genreArray[x];
                         }
                     }
                     // if prio3 is not already filled and if original int wasn't removed
@@ -656,37 +677,146 @@ public class ProfilePage extends javax.swing.JFrame {
             }
            String recQuery = "SELECT DISTINCT ga.Game_ID, ga.Title, ga.Subgenre1, "
                    + "ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
-                    + "FROM Games ga, GameRatings gr "
-                    + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.Rating = 1 "
-                   + "AND (ga.Subgenre1 = "+prio1+" OR ga.Subgenre2 "
-                   + "= "+prio1+" OR ga.subgenre3 = "+prio1+")";
+          + "FROM Games ga, GameRatings gr "
+          + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.Rating = 1 AND "
+                   + "(ga.Subgenre1 = "+prio2+" OR ga.Subgenre2 = "+prio2+" OR ga.subgenre3 = "+prio2+")"
+          + "AND (ga.Subgenre1 = "+prio3+" OR ga.Subgenre2 = "+prio3+" OR ga.Subgenre3 = "+prio3+")";
+//                   "SELECT DISTINCT ga.Game_ID, ga.Title, ga.Subgenre1, "
+//                   + "ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
+//                    + "FROM Games ga, GameRatings gr "
+//                    + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.Rating = 1 "
+//                   + "AND (ga.Subgenre1 = "+prio1+" OR ga.Subgenre2 "
+//                   + "= "+prio1+" OR ga.subgenre3 = "+prio1+")";
             ResultSet recommendRs = st.executeQuery(recQuery);
-            switch(prio1)
-                {
-                    case 1:
-                        firstGenreLabel.setText("JRPG");
-                        break;
-                    case 2:
-                        firstGenreLabel.setText("Action RPG");
-                        break;
-                    case 3:
-                        firstGenreLabel.setText("MMORPG");
-                        break;
-                    case 4:
-                        firstGenreLabel.setText("Rogue");
-                        break;
-                    case 5:
-                        firstGenreLabel.setText("Turn Based");
-                        break;
-                    case 6:
-                        firstGenreLabel.setText("Tactics");
-                        break;
-                    case 7:
-                        firstGenreLabel.setText("Open World");
-                        break;
-                    default:
-                        break;
-                }
+//            switch(prio1)
+//                {
+//                    case 1:
+//                        firstGenreLabel.setText("JRPG");
+//                        break;
+//                    case 2:
+//                        firstGenreLabel.setText("Action RPG");
+//                        break;
+//                    case 3:
+//                        firstGenreLabel.setText("MMORPG");
+//                        break;
+//                    case 4:
+//                        firstGenreLabel.setText("Rogue");
+//                        break;
+//                    case 5:
+//                        firstGenreLabel.setText("Turn Based");
+//                        break;
+//                    case 6:
+//                        firstGenreLabel.setText("Tactics");
+//                        break;
+//                    case 7:
+//                        firstGenreLabel.setText("Open World");
+//                        break;
+//                    default:
+//                        break;
+//                }
+switch(prio2)
+
+      {
+
+        case 1:
+
+          firstGenreLabel.setText("JRPG");
+
+          break;
+
+        case 2:
+
+          firstGenreLabel.setText("Action RPG");
+
+          break;
+
+        case 3:
+
+          firstGenreLabel.setText("MMORPG");
+
+          break;
+
+        case 4:
+
+          firstGenreLabel.setText("Rogue");
+
+          break;
+
+        case 5:
+
+          firstGenreLabel.setText("Turn Based");
+
+          break;
+
+        case 6:
+
+          firstGenreLabel.setText("Tactics");
+
+          break;
+
+        case 7:
+
+          firstGenreLabel.setText("Open World");
+
+          break;
+
+        default:
+
+          break;
+
+      }
+
+      switch(prio3)
+
+      {
+
+        case 1:
+
+            secondGenreLabel.setText("JRPG");
+
+            break;
+
+          case 2:
+
+            secondGenreLabel.setText("Action RPG");
+
+            break;
+
+          case 3:
+
+            secondGenreLabel.setText("MMORPG");
+
+            break;
+
+          case 4:
+
+            secondGenreLabel.setText("Rogue");
+
+            break;
+
+          case 5:
+
+            secondGenreLabel.setText("Turn Based");
+
+            break;
+
+          case 6:
+
+            secondGenreLabel.setText("Tactics");
+
+            break;
+
+          case 7:
+
+            secondGenreLabel.setText("Open World");
+
+            break;
+
+          default:
+
+            break;
+
+      }
 
             while(recommendRs.next())
             {
