@@ -5,24 +5,15 @@
  */
 package capstoneproject;
 
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
-import java.io.File;
-import java.io.IOException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 /**
  *
@@ -36,85 +27,8 @@ public class AddGames extends javax.swing.JFrame {
      */
     public AddGames() {
         initComponents();
-        ChooseImage();
     }
-    // <editor-fold defaultstate="collapsed" desc="void ResizeImage() -- Scale an image On  AddGames">
-    public ImageIcon ResizeImage(String path)
-    {
-        ImageIcon myImage = new ImageIcon(path);
-        Image img = myImage.getImage();
-        Image newImg = img.getScaledInstance(imgLabel.getWidth(), imgLabel.getHeight(), Image.SCALE_SMOOTH);
-        ImageIcon image = new ImageIcon(newImg);
-        return image;
-    }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="void GetImageIcon() -- Get an image icon On  AddGames">
-    private void SetImageIcon(ImageIcon img)
-    {
-        imgIconP = img;
-    }
-    // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="void ChooseImage() -- Allow users to add an image On  AddGames">
-    public void ChooseImage()
-    {
-    browseButton.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-            JFileChooser file = new JFileChooser();
-            file.setCurrentDirectory(new File(System.getProperty("user.home")));
-            FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images","jpg","gif","png");
-            file.addChoosableFileFilter(filter);
-            int result = file.showSaveDialog(null);
-            if (result == JFileChooser.APPROVE_OPTION)
-            {
-                File selectedFile = file.getSelectedFile();
-                String path = selectedFile.getAbsolutePath();
-                imgLabel.setIcon(ResizeImage(path));
-                SetImageIcon(ResizeImage(path));
-                
-            }
-            else if(result == JFileChooser.CANCEL_OPTION)
-            {
-                System.out.println("No File Selected");
-            }
-            
-    }
-    });
-    }
-   // </editor-fold>
-    // <editor-fold defaultstate="collapsed" desc="void SaveImage() -- Saves an image On  AddGames">
-    private void SaveImage(ImageIcon icon)
-    {
-       
-       Image img = icon.getImage();
-       
-       
-       RenderedImage rendImage = myCreateImage(img);
-       
-       try
-       {
-           String title = titleText.getText();
-           String titlePath = title.replaceAll("\\s", "").toLowerCase();
-           File outputfile = new File(""+titlePath+".jpg");
-           ImageIO.write(rendImage, "jpg", outputfile);
-       }
-       catch(IOException e)
-       {
-           e.printStackTrace();
-       }
-    }
-    // </editor-fold>
-    public RenderedImage myCreateImage(Image image) {
-    int width = 384;  // or, = image.getWidth(this);
-    int height = 288;
-    // Create a buffered image in which to draw
-    BufferedImage bufferedImage = new BufferedImage(width, height,
-                                          BufferedImage.TYPE_INT_RGB);
-    // Draw image into bufferedImage.
-    Graphics2D g2 = bufferedImage.createGraphics();
-    g2.drawImage(image, 0, 0, this);
-    g2.dispose();
-    return bufferedImage;
-}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -128,7 +42,6 @@ public class AddGames extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         cap_nav = new javax.swing.JLabel();
-        thumbnailLabel = new javax.swing.JLabel();
         formDesc = new javax.swing.JLabel();
         titleLabel = new javax.swing.JLabel();
         sub1Label = new javax.swing.JLabel();
@@ -144,8 +57,6 @@ public class AddGames extends javax.swing.JFrame {
         sub3Combo = new javax.swing.JComboBox<>();
         sub2Combo = new javax.swing.JComboBox<>();
         sub1Combo = new javax.swing.JComboBox<>();
-        browseButton = new javax.swing.JButton();
-        imgLabel = new javax.swing.JLabel();
         ratingsPanel = new javax.swing.JPanel();
         likeRatingButton = new javax.swing.JRadioButton();
         dislikeRatingButton = new javax.swing.JRadioButton();
@@ -184,14 +95,10 @@ public class AddGames extends javax.swing.JFrame {
                 .addComponent(cap_nav, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        thumbnailLabel.setFont(new java.awt.Font("Cooper Black", 3, 24)); // NOI18N
-        thumbnailLabel.setForeground(new java.awt.Color(255, 255, 255));
-        thumbnailLabel.setText("ADD THUMBNAIL IMAGE *");
-
         formDesc.setFont(new java.awt.Font("Cooper Black", 2, 36)); // NOI18N
         formDesc.setForeground(new java.awt.Color(255, 255, 255));
         formDesc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        formDesc.setText("ADD A GAME TO RPG RECOMMEND");
+        formDesc.setText("ADD A GAME TO RPG RECOMMENDER");
 
         titleLabel.setFont(new java.awt.Font("Cooper Black", 3, 24)); // NOI18N
         titleLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -262,15 +169,6 @@ public class AddGames extends javax.swing.JFrame {
         sub1Combo.setForeground(new java.awt.Color(255, 255, 255));
         sub1Combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NONE", "JRPG", "ARPG", "MMORPG", "ROGUE", "TURN BASED", "TACTICS", "OPEN WORLD" }));
 
-        browseButton.setBackground(new java.awt.Color(44, 47, 51));
-        browseButton.setFont(new java.awt.Font("Cooper Black", 0, 11)); // NOI18N
-        browseButton.setForeground(new java.awt.Color(255, 255, 255));
-        browseButton.setText("Browse...");
-
-        imgLabel.setBackground(new java.awt.Color(44, 47, 51));
-        imgLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-
         ratingsPanel.setBackground(new java.awt.Color(51, 51, 51));
         ratingsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ratings", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cooper Black", 0, 14), new java.awt.Color(255, 255, 255))); // NOI18N
         ratingsPanel.setForeground(new java.awt.Color(255, 255, 255));
@@ -314,7 +212,6 @@ public class AddGames extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(formDesc)
                             .addComponent(gameDescLabel)
                             .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -324,27 +221,21 @@ public class AddGames extends javax.swing.JFrame {
                                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(sub2Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(sub1Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(sub3Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 360, Short.MAX_VALUE)))
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(sub3Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(formDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 330, Short.MAX_VALUE)))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(thumbnailLabel)
-                            .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(browseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(imgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(ratingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(29, 29, 29)
+                        .addComponent(ratingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(requiredFieldLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(12, 12, 12))
+                .addGap(20, 20, 20))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addContainerGap()
@@ -353,45 +244,39 @@ public class AddGames extends javax.swing.JFrame {
                         .addComponent(sub1Label, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(titleText, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(720, Short.MAX_VALUE)))
+                    .addContainerGap(743, Short.MAX_VALUE)))
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(formDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117)
+                .addComponent(sub1Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sub2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sub2Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sub3Label, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sub3Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(gameDescLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(thumbnailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(imgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(browseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(ratingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(122, 122, 122)
+                        .addGap(39, 39, 39)
                         .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(requiredFieldLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(requiredFieldLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(submitButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(214, 214, 214))
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(formDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(117, 117, 117)
-                        .addComponent(sub1Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(sub2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sub2Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(sub3Label, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sub3Combo, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(gameDescLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(mainPanelLayout.createSequentialGroup()
                     .addGap(180, 180, 180)
@@ -400,21 +285,20 @@ public class AddGames extends javax.swing.JFrame {
                         .addComponent(titleText, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(18, 18, 18)
                     .addComponent(sub1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(507, Short.MAX_VALUE)))
+                    .addContainerGap(512, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1437, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1447, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -439,29 +323,30 @@ public class AddGames extends javax.swing.JFrame {
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
             String path = "",
-            title = "",
-            desc = "";
+                    title = "",
+                    desc = "";
             int id = 0,
-            sub1 = 0,
-            sub2 = 0,
-            sub3 = 0;
-
+                    sub1 = 0,
+                    sub2 = 0,
+                    sub3 = 0;
+            
+            
             // DETERMINE GAME_ID FIELD
             String countQuery = "SELECT COUNT(*) FROM games";
             ResultSet countRS = st.executeQuery(countQuery);
             countRS.next();
             int result = countRS.getInt(1);
             id = result + 1;
-
+            
             // DETERMINE TITLE FIELD
             title = titleText.getText();
-
+            
             //DETERMINE PATH FIELD
-            path = title.replaceAll("\\s", "").toLowerCase();
-
+            path = "usergame";
+            
             // DETERMINE DESCRIPTION FIELD
             desc = gameDescText.getText();
-
+            
             // DETERMINE GENRE FIELDS
             int combo1 = sub1Combo.getSelectedIndex();
             int combo2 = sub2Combo.getSelectedIndex();
@@ -469,93 +354,92 @@ public class AddGames extends javax.swing.JFrame {
             switch(combo1)
             {
                 case 0:
-                sub1 = 8;
-                break;
+                    sub1 = 8;
+                    break;
                 case 1:
-                sub1 = 1;
-                break;
+                    sub1 = 1;
+                    break;
                 case 2:
-                sub1 = 2;
-                break;
+                    sub1 = 2;
+                    break;
                 case 3:
-                sub1 = 3;
-                break;
+                    sub1 = 3;
+                    break;
                 case 4:
-                sub1 = 4;
-                break;
+                    sub1 = 4;
+                    break;
                 case 5:
-                sub1 = 5;
-                break;
+                    sub1 = 5;
+                    break;
                 case 6:
-                sub1 = 6;
-                break;
+                    sub1 = 6;
+                    break;
                 case 7:
-                sub1 = 7;
-                break;
+                    sub1 = 7;
+                    break;
                 default:
-                sub1 = 8;
+                    sub1 = 8;
             }
             switch(combo2)
             {
                 case 0:
-                sub2 = 8;
-                break;
+                    sub2 = 8;
+                    break;
                 case 1:
-                sub2 = 1;
-                break;
+                    sub2 = 1;
+                    break;
                 case 2:
-                sub2 = 2;
-                break;
+                    sub2 = 2;
+                    break;
                 case 3:
-                sub2 = 3;
-                break;
+                    sub2 = 3;
+                    break;
                 case 4:
-                sub2 = 4;
-                break;
+                    sub2 = 4;
+                    break;
                 case 5:
-                sub2 = 5;
-                break;
+                    sub2 = 5;
+                    break;
                 case 6:
-                sub2 = 6;
-                break;
+                    sub2 = 6;
+                    break;
                 case 7:
-                sub2 = 7;
-                break;
+                    sub2 = 7;
+                    break;
                 default:
-                sub2 = 8;
+                    sub2 = 8;
             }
             switch(combo3)
             {
                 case 0:
-                sub3 = 8;
-                break;
+                    sub3 = 8;
+                    break;
                 case 1:
-                sub3 = 1;
-                break;
+                    sub3 = 1;
+                    break;
                 case 2:
-                sub3 = 2;
-                break;
+                    sub3 = 2;
+                    break;
                 case 3:
-                sub3 = 3;
-                break;
+                    sub3 = 3;
+                    break;
                 case 4:
-                sub3 = 4;
-                break;
+                    sub3 = 4;
+                    break;
                 case 5:
-                sub3 = 5;
-                break;
+                    sub3 = 5;
+                    break;
                 case 6:
-                sub3 = 6;
-                break;
+                    sub3 = 6;
+                    break;
                 case 7:
-                sub3 = 7;
-                break;
+                    sub3 = 7;
+                    break;
                 default:
-                sub3 = 8;
+                    sub3 = 8;
             }
-
-            // SAVE IMAGE TO PROJECT
-            SaveImage(imgIconP);
+            
+            
             // ADD RECORD TO GAMES TABLE
             String addRecord = "INSERT INTO games VALUES(?,?,?,?,?,?,?)";
             PreparedStatement addRecordPS = con.prepareStatement(addRecord);
@@ -567,113 +451,61 @@ public class AddGames extends javax.swing.JFrame {
             addRecordPS.setInt(6, sub2);
             addRecordPS.setInt(7, sub3);
             addRecordPS.executeUpdate();
-String user = User.getUsername();
-
-      int rating = 0;
-
-
-
-      String quote = "'";
-
-      String check = "SELECT * FROM GameRatings WHERE Game_ID = "+id+" AND User_ID = " + quote + user + quote;
-
-      String delete = "DELETE FROM GameRatings WHERE Game_ID = "+id+" AND User_ID = " + quote + user + quote;
-
-      String query = "INSERT INTO GameRatings(Game_ID, User_ID, Rating) VALUES(?,?,?)";
-
-
-
-      PreparedStatement checkSt = con.prepareStatement(check);
-
-      PreparedStatement deleteSt = con.prepareStatement(delete);
-
-      PreparedStatement stmt = con.prepareStatement(query);
-
-
-
-      ResultSet rsCheck = checkSt.executeQuery();
-
-      if(rsCheck.next())
-
-      {
-
-        deleteSt.executeUpdate();
-
-        if(likeRatingButton.isSelected())
-
-        {
-
-          stmt.setInt(1,id);
-
-          stmt.setString(2,user);
-
-          stmt.setInt(3,rating + 1);
-
-        }
-
-        else if(dislikeRatingButton.isSelected())
-
-        {
-
-          stmt.setInt(1,id);
-
-          stmt.setString(2,user);
-
-          stmt.setInt(3,rating - 1);
-
-        }
-
-        int x = stmt.executeUpdate();
-
-        if(x > 0)
-
-        {
-
-          JOptionPane.showMessageDialog(null, "Your rating has been updated");
-
-        }
-
-      }
-
-      else
-
-      {
-
-        if(likeRatingButton.isSelected())
-
-        {
-
-          stmt.setInt(1,id);
-
-          stmt.setString(2,user);
-
-          stmt.setInt(3,rating + 1);
-
-        }
-
-        else if(dislikeRatingButton.isSelected())
-
-        {
-
-          stmt.setInt(1,id);
-
-          stmt.setString(2,user);
-
-          stmt.setInt(3,rating - 1);
-
-        }
-
-        int x = stmt.executeUpdate();
-
-        if(x > 0)
-
-        {
-
-          JOptionPane.showMessageDialog(null, "Your rating has been inserted");
-
-        }
-
-      }
+            
+            String user = User.getUsername();
+            int rating = 0;
+            String quote = "'";
+            
+            String check = "SELECT * FROM GameRatings WHERE Game_ID = "+id+" AND User_ID = " + quote + user + quote;
+            String delete = "DELETE FROM GameRatings WHERE Game_ID = "+id+" AND User_ID = " + quote + user + quote;
+            String query = "INSERT INTO GameRatings(Game_ID, User_ID, Rating) VALUES(?,?,?)";
+            
+            PreparedStatement checkSt = con.prepareStatement(check);
+            PreparedStatement deleteSt = con.prepareStatement(delete);
+            PreparedStatement stmt = con.prepareStatement(query);
+            
+            ResultSet rsCheck = checkSt.executeQuery();
+            if(rsCheck.next())
+            {
+                deleteSt.executeUpdate();
+                if(likeRatingButton.isSelected())
+                {
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating + 1);
+                }
+                else if(dislikeRatingButton.isSelected())
+                {
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating - 1);
+                }
+                int x = stmt.executeUpdate();
+                if(x > 0)
+                {
+                    JOptionPane.showMessageDialog(null, "Your rating has been updated");
+                }
+            }
+            else
+            {
+                if(likeRatingButton.isSelected())
+                {
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating + 1);
+                }
+                else if(dislikeRatingButton.isSelected())
+                {
+                    stmt.setInt(1,id);
+                    stmt.setString(2,user);
+                    stmt.setInt(3,rating - 1);
+                }
+                int x = stmt.executeUpdate();
+                if(x > 0)
+                {
+                    JOptionPane.showMessageDialog(null, "Your rating has been inserted");
+                }
+            }
             con.close();
 
             JOptionPane.showMessageDialog(null, "Game Added");
@@ -724,7 +556,6 @@ String user = User.getUsername();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton browseButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton cancelButton;
     private javax.swing.JLabel cap_nav;
@@ -732,7 +563,6 @@ String user = User.getUsername();
     private javax.swing.JLabel formDesc;
     private javax.swing.JLabel gameDescLabel;
     private javax.swing.JTextArea gameDescText;
-    private javax.swing.JLabel imgLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton likeRatingButton;
@@ -746,7 +576,6 @@ String user = User.getUsername();
     private javax.swing.JComboBox<String> sub3Combo;
     private javax.swing.JLabel sub3Label;
     private javax.swing.JButton submitButton;
-    private javax.swing.JLabel thumbnailLabel;
     private javax.swing.JLabel titleLabel;
     private javax.swing.JTextField titleText;
     // End of variables declaration//GEN-END:variables

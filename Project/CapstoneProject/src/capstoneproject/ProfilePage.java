@@ -52,27 +52,16 @@ public class ProfilePage extends javax.swing.JFrame {
                 String s3 = String.valueOf(sub3);
                 
                 switch(rating)
-
                 {
-
                     case 1:
-
                         rate = "Like";
-
                         break;
-
                     case -1:
-
                         rate = "Dislike";
-
                         break;
-
-                default:
-
-            break;
-
+                    default:
+                        break;
                 }  
-                
                 switch(sub1)
                 {
                     case 1:
@@ -282,7 +271,9 @@ public class ProfilePage extends javax.swing.JFrame {
         );
         myLibraryPanelLayout.setVerticalGroup(
             myLibraryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+            .addGroup(myLibraryPanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 492, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         tabbedPanel.addTab("My Library", myLibraryPanel);
@@ -322,7 +313,7 @@ public class ProfilePage extends javax.swing.JFrame {
         );
         recommendationsPanelLayout.setVerticalGroup(
             recommendationsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
         );
 
         tabbedPanel.addTab("Recommendations", recommendationsPanel);
@@ -394,7 +385,7 @@ public class ProfilePage extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(usersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                        .addGap(21, 21, 21)
                         .addComponent(recommendationButton)))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
@@ -404,12 +395,12 @@ public class ProfilePage extends javax.swing.JFrame {
                 .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(backgroundPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(tabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(backgroundPanelLayout.createSequentialGroup()
                         .addGap(56, 56, 56)
-                        .addComponent(usersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30)
+                        .addComponent(usersPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(tabbedPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(recommendationButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -582,7 +573,6 @@ public class ProfilePage extends javax.swing.JFrame {
                     default:
                         break;
                 }
-                
             }
             // most counted genre
             int prio1 = 0;
@@ -614,14 +604,14 @@ public class ProfilePage extends javax.swing.JFrame {
                     if(prio1check != true && countArray[i] != -1)
                     {
                         // if i > x or i = x, make i prio1
-                        if (countArray[x] > countArray[i])
-                        {
-                            prio1 = genreArray[i];
-                        }
-                        // if i < x, make x prio1
-                        else
+                        if (countArray[i] > countArray[x])
                         {
                             prio1 = genreArray[x];
+                        }
+                        // if i < x, make x prio1
+                        else if(countArray[i] < countArray[x])
+                        {
+                            prio1 = genreArray[i];
                         }
                     }
                     // if prio2 is not already filled and if original int wasn't removed
@@ -633,7 +623,7 @@ public class ProfilePage extends javax.swing.JFrame {
                             prio2 = genreArray[i];
                         }
                         // if i < x, make x prio2
-                        else
+                        else if(countArray[i] < countArray[x])
                         {
                             prio2 = genreArray[x];
                         }
@@ -647,7 +637,7 @@ public class ProfilePage extends javax.swing.JFrame {
                             prio3 = genreArray[i];
                         }
                         // if i < x, make x prio3
-                        else
+                        else if(countArray[i] < countArray[x])
                         {
                             prio3 = genreArray[x];
                         }
@@ -675,148 +665,65 @@ public class ProfilePage extends javax.swing.JFrame {
                     countArray[prio3 - 1] = -1;
                 }
             }
-           String recQuery = "SELECT DISTINCT ga.Game_ID, ga.Title, ga.Subgenre1, "
+            String recQuery = "SELECT DISTINCT ga.Game_ID, ga.Title, ga.Subgenre1, "
                    + "ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
-          + "FROM Games ga, GameRatings gr "
-          + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.Rating = 1 AND "
-                   + "(ga.Subgenre1 = "+prio2+" OR ga.Subgenre2 = "+prio2+" OR ga.subgenre3 = "+prio2+")"
-          + "AND (ga.Subgenre1 = "+prio3+" OR ga.Subgenre2 = "+prio3+" OR ga.Subgenre3 = "+prio3+")";
-//                   "SELECT DISTINCT ga.Game_ID, ga.Title, ga.Subgenre1, "
-//                   + "ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
-//                    + "FROM Games ga, GameRatings gr "
-//                    + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.Rating = 1 "
-//                   + "AND (ga.Subgenre1 = "+prio1+" OR ga.Subgenre2 "
-//                   + "= "+prio1+" OR ga.subgenre3 = "+prio1+")";
+                   + "FROM Games ga, GameRatings gr "
+                   + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.Rating = 1 AND "
+                   + "(ga.Subgenre1 = "+prio2+" OR ga.Subgenre2 = "+prio2+" OR ga.Subgenre3 = "+prio2+")"
+                   + "AND (ga.Subgenre1 = "+prio3+" OR ga.Subgenre2 = "+prio3+" OR ga.Subgenre3 = "+prio3+")";
             ResultSet recommendRs = st.executeQuery(recQuery);
-//            switch(prio1)
-//                {
-//                    case 1:
-//                        firstGenreLabel.setText("JRPG");
-//                        break;
-//                    case 2:
-//                        firstGenreLabel.setText("Action RPG");
-//                        break;
-//                    case 3:
-//                        firstGenreLabel.setText("MMORPG");
-//                        break;
-//                    case 4:
-//                        firstGenreLabel.setText("Rogue");
-//                        break;
-//                    case 5:
-//                        firstGenreLabel.setText("Turn Based");
-//                        break;
-//                    case 6:
-//                        firstGenreLabel.setText("Tactics");
-//                        break;
-//                    case 7:
-//                        firstGenreLabel.setText("Open World");
-//                        break;
-//                    default:
-//                        break;
-//                }
-switch(prio2)
-
-      {
-
-        case 1:
-
-          firstGenreLabel.setText("JRPG");
-
-          break;
-
-        case 2:
-
-          firstGenreLabel.setText("Action RPG");
-
-          break;
-
-        case 3:
-
-          firstGenreLabel.setText("MMORPG");
-
-          break;
-
-        case 4:
-
-          firstGenreLabel.setText("Rogue");
-
-          break;
-
-        case 5:
-
-          firstGenreLabel.setText("Turn Based");
-
-          break;
-
-        case 6:
-
-          firstGenreLabel.setText("Tactics");
-
-          break;
-
-        case 7:
-
-          firstGenreLabel.setText("Open World");
-
-          break;
-
-        default:
-
-          break;
-
-      }
-
-      switch(prio3)
-
-      {
-
-        case 1:
-
-            secondGenreLabel.setText("JRPG");
-
-            break;
-
-          case 2:
-
-            secondGenreLabel.setText("Action RPG");
-
-            break;
-
-          case 3:
-
-            secondGenreLabel.setText("MMORPG");
-
-            break;
-
-          case 4:
-
-            secondGenreLabel.setText("Rogue");
-
-            break;
-
-          case 5:
-
-            secondGenreLabel.setText("Turn Based");
-
-            break;
-
-          case 6:
-
-            secondGenreLabel.setText("Tactics");
-
-            break;
-
-          case 7:
-
-            secondGenreLabel.setText("Open World");
-
-            break;
-
-          default:
-
-            break;
-
-      }
+            switch(prio2)
+            {
+                case 1:
+                    firstGenreLabel.setText("JRPG");
+                    break;
+                case 2:
+                    firstGenreLabel.setText("Action RPG");
+                    break;
+                case 3:
+                    firstGenreLabel.setText("MMORPG");
+                    break;
+                case 4:
+                    firstGenreLabel.setText("Rogue");
+                    break;
+                case 5:
+                    firstGenreLabel.setText("Turn Based");
+                    break;
+                case 6:
+                    firstGenreLabel.setText("Tactics");
+                    break;
+                case 7:
+                    firstGenreLabel.setText("Open World");
+                    break;
+                default:
+                    break;
+            }
+            switch(prio3)
+            {
+                case 1:
+                    secondGenreLabel.setText("JRPG");
+                    break;
+                case 2:
+                    secondGenreLabel.setText("Action RPG");
+                    break;
+                case 3:
+                    secondGenreLabel.setText("MMORPG");
+                    break;
+                case 4:
+                    secondGenreLabel.setText("Rogue");
+                    break;
+                case 5:
+                    secondGenreLabel.setText("Turn Based");
+                    break;
+                case 6:
+                    secondGenreLabel.setText("Tactics");
+                    break;
+                case 7:
+                    secondGenreLabel.setText("Open World");
+                    break;
+                default:
+                    break;
+            }
 
             while(recommendRs.next())
             {
