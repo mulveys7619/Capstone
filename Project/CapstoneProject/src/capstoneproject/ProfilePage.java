@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package capstoneproject;
 
 import java.sql.*;
@@ -12,17 +7,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
-/**
- *
- * @author jevon
- */
 public class ProfilePage extends javax.swing.JFrame {
-    /* EXAMPLE FOR RECOMMENDATION
-       SELECT ga.Game_ID, ga.Title, ga.Thumbnail, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.USER_ID 
-       FROM Games ga, GameRatings gr 
-       WHERE gr.USER_ID = 'Capstone23' AND gr.Rating = 1 AND (ga.Subgenre1 = 7 OR ga.subgenre2 = 7 OR ga.subgenre3 = 7) AND (ga.subgenre1 = 1 OR ga.subgenre2 = 1 OR ga.subgenre3 = 1);
-    */
     public ProfilePage() {
         initComponents();
         String user = User.getUsername();
@@ -34,12 +19,14 @@ public class ProfilePage extends javax.swing.JFrame {
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             
             String quote = "'";
+            // A query to grab all the games you rated
             String query = "SELECT ga.Game_ID, ga.Title, ga.Subgenre1, ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
                     + "FROM Games ga, Gameratings gr "
                     + "WHERE gr.User_ID = " + quote + user + quote + " AND gr.game_id = ga.game_id";
             ResultSet combineRs = st.executeQuery(query);
             while(combineRs.next())
             {
+                // The data were pulling from the database to populate the table of your profile
                 String title = combineRs.getString("Title");
                 int rating = combineRs.getInt("Rating");
                 int sub1 = combineRs.getInt("Subgenre1");
@@ -51,6 +38,7 @@ public class ProfilePage extends javax.swing.JFrame {
                 String s2 = String.valueOf(sub2);
                 String s3 = String.valueOf(sub3);
                 
+                // switch statement so that we can get the string value of what you rated
                 switch(rating)
                 {
                     case 1:
@@ -62,6 +50,7 @@ public class ProfilePage extends javax.swing.JFrame {
                     default:
                         break;
                 }  
+                // switch statement so that we can get the string value of the subgenre in the first row of the database
                 switch(sub1)
                 {
                     case 1:
@@ -86,11 +75,15 @@ public class ProfilePage extends javax.swing.JFrame {
                         s1 = "Open World";
                         break;
                     case 8:
-                        s3 = "";
+                        s1 = "";
+                        break;
+                    case 9:
+                        s1 = "";
                         break;
                     default:
                         break;
                 }
+                // switch statement so that we can get the string value of the subgenre in the second row of the database
                 switch(sub2)
                 {
                     case 1:
@@ -115,11 +108,15 @@ public class ProfilePage extends javax.swing.JFrame {
                         s2 = "Open World";
                         break;
                     case 8:
-                        s3 = "";
+                        s2 = "";
+                        break;
+                    case 9:
+                        s2 = "";
                         break;
                     default:
                         break;
                 }
+                // switch statement so that we can get the string value of the subgenre in the third row of the database
                 switch(sub3)
                 {
                     case 1:
@@ -146,11 +143,14 @@ public class ProfilePage extends javax.swing.JFrame {
                     case 8:
                         s3 = "";
                         break;
+                    case 9:
+                        s3 = "";
+                        break;
                     default:
                         break;
                 }
                 
-                
+                // The model for the table to populate the profile page table
                 DefaultTableModel tbModel = (DefaultTableModel)myLibraryTable.getModel();
                 String data[] = {title, rate, s1, s2, s3};
                 tbModel.addRow(data);
@@ -442,9 +442,10 @@ public class ProfilePage extends javax.swing.JFrame {
             Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             String quote = "'";
             
-            
+            // Getting the game_id for the user 
             String checkQuery = "SELECT Game_ID FROM GameRatings WHERE User_ID = " + quote + user + quote + " AND Rating = 1";
             ResultSet checkRs = st.executeQuery(checkQuery);
+            // getting the size for how many games you rated there are
             String subCheck = "SELECT * FROM GAMES WHERE GAME_ID IN (";
             int size = 0;
             int count = 0;
@@ -457,6 +458,7 @@ public class ProfilePage extends javax.swing.JFrame {
             while(checkRs.next())
             {
                 count++;
+                // if the count of games is lower than the size we will get the next game until it stops
                 if(count < size)
                 {
                     subCheck += checkRs.getInt("Game_ID") + ", ";
@@ -469,6 +471,7 @@ public class ProfilePage extends javax.swing.JFrame {
             subCheck += ")";
             PreparedStatement subCheckPs = con.prepareStatement(subCheck);
             ResultSet subCheckRs = subCheckPs.executeQuery();
+            // Variables of the each genre we have and their counts
             int jrpg = 1;
             int arpg = 2;
             int mmo = 3;
@@ -486,6 +489,7 @@ public class ProfilePage extends javax.swing.JFrame {
             
             while(subCheckRs.next())
             {
+                // The data were pulling from the database to get the games you rated and give your recommendations later
                 String recTitle = subCheckRs.getString("Title");
                 int recSub1 = subCheckRs.getInt("Subgenre1");
                 int recSub2 = subCheckRs.getInt("Subgenre2");
@@ -495,6 +499,7 @@ public class ProfilePage extends javax.swing.JFrame {
                 String recS2 = String.valueOf(recSub2);
                 String recS3 = String.valueOf(recSub3);
                 
+                // This switch goes to the first row in the table and add to the counts
                 switch(recSub1)
                 {
                     case 1:
@@ -521,6 +526,7 @@ public class ProfilePage extends javax.swing.JFrame {
                     default:
                         break;
                 }
+                // This switch goes to the second row in the table and add to the counts
                 switch(recSub2)
                 {
                     case 1:
@@ -547,6 +553,7 @@ public class ProfilePage extends javax.swing.JFrame {
                     default:
                         break;
                 }
+                // This switch goes to the third row in the table and add to the counts
                 switch(recSub3)
                 {
                     case 1:
@@ -665,6 +672,7 @@ public class ProfilePage extends javax.swing.JFrame {
                     countArray[prio3 - 1] = -1;
                 }
             }
+            // This query grabs all the games that match the prios to get the games to recommend
             String recQuery = "SELECT DISTINCT ga.Game_ID, ga.Title, ga.Subgenre1, "
                    + "ga.Subgenre2, ga.Subgenre3, gr.Rating, gr.User_ID "
                    + "FROM Games ga, GameRatings gr "
@@ -672,6 +680,7 @@ public class ProfilePage extends javax.swing.JFrame {
                    + "(ga.Subgenre1 = "+prio2+" OR ga.Subgenre2 = "+prio2+" OR ga.Subgenre3 = "+prio2+")"
                    + "AND (ga.Subgenre1 = "+prio3+" OR ga.Subgenre2 = "+prio3+" OR ga.Subgenre3 = "+prio3+")";
             ResultSet recommendRs = st.executeQuery(recQuery);
+            // set the label to what the prio2 is equal to
             switch(prio2)
             {
                 case 1:
@@ -698,6 +707,7 @@ public class ProfilePage extends javax.swing.JFrame {
                 default:
                     break;
             }
+            // set the label to what the prio3 is equal to
             switch(prio3)
             {
                 case 1:
@@ -764,6 +774,9 @@ public class ProfilePage extends javax.swing.JFrame {
                     case 8:
                         recS1 = "";
                         break;
+                    case 9:
+                        recS1 = "";
+                        break;
                     default:
                         break;
                 }
@@ -793,6 +806,9 @@ public class ProfilePage extends javax.swing.JFrame {
                     case 8:
                         recS2 = "";
                         break;
+                    case 9:
+                        recS2 = "";
+                        break;
                     default:
                         break;
                 }
@@ -820,6 +836,9 @@ public class ProfilePage extends javax.swing.JFrame {
                         recS3 = "Open World";
                         break;
                     case 8:
+                        recS3 = "";
+                        break;
+                    case 9:
                         recS3 = "";
                         break;
                     default:

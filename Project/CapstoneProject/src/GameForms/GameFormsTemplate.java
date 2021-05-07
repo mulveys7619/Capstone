@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GameForms;
 
 import capstoneproject.CurrGame;
@@ -17,15 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author jevon
- */
 public class GameFormsTemplate extends javax.swing.JFrame {
-
-    /**
-     * Creates new form GameFormsTemplate
-     */
     public GameFormsTemplate() {
         initComponents();
         String user = User.getUsername();
@@ -57,6 +44,7 @@ public class GameFormsTemplate extends javax.swing.JFrame {
         synopsisText.setWrapStyleWord(true);
         try
         {
+        // This access everything to put into the labels 
         Connection con = DriverManager.getConnection("jdbc:derby://localhost:1527/CapstoneDatabase","root","root");
         Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
         String pathQuery = "SELECT thumbnail FROM GAMES WHERE game_id = ?";
@@ -363,19 +351,22 @@ public class GameFormsTemplate extends javax.swing.JFrame {
             int id = CurrGame.GetGameID();
             String user = User.getUsername();
             int rating = 0;
-
             String quote = "'";
+            
+            // Queries used for inserting into the database for the rating a game
             String check = "SELECT * FROM GameRatings WHERE Game_ID = "+id+" AND User_ID = " + quote + user + quote;
             String delete = "DELETE FROM GameRatings WHERE Game_ID = "+id+" AND User_ID = " + quote + user + quote;
             String query = "INSERT INTO GameRatings(Game_ID, User_ID, Rating) VALUES(?,?,?)";
-
+            
             PreparedStatement checkSt = con.prepareStatement(check);
             PreparedStatement deleteSt = con.prepareStatement(delete);
             PreparedStatement stmt = con.prepareStatement(query);
-
+            
             ResultSet rsCheck = checkSt.executeQuery();
+            // if a rating exist it will change based off the selection of the of buttons
             if(rsCheck.next())
             {
+                // if it exist it will delete the record first then go through with what selection you chose
                 deleteSt.executeUpdate();
                 if(likeRatingButton.isSelected())
                 {
@@ -391,14 +382,16 @@ public class GameFormsTemplate extends javax.swing.JFrame {
                 }
                 else if(noRatingButton.isSelected())
                 {
-                    JOptionPane.showMessageDialog(null, "Your rating has been deleted");
+                    JOptionPane.showMessageDialog(null,"Your rating has been deleted");
                 }
+                // It updates inside the database to put that record in the table
                 int x = stmt.executeUpdate();
                 if(x > 0)
                 {
                     JOptionPane.showMessageDialog(null, "Your rating has been updated");
                 }
             }
+            // if it doesn't exist it should just put your selection in the table
             else
             {
                 if(likeRatingButton.isSelected())
@@ -415,8 +408,9 @@ public class GameFormsTemplate extends javax.swing.JFrame {
                 }
                 else if(noRatingButton.isSelected())
                 {
-                    JOptionPane.showMessageDialog(null, "You chose not to rate the game");
+                    JOptionPane.showMessageDialog(null,"You chose not to rate the game.");
                 }
+                // it adds the record in the table
                 int x = stmt.executeUpdate();
                 if(x > 0)
                 {
